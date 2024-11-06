@@ -14,13 +14,6 @@ const db = mysql.createPool({
     database: process.env.MYSQL_DATABASE
 }).promise();
 
-/*  JS async, await, and promise:
-    promise: object expected to return something if successful or failure
-    async/await: create 'async function functionName()' and inside them you can use 'await' on things that return promises to have code run sequentially. You can also wrap the await with a try-catch block to handle errors
-*/
-
-// example of async function with await:
-
 // functions to get all of the users from db
 async function getAllUsers(){
     try{
@@ -59,15 +52,88 @@ async function createUser(username, email, password){
     return result.insertId; // the insert returned an object, and now we're returning it's insertId attribute - the user_id value it was given
 }
 
+// function to update user username with given ID
+async function updateUsername(newUsername, id){
+    const [result] = await db.query(`
+        UPDATE User
+        SET username = ?
+        WHERE user_id = ?`, [newUsername, id]);
+    
+    return result;
+}
 
-// const allUsers = await getAllUsers();
-// console.log(allUsers);
+// function to update user email with given ID
+async function updateUserEmail(newEmail, id){
+    const [result] = await db.query(`
+        UPDATE User
+        SET email = ?
+        WHERE user_id = ?`, [newEmail, id]);
 
-// const getUserTest = await getUser(1);
-// console.log(getUserTest);
+    return result;
+}
 
-// const createUserTest = await createUser("TESTING3", "tester3@test.com", "testPassword");
-// console.log(createUserTest);
+// function to update user password with given ID
+async function updateUserPassword(newPassword, id){
+    const [result] = await db.query(`
+        UPDATE User
+        SET password = ?
+        WHERE user_id = ?`, [newPassword, id]);
 
-// const allUsers = await getAllUsers();
-// console.log(allUsers);
+    return result;
+}
+
+// function to get all animes from db
+async function getAllAnimes(){
+    const [result] = await db.query(`
+        SELECT * 
+        FROM Anime`);
+    return result;
+}
+
+// function to get one anime
+async function getAnime(anime_id){
+    const [anime] = await db.query(`
+        SELECT * 
+        FROM Anime
+        WHERE anime_id = ?`, [anime_id]);
+
+    return anime;
+}
+
+// function to get a review
+async function getReview(review_id){
+    const [review] = await db.query(`
+        SELECT * 
+        FROM Review
+        WHERE review_id = ?`, [review_id]);
+    
+    return review;
+}
+
+// function to create review
+async function createReview(user_id, anime_id, rating, review_text){
+    const [result] = await db.query(`
+        INSERT INTO Review (user_id, anime_id, rating, review_text)
+        VALUES (?, ?, ?, ?)`, [user_id, anime_id, rating, review_text]);
+    
+    return result
+}
+
+// function to get watchlist of user
+async function getUserWatchlist(user_id){
+    const [result] = await db.query(`
+        SELECT anime_id 
+        FROM Watchlist
+        WHERE user_id = ?`, [user_id]);
+    
+    return result;
+}
+
+// function to add to watchlist
+async function addToWatchlist(user_id, anime_id){
+    const [result] = await db.query(`
+        INSERT INTO Watchlist (user_id, anime_id)
+        VALUES (?, ?)`, [user_id, anime_id]);
+    
+    return result;
+}
