@@ -15,7 +15,7 @@ const db = mysql.createPool({
 }).promise();
 
 // functions to get all of the users from db
-async function getAllUsers(){
+export async function getAllUsers(){
     try{
         // [allUsers] - brackets will automatically assign to the array[0]
         const [allUsers] = await db.query("SELECT * FROM User;"); // returns an array of a bunch of info. array[0] will be idex of what we need
@@ -28,7 +28,7 @@ async function getAllUsers(){
 }
 
 // function to get only one user from the db specified by their ID
-async function getUser(id) {
+export async function getUser(id) {
     try {
         // don't use ${id}, use ? instead. when using ?, make sure to add the array as a parameter in query(...) method
         const [user] = await db.query(`
@@ -44,7 +44,7 @@ async function getUser(id) {
 }
 
 // function to insert a user into the db
-async function createUser(username, email, password){
+export async function createUser(username, email, password){
     const [result] = await db.query(`
         INSERT INTO User(username, email, password)
         VALUES (?, ?, ?)`, [username, email, password]);
@@ -53,7 +53,7 @@ async function createUser(username, email, password){
 }
 
 // function to update user username with given ID
-async function updateUsername(newUsername, id){
+export async function updateUsername(newUsername, id){
     const [result] = await db.query(`
         UPDATE User
         SET username = ?
@@ -63,7 +63,7 @@ async function updateUsername(newUsername, id){
 }
 
 // function to update user email with given ID
-async function updateUserEmail(newEmail, id){
+export async function updateUserEmail(newEmail, id){
     const [result] = await db.query(`
         UPDATE User
         SET email = ?
@@ -73,7 +73,7 @@ async function updateUserEmail(newEmail, id){
 }
 
 // function to update user password with given ID
-async function updateUserPassword(newPassword, id){
+export async function updateUserPassword(newPassword, id){
     const [result] = await db.query(`
         UPDATE User
         SET password = ?
@@ -83,7 +83,7 @@ async function updateUserPassword(newPassword, id){
 }
 
 // function to get all animes from db
-async function getAllAnimes(){
+export async function getAllAnimes(){
     const [result] = await db.query(`
         SELECT * 
         FROM Anime`);
@@ -91,7 +91,7 @@ async function getAllAnimes(){
 }
 
 // function to get one anime
-async function getAnime(anime_id){
+export async function getAnime(anime_id){
     const [anime] = await db.query(`
         SELECT * 
         FROM Anime
@@ -101,7 +101,7 @@ async function getAnime(anime_id){
 }
 
 // function to get a review
-async function getReview(review_id){
+export async function getReview(review_id){
     const [review] = await db.query(`
         SELECT * 
         FROM Review
@@ -111,7 +111,7 @@ async function getReview(review_id){
 }
 
 // function to create review
-async function createReview(user_id, anime_id, rating, review_text){
+export async function createReview(user_id, anime_id, rating, review_text){
     const [result] = await db.query(`
         INSERT INTO Review (user_id, anime_id, rating, review_text)
         VALUES (?, ?, ?, ?)`, [user_id, anime_id, rating, review_text]);
@@ -120,7 +120,7 @@ async function createReview(user_id, anime_id, rating, review_text){
 }
 
 // function to get watchlist of user
-async function getUserWatchlist(user_id){
+export async function getUserWatchlist(user_id){
     const [result] = await db.query(`
         SELECT anime_id 
         FROM Watchlist
@@ -130,7 +130,7 @@ async function getUserWatchlist(user_id){
 }
 
 // function to add to watchlist
-async function addToWatchlist(user_id, anime_id){
+export async function addToWatchlist(user_id, anime_id){
     const [result] = await db.query(`
         INSERT INTO Watchlist (user_id, anime_id)
         VALUES (?, ?)`, [user_id, anime_id]);
