@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <img src="${anime.images.jpg.image_url}" class="card-img-top" alt="${title}">
                     <div class="card-body">
                         <h5 class="card-title">${title}</h5>
-                        <p class="card-text">Score: ${anime.score || 'N/A'}</p>
+                        <p class="card-text">Rating: ${anime.score || 'N/A'}</p>
                         <div class="card-genres">
                             ${anime.genres.slice(0, 3).map(genre => 
                                 `<span class="genre-tag">${genre.name}</span>`
@@ -80,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Type filter click 
     typeFilters.addEventListener('click', (e) => {
         if (e.target.matches('button')) {
             typeFilters.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
