@@ -1,0 +1,30 @@
+/* CSS Document */
+.container{
+	padding-top: 75px;
+}
+a{
+	color: black;
+}
+table{
+	width: 75%;
+	border: none;
+	padding-left: 50px;
+	padding-right: 50px;
+	margin: 0 auto;
+}
+td{
+	text-align: center;
+}
+tr{
+	text-align: center;
+}
+ul{
+	align-content: center;
+	text-align: left;
+}
+li{
+	align-content: center;
+	text-align: left;
+}
+
+
