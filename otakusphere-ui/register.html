@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OtakuSphere - Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">OtakuSphere</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="discover.html">Discover</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="watchlist.html">Watchlist</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="community.html">Community</a>
+                        </li>
+                    </ul>
+                    <div id="app"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-grow-1">
+        <div class="headerSpace" id="tempHeader"></div>
+        <div class="loginBody">
+            <div class="loginBox">
+                <form class="loginForm" id="registerForm">
+                    <div class="loginDescription">
+                        <div class="logInTitle">
+                            <h1>Sign Up</h1>
+                        </div>
+                        <p>Create your account</p>
+                    </div>
+                    <label>Username</label>
+                    <input id="usernameRegister" type="text" required />
+                    <label>Email</label>
+                    <input id="emailRegister" type="email" required />
+                    <div class="loginPasswordArea">
+                        <label>Password</label>
+                        <div class="showPasswordArea">
+                            <button class="showPasswordBtn" type="button" title="Show Password">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <input id="passwordRegister" type="password" required />
+                    <div class="loginPasswordArea">
+                        <label>Confirm Password</label>
+                    </div>
+                    <input id="confirmPasswordRegister" type="password" required />
+                    <div class="loginButtonArea">
+                        <button type="submit" class="loginButton">Sign Up</button>
+                        <button type="button" class="goToRegisterButton" onclick="window.location.href='login.html'">Back to Sign In</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-auto">
+        <footer class="bg-dark text-light py-4 mt-auto">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>OtakuSphere</h5>
+                        <p class="small">
+                            Your ultimate destination for anime tracking, 
+                            reviews, and connecting with fellow anime enthusiasts.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Quick Links</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="about.html" class="text-light">About Us</a></li>
+                            <li><a href="terms.html" class="text-light">Terms of Service</a></li>
+                            <li><a href="privacy.html" class="text-light">Privacy Policy</a></li>
+                            <li><a href="contact.html" class="text-light">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Connect With Us</h5>
+                        <div class="social-links">
+                            <p>Kiahna Isadore  <a href="https://www.linkedin.com/in/kiahna-isadore/" class="text-light me-3"><i class="fab fa-linkedin"></i></a></p>
+                            <p>Dominic Maki  <a href="#" class="text-light me-3"><i class="fab fa-linkedin"></i></a></p>
+                            <p>Maritza Buckner  <a href="#" class="text-light me-3"><i class="fab fa-linkedin"></i></a></p>
+                            <p>Adrian Miro  <a href="#" class="text-light me-3"><i class="fab fa-linkedin"></i></a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col text-center">
+                        <p class="small mb-0">&copy; <span id="currentYear"></span> OtakuSphere. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const showPasswordBtn = document.querySelector('.showPasswordBtn');
+            const passwordInput = document.getElementById('passwordRegister');
+            const registerForm = document.getElementById('registerForm');
+
+            showPasswordBtn.addEventListener('click', () => {
+                const icon = showPasswordBtn.querySelector('i');
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+
+            registerForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const username = document.getElementById('usernameRegister').value;
+                const email = document.getElementById('emailRegister').value;
+                const password = passwordInput.value;
+                const confirmPassword = document.getElementById('confirmPasswordRegister').value;
+
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match');
+                    return;
+                }
+                // May need to update once backend is complete
+                try {
+                    const response = await fetch('YOUR_API_ENDPOINT/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ username, email, password })
+                    });
+
+                    if (response.ok) {
+                        alert('Registration successful! Please login.');
+                        window.location.href = 'login.html';
+                    } else {
+                        alert('Registration failed. Please try again.');
+                    }
+                } catch (error) {
+                    console.error('Registration error:', error);
+                    alert('An error occurred during registration');
+                }
+            });
+        });
+    </script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
