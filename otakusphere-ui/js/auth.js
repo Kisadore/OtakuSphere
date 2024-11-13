@@ -11,7 +11,6 @@ function updateAuthUI() {
                 <i class="fas fa-user-circle fa-lg"></i>
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                <li><a class="dropdown-item" href="watchlist.html">Watchlist</a></li>
                 <li><a class="dropdown-item" href="profile.html">Profile</a></li>
                 <li><a class="dropdown-item" href="settings.html">Settings</a></li>
                 <li><hr class="dropdown-divider"></li>
@@ -32,7 +31,6 @@ function updateAuthUI() {
     //             <i class="fas fa-user-circle fa-lg"></i>
     //         </button>
     //         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-    //             <li><a class="dropdown-item" href="watchlist.html">Watchlist</a></li>
     //             <li><a class="dropdown-item" href="profile.html">Profile</a></li>
     //             <li><a class="dropdown-item" href="settings.html">Settings</a></li>
     //             <li><hr class="dropdown-divider"></li>
