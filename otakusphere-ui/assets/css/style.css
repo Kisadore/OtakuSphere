@@ -1,30 +1,68 @@
-/* CSS Document */
-.container{
-	padding-top: 75px;
-}
-a{
-	color: black;
-}
-table{
-	width: 75%;
-	border: none;
-	padding-left: 50px;
-	padding-right: 50px;
-	margin: 0 auto;
-}
-td{
-	text-align: center;
-}
-tr{
-	text-align: center;
-}
-ul{
-	align-content: center;
-	text-align: left;
-}
-li{
-	align-content: center;
-	text-align: left;
+body {
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
+.container {
+padding: 10px;
+}
 
+/* Links */
+a {
+color: black;
+}
+
+.social-links a:hover {
+opacity: 0.8;
+transition: opacity 0.2s ease-in-out;
+}
+
+/* Footer */
+footer a {
+text-decoration: none;
+}
+
+footer a:hover {
+text-decoration: underline;
+}
+
+/* Navigation */
+.navbar-brand:hover {
+opacity: 0.9;
+}
+
+/* Buttons */
+.btn-primary {
+background-color: rgba(167, 139, 250, 1);
+border: rgba(167, 139, 250, 1);
+color: #212529;
+}
+
+.btn-primary:hover {
+background-color: #212529;
+color: rgba(167, 139, 250, 1);
+}
+
+.btn-outline-light:hover {
+background-color: #212529;
+color: rgba(167, 139, 250, 1);
+border: none;
+}
+
+/* Table Styles */
+table {
+width: 75%;
+border: none;
+padding-left: 50px;
+padding-right: 50px;
+margin: 0 auto;
+}
+
+td, tr {
+text-align: center;
+}
+
+/* List Styles */
+ul, li {
+align-content: center;
+text-align: left;
+}
