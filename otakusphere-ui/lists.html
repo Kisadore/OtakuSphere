@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OtakuSphere - Your Anime Community</title>
-    <!-- Bootstrap-->
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="assets/css/lists.css" rel="stylesheet"/>
     <link href="assets/css/style.css" rel="stylesheet"/>
+
 </head>
 <body class="d-flex flex-column min-vh-100">
     <!-- Header -->
@@ -21,22 +22,13 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="discover.html">Discover</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="lists.html">Lists</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="feed.html">Feed</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="discover.html">Discover</a></li>
+                        <li class="nav-item"><a class="nav-link" href="lists.html">Lists</a></li>
+                        <li class="nav-item"><a class="nav-link" href="feed.html">Feed</a></li>
                     </ul>
                     <form class="d-flex me-3">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
+                        <div class="form-group"><input type="text" class="form-control" placeholder="Search"></div>
                     </form>
-                    <div id="app"></div>
                 </div>
             </div>
         </nav>
@@ -44,25 +36,81 @@
 
     <!-- Main Content -->
     <main class="flex-grow-1">
-      <div class="container d-flex justify-content-center">
-        <div class="card" style="max-width: 800px; width: 100%;">
-                    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                      <div class="container-fluid">
-                        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                              <a class="nav-link active" aria-current="page" href="#">Likes</a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link" href="#">Watchlist</a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link" href="#">Reviews</a>
-                            </li>
-                          </ul>
+        <div class="container d-flex justify-content-center">
+            <div class="card" style="max-width: 800px; width: 100%;">
+                <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse justify-content-center">
+                            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                                <li class="nav-item"><a class="nav-link" href="#" onclick="showContent('likes')">Likes</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#" onclick="showContent('watchlist')">Watchlist</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#" onclick="showContent('reviews')">Reviews</a></li>
+                            </ul>
                         </div>
-                      </div>
-                    </nav>
+                    </div>
+                </nav>
+                <div class="card-body">
+                    <!-- Content sections -->
+                    <div id="likesContent" class="content-section">
+                      Here are your Likes content...
+                    </div>
+                    <div id="watchlistContent" class="content-section d-none">
+                        <button class="btn btn-success" id="newButton">NEW</button>
+                        <br>
+                        <br>
+                        <p>IN PROGRESS</p>
+                        <p>Here is your Watchlist content...</p>
+                        <p>Animes watched displayed here with their pictures similar to Discover page.</p>
+
+                        <!-- Modal Form for Adding Anime -->
+                        <div id="animeFormModal" class="d-none">
+                          <div class="modal-overlay">
+                              <div class="modal-content">
+                                  <h2>Add Anime to Watchlist</h2>
+                                  <form id="animeForm">
+                                    <!--Title-->
+                                      <div class="mb-3">
+                                          <label for="animeTitle" class="form-label">Title</label>
+                                          <input type="text" class="form-control" id="animeTitle" required>
+                                      </div>
+                                      <!--Description-->
+                                      <div class="mb-3">
+                                          <label for="animeDescription" class="form-label">Description</label>
+                                          <textarea class="form-control" id="animeDescription" rows="3" required></textarea>
+                                      </div>
+                                      <!-- Date Watched-->
+                                      <div class="mb-3">
+                                        <label for="animeDate" class="form-label">Date Watched</label>
+                                        <input type="date" class="form-control" id="animeDate" required>
+                                      </div>             
+                                      <!-- Star Rating -->
+                                      <div class="mb-3">
+                                        <label for="animeRating" class="form-label">Rating</label>
+                                        <div id="starRating" class="star-rating">
+                                          <i class="fa fa-star-o" data-index="0"></i>
+                                          <i class="fa fa-star-o" data-index="1"></i>
+                                          <i class="fa fa-star-o" data-index="2"></i>
+                                          <i class="fa fa-star-o" data-index="3"></i>
+                                          <i class="fa fa-star-o" data-index="4"></i>
+                                        </div>                                      
+                                      </div>
+                                    <!-- Like Box -->
+                                      <div class="mb-3">
+                                          <div id="likeBox" class="like-box">
+                                              <i class="fa fa-heart-o"></i> Like
+                                          </div>
+                                      </div>           
+                                      <button type="submit" class="btn btn-primary">Add Anime</button>
+                                      <button type="button" id="closeFormButton" class="btn btn-secondary">Cancel</button>
+                                  </form>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div id="reviewsContent" class="content-section d-none">
+                      Here are your Reviews content...
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -73,10 +121,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <h5>OtakuSphere</h5>
-                    <p class="small">
-                        Your ultimate destination for anime tracking, 
-                        reviews, and connecting with fellow anime enthusiasts.
-                    </p>
+                    <p class="small">Your ultimate destination for anime tracking, reviews, and connecting with fellow anime enthusiasts.</p>
                 </div>
                 <div class="col-md-4">
                     <h5>Quick Links</h5>
@@ -105,12 +150,8 @@
         </div>
     </footer>
 
-    <script src="assets/js/auth.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-    <script>
-        // Update footer with current year
-        document.getElementById("currentYear").textContent = new Date().getFullYear();
-    </script>
+    <script src="assets/js/lists.js"></script>
 </body>
 </html>
