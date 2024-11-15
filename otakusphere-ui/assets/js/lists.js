@@ -10,15 +10,12 @@ let rating = 0;
 
 // ----------------------------- Helper Functions -----------------------------
 
-// Function to update the stars based on the rating
 function updateStars() {
     starIcons.forEach((star, index) => {
         if (index < rating) {
-            star.classList.remove('fa-star-o');  // Fill the star
-            star.classList.add('fa-star');       // Add gold star
+            star.classList.add('filled');  // Add gold color
         } else {
-            star.classList.remove('fa-star');   // Empty the star
-            star.classList.add('fa-star-o');     // Add empty star
+            star.classList.remove('filled'); // Remove gold color
         }
     });
 }
@@ -51,13 +48,20 @@ function handleFormSubmission(event) {
 
 // Reset form fields (stars and like box)
 function resetForm() {
+    // Reset stars to unfilled state
     starIcons.forEach(star => {
-        star.classList.remove('fa-star');
-        star.classList.add('fa-star-o'); // Reset all stars to empty
+        star.classList.remove('filled'); // Remove gold color
     });
-    likeBox.querySelector('i').classList.remove('fa-heart');
-    likeBox.querySelector('i').classList.add('fa-heart-o');
+    
+    // Reset like box to unliked state
+    const heartIcon = likeBox.querySelector('i');
+    heartIcon.classList.remove('bi-heart-fill'); // Remove filled heart class
+    heartIcon.classList.add('bi-heart');        // Add unfilled heart class
+    
+    // Reset rating to 0
+    rating = 0;
 }
+
 
 // ----------------------------- Event Listeners -----------------------------
 
@@ -71,14 +75,6 @@ closeFormButton.addEventListener('click', () => {
     animeFormModal.classList.add('d-none'); // Hide the form
 });
 
-// Event listener for each star click
-starIcons.forEach(star => {
-    star.addEventListener('click', (event) => {
-        const index = parseInt(event.target.getAttribute('data-index')) + 1; // +1 to count from 1
-        rating = index; // Update rating based on the star clicked
-        updateStars(); // Update stars display
-    });
-});
 
 // Like Box functionality (heart icon)
 likeBox.addEventListener('click', () => {
@@ -90,6 +86,13 @@ likeBox.addEventListener('click', () => {
         heartIcon.classList.remove('fa-heart');
         heartIcon.classList.add('fa-heart-o'); // Empty heart when unliked
     }
+});
+
+starIcons.forEach((star, index) => {
+    star.addEventListener('click', () => {
+        rating = index + 1; // Update rating based on clicked star
+        updateStars();      // Update the star display
+    });
 });
 
 // Form submission handling
@@ -120,7 +123,4 @@ window.onload = function () {
         // Default to showing the "likes" section if nothing is stored
         showContent('likes');
     }
-
-    // Initialize stars (in case a rating is preselected or user clicks no stars)
-    updateStars();
 };
