@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const animeImage = document.getElementById('anime-image');
     const animeRating = document.getElementById('anime-rating');
     const animeStars = document.getElementById('anime-stars');  // For displaying stars
+    const animeTrailer = document.getElementById('anime-trailer');  // For displaying the trailer
 
     
      // Construct API URL
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
      fetch(apiUrl)
          .then(response => response.json())
          .then(data => {
+            console.log(data);
              if (data.data) {
                  const anime = data.data;
                  animeTitle.textContent = anime.title;
@@ -30,12 +32,21 @@ document.addEventListener('DOMContentLoaded', function() {
                  // Render star rating
                  renderStarRating(anime.score);
                  document.title = anime.title;
+
+                // Check if trailer exists and embed it
+                if (anime.trailer && anime.trailer.youtube_id) {
+                    displayYouTubeTrailer(anime.trailer.youtube_id);  // Pass the youtube_id directly
+                } else {
+                    animeTrailer.innerHTML = 'No trailer available.';
+                }
+
              } else {
                  animeTitle.textContent = 'Anime not found.';
                  animeSynopsis.textContent = '';
                  animeImage.src = '';
                  animeRating.textContent = '';  // Clear rating if no data
                  animeStars.innerHTML = '';     // Clear stars if no data
+                 animeTrailer.innerHTML = '';   // Clear trailer if no data
              }
          })
          .catch(error => {
@@ -45,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
              animeImage.src = '';
              animeRating.textContent = '';  // Clear rating if error
              animeStars.innerHTML = '';     // Clear stars if error
+             animeTrailer.innerHTML = '';   // Clear trailer if error
          });
  
      // Function to render star rating with partial stars
@@ -73,4 +85,19 @@ document.addEventListener('DOMContentLoaded', function() {
          // Update the HTML to display the stars
          animeStars.innerHTML = starsHTML;
      }
+
+    // Function to display YouTube trailer using the video ID
+    function displayYouTubeTrailer(youtubeId) {
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube.com/embed/${youtubeId}?enablejsapi=1&wmode=opaque&autoplay=1`;
+        iframe.width = "560";
+        iframe.height = "315";
+        iframe.frameBorder = "0";
+        iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+
+        // Clear any previous content and append the new iframe
+        animeTrailer.innerHTML = '';  // Clear existing trailer content
+        animeTrailer.appendChild(iframe);  // Add the new iframe with the trailer
+    }
 });
