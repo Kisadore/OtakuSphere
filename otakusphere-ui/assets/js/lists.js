@@ -102,15 +102,30 @@ animeForm.addEventListener('submit', handleFormSubmission);
 
 // Function to show the selected content and hide others
 function showContent(section) {
+    // Remove 'active' from all nav links
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+    });
+
+    // Add 'active' to the clicked nav link
+    const activeLink = document.querySelector(`[onclick="showContent('${section}')"]`);
+    if (activeLink) {
+        activeLink.classList.add('active');
+    }
+
     // Hide all content sections
     document.querySelectorAll('.content-section').forEach(el => el.classList.add('d-none'));
 
     // Show the selected content section
-    document.getElementById(section + 'Content').classList.remove('d-none');
+    const selectedSection = document.getElementById(section + 'Content');
+    if (selectedSection) {
+        selectedSection.classList.remove('d-none');
+    }
 
     // Store the selected section in localStorage
     localStorage.setItem('selectedSection', section);
 }
+
 
 // Check if there's a selected section in localStorage and show it
 window.onload = function () {
