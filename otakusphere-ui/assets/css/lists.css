@@ -38,16 +38,14 @@
     margin-right: 8px;
 }
 #starRating i {
-    font-size: 2rem;  /* Adjust the size of the stars */
-    color: gray;      /* Empty stars will be gray */
+    font-size: 2rem;  /* Adjust size of the stars */
     cursor: pointer;  /* Pointer cursor on hover */
+    color: gray;      /* Default color for unfilled stars */
 }
 
-#starRating i.fa-star {
-    color: gold;      /* Filled stars will be gold */
+#starRating i.filled {
+    color: gold;      /* Color for filled stars */
 }
 
-#starRating i.fa-star-o {
-    color: gray;      /* Empty stars will be gray */
-}
+
 
