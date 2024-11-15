@@ -1,0 +1,92 @@
+/* anime-details.css */
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Letterbox effect container */
+.letterbox-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    background-color: black;  /*Black background for the letterbox effect */
+}
+
+/* Center the content vertically and horizontally */
+#anime-detail {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centering the content */
+    color: white; /* White text on a dark background */
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    border-radius: 8px; /* Rounded corners */
+    max-width: 90%;
+    text-align: center;
+}
+
+
+/* Title styling */
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+/* Star Rating */
+.star-rating {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* Individual Star Styling */
+.star {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: lightgray;
+    mask-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0b/Star_icon.svg');
+    -webkit-mask-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0b/Star_icon.svg');
+    mask-size: cover;
+    -webkit-mask-size: cover;
+    margin-right: 5px;
+}
+
+.star.full {
+    background: gold;
+}
+
+.star.partial {
+    background: gold;
+    background-size: var(--partial-width) 100%;
+    background-repeat: no-repeat;
+}
+
+/* Image Styling */
+#anime-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+/* Synopsis and Rating Styling */
+#anime-detail p {
+    font-size: 1.2em;
+    margin-top: 15px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    .star-rating {
+        font-size: 1.5em;
+    }
+}
+
