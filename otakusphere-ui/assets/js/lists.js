@@ -7,8 +7,85 @@ const starIcons = document.querySelectorAll('#starRating i');
 const likeBox = document.getElementById('likeBox');
 const dateWatched = document.getElementById('animeDate');
 let rating = 0;
+const animeTitleInput = document.getElementById('animeTitle');
+const suggestionsList = document.getElementById('suggestions');
 
 // ----------------------------- Helper Functions -----------------------------
+
+// Function to fetch suggestions from Jikan API
+function fetchAnimeSuggestions(query) {
+    fetch(`https://api.jikan.moe/v4/anime?q=${query}&limit=5`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.data && data.data.length > 0) {
+                displaySuggestions(data.data);
+            } else {
+                clearSuggestions();
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching suggestions:', error);
+            clearSuggestions();
+        });
+}
+
+// Function to display suggestions in the dropdown
+function displaySuggestions(animeList) {
+    clearSuggestions(); // Clear any previous suggestions
+    animeList.forEach(anime => {
+        const listItem = document.createElement('li');
+        listItem.className = 'list-group-item list-group-item-action';
+        listItem.innerHTML = `
+            <img src="${anime.images.jpg.image_url}" alt="${anime.title}" class="img-thumbnail me-2" style="width: 50px;">
+            ${anime.title} <small class="text-muted">(${anime.type || 'N/A'}, Score: ${anime.score || 'N/A'})</small>
+        `;
+        listItem.addEventListener('click', () => {
+            selectAnime(anime); // Handle selection
+        });
+        suggestionsList.appendChild(listItem);
+    });
+    suggestionsList.classList.remove('d-none'); // Show the suggestions dropdown
+}
+
+// Function to clear suggestions
+function clearSuggestions() {
+    suggestionsList.innerHTML = '';
+    suggestionsList.classList.add('d-none');
+}
+
+// Function to handle anime selection
+function selectAnime(anime) {
+    // Populate the form with selected anime details
+    animeTitleInput.value = anime.title;
+    document.getElementById('animeDescription').value = anime.synopsis || 'No description available.';
+    clearSuggestions(); // Hide the suggestions
+}
+
+// Function to create and display an anime card
+function createAnimeCard(anime) {
+    const cardContainer = document.getElementById('animeCardContainer'); // Ensure this container exists in your HTML
+
+    // Create the card HTML
+    const cardHTML = `
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="${anime.images.jpg.image_url}" class="img-fluid rounded-start" alt="${anime.title}">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">${anime.title}</h5>
+                        <p class="card-text">${anime.synopsis || 'No synopsis available.'}</p>
+                        <p class="card-text"><small class="text-muted">Score: ${anime.score || 'N/A'}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Append the card to the container
+    cardContainer.innerHTML += cardHTML;
+}
 
 function updateStars() {
     starIcons.forEach((star, index) => {
@@ -26,17 +103,22 @@ function handleFormSubmission(event) {
 
     // Get form data
     const title = document.getElementById('animeTitle').value;
-    const description = document.getElementById('animeDescription').value;
-    const dateAdded = document.getElementById('animeDate').value;
 
-    // Log the form data
-    console.log({
-        title,
-        description,
-        dateAdded,
-        rating,
-        liked: likeBox.querySelector('i').classList.contains('fa-heart')
-    });
+    // Fetch anime data from Jikan API
+    fetch(`https://api.jikan.moe/v4/anime?q=${title}&limit=1`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.data && data.data.length > 0) {
+                const anime = data.data[0]; // Take the first match
+                createAnimeCard(anime);    // Display the anime card
+            } else {
+                alert('No anime found with that title. Please try again.');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching anime:', error);
+            alert('Failed to fetch anime details. Please try again later.');
+        });
 
     // Clear form after submission
     animeForm.reset();
@@ -64,6 +146,23 @@ function resetForm() {
 
 
 // ----------------------------- Event Listeners -----------------------------
+
+// Event listener for input field
+animeTitleInput.addEventListener('input', () => {
+    const query = animeTitleInput.value.trim();
+    if (query.length > 2) { // Fetch suggestions if query is at least 3 characters
+        fetchAnimeSuggestions(query);
+    } else {
+        clearSuggestions();
+    }
+});
+
+// Close suggestions if clicked outside
+document.addEventListener('click', (e) => {
+    if (!animeTitleInput.contains(e.target) && !suggestionsList.contains(e.target)) {
+        clearSuggestions();
+    }
+});
 
 // Event listener for the "NEW" button to open the form
 newButton.addEventListener('click', () => {
