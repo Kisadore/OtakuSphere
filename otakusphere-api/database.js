@@ -27,14 +27,14 @@ export async function getAllUsers(){
     }
 }
 
-// function to get only one user from the db specified by their ID
-export async function getUser(id) {
+// function to get only one user from the db specified by their username
+export async function getUser(username) {
     try {
-        // don't use ${id}, use ? instead. when using ?, make sure to add the array as a parameter in query(...) method
+        // don't use ${username}, use ? instead. when using ?, make sure to add the array as a parameter in query(...) method
         const [user] = await db.query(`
             SELECT * FROM User 
-            WHERE user_id = ?
-            `, [id]);
+            WHERE username = ?
+            `, [username]);
 
             return user[0]; // we can return user[0], since the array will only have the 1 user in it we queried
     }
