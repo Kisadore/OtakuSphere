@@ -2,10 +2,67 @@
 
 import express from 'express';
 import {getAllUsers, getUser, createUser, updateUsername, updateUserEmail, updateUserPassword, getAllAnimes, getAnime, getReview, createReview, getUserWatchlist, addToWatchlist} from "./database.js";
+import brcypt from "bcrypt";    // async library to hash passwords
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Get the current file URL and directory path - this method works for ES6
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 const app = express();
 
 app.use(express.json());
+
+// Serve the otakusphere-ui directory as static files
+app.use(express.static(path.join(__dirname, "../otakusphere-ui")));
+
+// Route for the home page
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../otakusphere-ui/index.html"));
+});
+
+// get route for user register - displays register page to user
+app.get("/register", (req, res) => {
+    res.sendFile(path.join(__dirname, "../otakusphere-ui/register.html"));
+});
+
+// post route for user to register new account: use bcrypt to hash and salt password
+app.post("/register", async (req, res) => {
+    // get data from user response
+    const {username, email, password} = req.body;
+    // hash and salt password with bcrpyt
+    const hashedPassword = await brcypt.hash(password, 10);
+    // create new user entry in db
+    const newUser = await createUser(username, email, hashedPassword);
+    // send successful status code and result
+    res.status(201).send(newUser);
+});
+
+// get route for login page
+app.get("/login", (req, res) => {
+    res.sendFile(path.join(__dirname, "../otakusphere-ui/login.html"));
+});
+
+// post route for users to login
+app.post("/login", async (req, res) => {
+    // get data user sent
+    const {username, password} = req.body;
+    // query db for the user
+    const user = await getUser(username);
+    if (user === undefined){
+        res.send("No User");
+        return;
+    }
+    // verify password with bcrpyt
+    const isValid = await brcypt.compare(password, user.password);
+    if (!isValid){
+        res.send("Incorrect Password");
+        return;
+    }
+    res.send(user);
+});
 
 // testing get route to get all animes in db
 app.get("/animes", async (request, response) => {
