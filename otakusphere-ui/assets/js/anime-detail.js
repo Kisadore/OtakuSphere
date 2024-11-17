@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
                  animeTitle.textContent = anime.title;
                  animeSynopsis.textContent = anime.synopsis;
                  animeImage.src = anime.images.jpg.large_image_url;
-                 animeRating.textContent = `Rating: ${anime.score || "No rating available"}`; // Display rating
+                 animeRating.textContent = `Average Rating: ${anime.score || "No rating available"}`; // Display rating
                  
                  // Render star rating
                  renderStarRating(anime.score);
@@ -90,8 +90,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayYouTubeTrailer(youtubeId) {
         const iframe = document.createElement('iframe');
         iframe.src = `https://www.youtube.com/embed/${youtubeId}?enablejsapi=1&wmode=opaque&autoplay=1`;
-        iframe.width = "560";
-        iframe.height = "315";
+        iframe.width = "1600";
+        iframe.height = "500";
         iframe.frameBorder = "0";
         iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
         iframe.allowFullscreen = true;
