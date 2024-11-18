@@ -68,12 +68,28 @@
                         </div>
                     </div>
                     <input id="passwordRegister" type="password" required />
+                    <div class="password-strength-meter mt-2">
+                        <div class="strength-bar">
+                            <div id="strengthProgress" class="strength-progress"></div>
+                        </div>
+                        <p id="strengthText" class="strength-text mt-1">Password Strength: Too Weak</p>
+                    </div>
                     <div class="loginPasswordArea">
                         <label>Confirm Password</label>
                     </div>
                     <input id="confirmPasswordRegister" type="password" required />
+                    
+                    <div class="terms-checkbox mt-3 mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="termsCheckbox" required>
+                            <label class="form-check-label" for="termsCheckbox">
+                                I agree to the <a href="terms.html" target="_blank">Terms of Service</a>
+                            </label>
+                        </div>
+                    </div>
+
                     <div class="loginButtonArea">
-                        <button type="submit" class="loginButton">Sign Up</button>
+                        <button type="submit" class="loginButton" id="signupButton">Sign Up</button>
                         <button type="button" class="goToRegisterButton" onclick="window.location.href='login.html'">Back to Sign In</button>
                     </div>
                 </form>
@@ -125,7 +141,58 @@
         document.addEventListener('DOMContentLoaded', function() {
             const showPasswordBtn = document.querySelector('.showPasswordBtn');
             const passwordInput = document.getElementById('passwordRegister');
+            const strengthProgress = document.getElementById('strengthProgress');
+            const strengthText = document.getElementById('strengthText');
             const registerForm = document.getElementById('registerForm');
+
+            // Password strength criteria
+            const criteria = {
+                length: password => password.length >= 8,
+                uppercase: password => /[A-Z]/.test(password),
+                lowercase: password => /[a-z]/.test(password),
+                numbers: password => /\d/.test(password),
+                special: password => /[!@#$%^&*]/.test(password)
+            };
+
+            function checkPasswordStrength(password) {
+                let strength = 0;
+                let feedback = '';
+
+                // Check each criteria
+                if (criteria.length(password)) strength += 20;
+                if (criteria.lowercase(password)) strength += 20;
+                if (criteria.uppercase(password)) strength += 20;
+                if (criteria.numbers(password)) strength += 20;
+                if (criteria.special(password)) strength += 20;
+
+                // Update strength bar
+                strengthProgress.style.width = `${strength}%`;
+
+                // Update color based on strength
+                if (strength <= 20) {
+                    strengthProgress.className = 'strength-progress very-weak';
+                    feedback = 'Very Weak';
+                } else if (strength <= 40) {
+                    strengthProgress.className = 'strength-progress weak';
+                    feedback = 'Weak';
+                } else if (strength <= 60) {
+                    strengthProgress.className = 'strength-progress medium';
+                    feedback = 'Medium';
+                } else if (strength <= 80) {
+                    strengthProgress.className = 'strength-progress strong';
+                    feedback = 'Strong';
+                } else {
+                    strengthProgress.className = 'strength-progress very-strong';
+                    feedback = 'Very Strong';
+                }
+
+                strengthText.textContent = `Password Strength: ${feedback}`;
+                return strength >= 80; // Return true if password is strong or very strong
+            }
+
+            passwordInput.addEventListener('input', function() {
+                checkPasswordStrength(this.value);
+            });
 
             showPasswordBtn.addEventListener('click', () => {
                 const icon = showPasswordBtn.querySelector('i');
@@ -148,11 +215,22 @@
                 const password = passwordInput.value;
                 const confirmPassword = document.getElementById('confirmPasswordRegister').value;
 
+                // Check password strength
+                if (!checkPasswordStrength(password)) {
+                    alert('Please choose a stronger password');
+                    return;
+                }
+
+                if (!termsCheckbox.checked) {
+                    alert('You must agree to the Terms of Service to create an account.');
+                    return;
+                }
+
                 if (password !== confirmPassword) {
                     alert('Passwords do not match');
                     return;
                 }
-                // May need to update once backend is complete
+
                 try {
                     const response = await fetch('YOUR_API_ENDPOINT/register', {
                         method: 'POST',
@@ -175,6 +253,7 @@
             });
         });
     </script>
+
     <script src="assets/js/auth.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>

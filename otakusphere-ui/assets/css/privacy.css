@@ -1,0 +1,60 @@
+.container h1{
+    text-align: center;
+}
+.privacy-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.privacy-content h1 {
+    color: #212529;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.privacy-content h2 {
+    color: rgba(167, 139, 250, 1);
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.privacy-content section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.privacy-content ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+
+.privacy-content ul li {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.privacy-content ul li:before {
+    content: "•";
+    color: rgba(167, 139, 250, 1);
+    font-weight: bold;
+    position: absolute;
+    left: -15px;
+}
+
+/* Additional privacy-specific styles */
+.data-section {
+    border-left: 4px solid rgba(167, 139, 250, 1);
+    padding-left: 15px;
+    margin: 20px 0;
+}
+
+.highlight-text {
+    background-color: rgba(167, 139, 250, 0.1);
+    padding: 2px 5px;
+    border-radius: 3px;
+}

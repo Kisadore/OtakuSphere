@@ -1,4 +1,6 @@
-
+main{
+  background: linear-gradient(to bottom, black, #1B1A55, #55477e);
+}
 .loginDescription {
   text-align: center;
   margin-bottom: 20px;
@@ -173,4 +175,79 @@
   font-size: 0.75rem;
   line-height: 1rem;
   color: rgba(156, 163, 175, 1);
+}
+
+.terms-checkbox {
+  margin: 15px 0;
+}
+
+.terms-checkbox a {
+  color: rgba(167, 139, 250, 1);
+  text-decoration: none;
+}
+
+.terms-checkbox a:hover {
+  text-decoration: underline;
+}
+
+.form-check-input:checked {
+  background-color: rgba(167, 139, 250, 1);
+  border-color: rgba(167, 139, 250, 1);
+}
+
+.form-check-label {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+
+.password-strength-meter {
+  margin-bottom: 10px;
+}
+
+.strength-bar {
+  height: 4px;
+  background-color: #eee;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.strength-progress {
+  height: 100%;
+  width: 0;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.strength-progress.very-weak {
+  width: 20%;
+  background-color: #ff4444;
+}
+
+.strength-progress.weak {
+  width: 40%;
+  background-color: #ffbb33;
+}
+
+.strength-progress.medium {
+  width: 60%;
+  background-color: #ffbb33;
+}
+
+.strength-progress.strong {
+  width: 80%;
+  background-color: #00C851;
+}
+
+.strength-progress.very-strong {
+  width: 100%;
+  background-color: #007E33;
+}
+
+.strength-text {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 5px 0;
+  text-align: right;
 }

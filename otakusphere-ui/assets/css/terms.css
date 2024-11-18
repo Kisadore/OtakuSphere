@@ -1,0 +1,61 @@
+.container h1{
+    text-align: center;
+}
+.terms-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.terms-content h1 {
+    color: #212529;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.terms-content h2 {
+    color: rgba(167, 139, 250, 1);
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.terms-content section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.terms-content ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.terms-content ul li {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.terms-content ul li:before {
+    content: "•";
+    color: rgba(167, 139, 250, 1);
+    font-weight: bold;
+    position: absolute;
+    left: -15px;
+}
+
+/* Additional terms-specific styles */
+.important-notice {
+    background-color: rgba(167, 139, 250, 0.1);
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.section-number {
+    font-weight: bold;
+    color: rgba(167, 139, 250, 1);
+    margin-right: 10px;
+}

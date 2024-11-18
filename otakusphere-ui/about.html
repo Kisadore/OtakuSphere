@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About OtakuSphere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/about.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <!-- <img src="images/logo.png" alt="OtakuSphere" height="30" class="d-inline-block align-top me-2"> -->
+                    OtakuSphere
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="discover.html">Discover</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="lists.html">Lists</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="feed.html">Feed</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex me-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                    </form>
+                    <div id="app" ></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container my-5">
+        <h1>About OtakuSphere</h1>
+        <div class="about-content">
+            <section class="mb-4">
+                <h2>Our Mission</h2>
+                <p>OtakuSphere is dedicated to creating a vibrant community where anime enthusiasts can connect, share, and discover. Our platform serves as a comprehensive hub for anime fans to track their watching journey, engage with fellow enthusiasts, and explore new content.</p>
+            </section>
+
+            <section class="mb-4">
+                <h2>Our Team</h2>
+                <p>OtakuSphere was created by a team of passionate developers:</p>
+                <div class="team-grid">
+                    <!-- Kiahna Isadore -->
+                    <div class="team-member">
+                        <img src="./public/kiahna_avatar.png" 
+                             class="team-avatar" 
+                             alt="Kiahna Isadore">
+                        <div class="team-info">
+                            <h3>Kiahna Isadore</h3>
+                            <div class="social-links">
+                                <a href="https://www.linkedin.com/in/kiahna-isadore/" target="_blank">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="https://github.com/Kisadore" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Adrian Miro -->
+                    <div class="team-member">
+                        <img src="https://api.dicebear.com/6.x/adventurer/svg?seed=Adrian" 
+                             class="team-avatar" 
+                             alt="Adrian Miro">
+                        <div class="team-info">
+                            <h3>Adrian Miro</h3>
+                            <div class="social-links">
+                                <a href="https://www.linkedin.com/in/adrian-miro/" target="_blank">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="https://github.com/asiansnoodle" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dominic Maki -->
+                    <div class="team-member">
+                        <img src="https://api.dicebear.com/6.x/adventurer/svg?seed=Dominic" 
+                             class="team-avatar" 
+                             alt="Dominic Maki">
+                        <div class="team-info">
+                            <h3>Dominic Maki</h3>
+                            <div class="social-links">
+                                <a href="www.linkedin.com/in/dominic-maki" target="_blank">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="https://github.com/dominicmaki" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Maritza Buckner -->
+                    <div class="team-member">
+                        <img src="https://api.dicebear.com/6.x/adventurer/svg?seed=Maritza" 
+                             class="team-avatar" 
+                             alt="Maritza Buckner">
+                        <div class="team-info">
+                            <h3>Maritza Buckner</h3>
+                            <div class="social-links">
+                                <a href="www.linkedin.com/in/maritza-buckner-701632176" target="_blank">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="https://github.com/maritzabu" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+
+            <section class="mb-4">
+                <h2>What We Offer</h2>
+                <ul>
+                    <li>Personalized watchlists to track your anime journey</li>
+                    <li>Rating and review system to share your thoughts</li>
+                    <li>Community features to connect with fellow anime fans</li>
+                    <li>Comprehensive anime database with detailed information</li>
+                    <li>User-friendly interface for seamless navigation</li>
+                </ul>
+            </section>
+
+
+            <section class="mb-4" id="contact">
+                <h2>Contact Us</h2>
+                <p>Have questions or suggestions? We'd love to hear from you!</p>
+                
+                <div class="contact-form-container">
+                    <form id="contactForm">
+                        <input type="hidden" name="_subject" value="New Contact Form Submission">
+                        
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/contact.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

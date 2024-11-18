@@ -1,3 +1,6 @@
+import { generateStarRating } from './homepage.js';
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const sortSelect = document.getElementById('sortSelect');
@@ -66,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <img src="${anime.images.jpg.image_url}" class="card-img-top" alt="${title}">
                     <div class="card-body">
                         <h5 class="card-title">${title}</h5>
-                        <p class="card-text">Rating: ${anime.score || 'N/A'}</p>
+                        <p class="card-text">${anime.score ? generateStarRating(anime.score/2) : 'No Ratings'}</p>
                         <div class="card-genres">
                             ${anime.genres.slice(0, 3).map(genre => 
                                 `<span class="genre-tag">${genre.name}</span>`

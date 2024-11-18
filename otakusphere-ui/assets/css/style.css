@@ -16,14 +16,54 @@ opacity: 0.8;
 transition: opacity 0.2s ease-in-out;
 }
 
-/* Footer */
-footer a {
-text-decoration: none;
+/* Footer Styles */
+footer {
+    position: relative;
 }
 
 footer a:hover {
-text-decoration: underline;
+    opacity: 0.8;
+    text-decoration: none !important;
 }
+
+footer .team-members img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+footer .newsletter-signup .form-control {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+footer .newsletter-signup .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+footer .newsletter-signup .form-control:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: none;
+}
+
+footer .social-links a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+footer .social-links a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
 
 /* Navigation */
 .navbar-brand:hover {
@@ -66,3 +106,284 @@ ul, li {
 align-content: center;
 text-align: left;
 }
+
+/* Intro Section */
+.intro-section {
+	background: linear-gradient(to bottom, black, #1B1A55, #55477e);
+	min-height: 60vh;
+	display: flex;
+	/* align-items: center; */
+	/* background-position: center; */
+	/* background-size: cover; */
+	flex-direction: column;
+	justify-content: center;
+	padding: 4rem 0;
+}
+.intro-section .container {
+	margin-bottom: 2rem; /* Adds space between the two container sections */
+}
+
+.intro-section .container:first-child {
+	margin-bottom: 4rem; /* More space after the "Get Started" section */
+}
+
+@media (max-width: 768px) {
+	.intro-section {
+		min-height: 40vh;
+	}
+}
+
+.feature-icon i.text-primary {
+	color: rgba(167, 139, 250, 1) !important;
+}
+
+
+/* Pick of Day Section Styles */
+.pick-of-day {
+    background: linear-gradient(to bottom, black, #1B1A55, #55477e);
+    color: #fff;
+    padding: 4rem 0;
+}
+
+.pick-of-day .carousel-item {
+    padding: 2rem;
+}
+
+.anime-info {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.anime-info h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #a78bfa;
+}
+
+.anime-info .lead {
+    /* color: #fff; */
+	color: #ffc107;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.review-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border-left: 4px solid #a78bfa;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    transition: all 0.3s ease;
+}
+
+.card-text{
+    color: #ffc107;
+}
+
+
+.review-card:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.review-card p {
+    /* color: #fff; */
+    color: #302c2c;
+    opacity: 0.9;
+    font-style: italic;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 50px;
+    height: 50px;
+    background: rgba(167, 139, 250, 0.2);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 2rem;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background: rgba(167, 139, 250, 0.4);
+}
+
+.ratio {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.ratio:hover {
+    transform: scale(1.02);
+}
+
+.ratio iframe,
+.ratio img {
+    border-radius: 20px;
+}
+
+/* .btn-primary {
+    background: linear-gradient(45deg, #a78bfa 0%, #8b5cf6 100%);
+    border: none;
+    padding: 1rem 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #8b5cf6 0%, #7c3aed 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+} */
+
+.anime-card {
+    cursor: pointer;
+}
+.genre-tag {
+    display: inline-block;
+    font-size: 12px;
+    padding: 2px 8px;
+    margin: 2px;
+    background: #f0f0f0;
+    border-radius: 12px;
+}
+
+/* Star Rating Styles */
+/* .star-rating {
+    color: #a78bfa;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+} */
+
+/* Section Title */
+.pick-of-day h2 {
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.pick-of-day h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, #a78bfa 0%, #8b5cf6 100%);
+    border-radius: 2px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .pick-of-day {
+        padding: 2rem 0;
+    }
+
+    .anime-info {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .anime-info h3 {
+        font-size: 1.5rem;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 40px;
+        height: 40px;
+        margin: 0 1rem;
+    }
+
+    .btn-primary {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+
+
+/* Review Section Styles */
+.reviews-section {
+    background-color: #f8f9fa;
+	/* background: linear-gradient(to bottom, black, #1B1A55, #55477e); */
+    padding: 40px 0;
+	/* color:white; */
+}
+
+.card {
+    transition: transform 0.2s;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.review-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.text-muted {
+    font-size: 0.875rem;
+}
+
+.star-rating {
+    color: #ffc107;
+    font-size: 0.9rem;
+}
+
+.review-actions button {
+    font-size: 0.875rem;
+}
+
+.review-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #4a4a4a;
+}
+
+
+.custom-purple {
+    color: #a78bfa !important;
+}
+
+.btn-outline-purple {
+    color: #a78bfa;
+    border-color: #a78bfa;
+    background-color: transparent;
+}
+
+
+
+
+.read-more-btn {
+    color: #007bff;
+    font-size: 0.875rem;
+}
+
+
+
