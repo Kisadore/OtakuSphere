@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 .env
 package-lock.json
+.config.js
+otakusphere-ui/assets/js/config.js
