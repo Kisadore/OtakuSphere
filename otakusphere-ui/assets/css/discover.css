@@ -6,6 +6,7 @@
 .anime-card {
     height: 100%;
     display: flex;
+    cursor: pointer;
 }
 
 .card {
@@ -53,7 +54,6 @@
     /* justify-content: flex-end; */
     padding: 0.5rem;
     gap: 0.5rem;
-    
 }
 .filters-btn{
     display: inline-flex;
@@ -89,6 +89,15 @@
     background-color: #0d6efd;
     color: white;
 }
+
+.card-text{
+    color: #ffc107;
+}
+
+.card-text:not(:has(i)) {
+    color: #000; 
+}
+
 
 /* Scroll to Top Button */
 .scroll-to-top {

@@ -49,7 +49,7 @@ export async function createUser(username, email, password){
         INSERT INTO User(username, email, password)
         VALUES (?, ?, ?)`, [username, email, password]);
 
-    return result.insertId; // the insert returned an object, and now we're returning it's insertId attribute - the user_id value it was given
+    return await getUser(username); // the insert returned an object, and now we're returning it's insertId attribute - the user_id value it was given
 }
 
 // function to update user username with given ID

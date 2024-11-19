@@ -1,3 +1,49 @@
+main{
+  background: linear-gradient(to bottom, black, #1B1A55, #55477e);
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+main::before,
+main::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 300px;
+    background: linear-gradient(45deg, rgba(167, 139, 250, 0.1), rgba(85, 71, 126, 0.1));
+    transform: skewY(-5deg);
+}
+
+main::before {
+    top: 0;
+    animation: waveTop 6s ease-in-out infinite;
+}
+
+main::after {
+    bottom: 0;
+    animation: waveBottom 6s ease-in-out infinite;
+}
+
+@keyframes waveTop {
+    0%, 100% {
+        transform: skewY(-5deg) translateY(-10px);
+    }
+    50% {
+        transform: skewY(-5deg) translateY(10px);
+    }
+}
+
+@keyframes waveBottom {
+    0%, 100% {
+        transform: skewY(-5deg) translateY(10px);
+    }
+    50% {
+        transform: skewY(-5deg) translateY(-10px);
+    }
+}
+
 
 .loginDescription {
   text-align: center;
@@ -22,7 +68,10 @@
   justify-content: center;
   align-items: center;
   padding: 2rem 0;
+  position: relative;
+  z-index: 1;
 }
+
 
 .loginBox {
   background-color:#212529;
@@ -173,4 +222,79 @@
   font-size: 0.75rem;
   line-height: 1rem;
   color: rgba(156, 163, 175, 1);
+}
+
+.terms-checkbox {
+  margin: 15px 0;
+}
+
+.terms-checkbox a {
+  color: rgba(167, 139, 250, 1);
+  text-decoration: none;
+}
+
+.terms-checkbox a:hover {
+  text-decoration: underline;
+}
+
+.form-check-input:checked {
+  background-color: rgba(167, 139, 250, 1);
+  border-color: rgba(167, 139, 250, 1);
+}
+
+.form-check-label {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+
+.password-strength-meter {
+  margin-bottom: 10px;
+}
+
+.strength-bar {
+  height: 4px;
+  background-color: #eee;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.strength-progress {
+  height: 100%;
+  width: 0;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.strength-progress.very-weak {
+  width: 20%;
+  background-color: #ff4444;
+}
+
+.strength-progress.weak {
+  width: 40%;
+  background-color: #ffbb33;
+}
+
+.strength-progress.medium {
+  width: 60%;
+  background-color: #ffbb33;
+}
+
+.strength-progress.strong {
+  width: 80%;
+  background-color: #00C851;
+}
+
+.strength-progress.very-strong {
+  width: 100%;
+  background-color: #007E33;
+}
+
+.strength-text {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 5px 0;
+  text-align: right;
 }

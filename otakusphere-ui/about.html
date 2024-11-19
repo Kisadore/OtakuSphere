@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OtakuSphere - Your Anime Community</title>
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>About OtakuSphere</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/css/lists.css" rel="stylesheet"/>
-    <link href="assets/css/style.css" rel="stylesheet"/>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/about.css">
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body>
     <!-- Header -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -48,85 +45,135 @@
             </div>
         </nav>
     </header>
-
-    <!-- Main Content -->
     <main class="flex-grow-1">
-        <div class="container d-flex justify-content-center">
-            <div class="card" style="max-width: 800px; width: 100%;">
-                <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                    <div class="container-fluid">
-                        <div class="collapse navbar-collapse justify-content-center">
-                            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                                <li class="nav-item"><a class="nav-link active" href="#" onclick="showContent('likes')">Likes</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#" onclick="showContent('watchlist')">Watchlist</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#" onclick="showContent('reviews')">Reviews</a></li>
-                            </ul>
+        <div class="container">
+            <h1>About OtakuSphere</h1>
+            <div class="about-content">
+                <section class="mb-4">
+                    <h2>Our Mission</h2>
+                    <p>OtakuSphere is dedicated to creating a vibrant community where anime enthusiasts can connect, share, and discover. Our platform serves as a comprehensive hub for anime fans to track their watching journey, engage with fellow enthusiasts, and explore new content.</p>
+                </section>
+    
+                <section class="mb-4">
+                    <h2>Our Team</h2>
+                    <p>OtakuSphere was created by a team of passionate developers:</p>
+                    <div class="team-grid">
+                        <!-- Kiahna Isadore -->
+                        <div class="team-member">
+                            <img src="./public/kiahna_avatar.png" 
+                                 class="team-avatar" 
+                                 alt="Kiahna Isadore">
+                            <div class="team-info">
+                                <h3>Kiahna Isadore</h3>
+                                <div class="social-links">
+                                    <a href="https://www.linkedin.com/in/kiahna-isadore/" target="_blank">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://github.com/Kisadore" target="_blank">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Adrian Miro -->
+                        <div class="team-member">
+                            <img src="./public/adrian_avatar.png" 
+                                 class="team-avatar" 
+                                 alt="Adrian Miro">
+                            <div class="team-info">
+                                <h3>Adrian Miro</h3>
+                                <div class="social-links">
+                                    <a href="https://www.linkedin.com/in/adrian-miro/" target="_blank">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://github.com/asiansnoodle" target="_blank">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Dominic Maki -->
+                        <div class="team-member">
+                            <img src="./public/dominic_avatar.png" 
+                                 class="team-avatar" 
+                                 alt="Dominic Maki">
+                            <div class="team-info">
+                                <h3>Dominic Maki</h3>
+                                <div class="social-links">
+                                    <a href="www.linkedin.com/in/dominic-maki" target="_blank">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://github.com/dominicmaki" target="_blank">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Maritza Buckner -->
+                        <div class="team-member">
+                            <img src="./public/maritza_avatar.jpeg" 
+                                 class="team-avatar" 
+                                 alt="Maritza Buckner">
+                            <div class="team-info">
+                                <h3>Maritza Buckner</h3>
+                                <div class="social-links">
+                                    <a href="www.linkedin.com/in/maritza-buckner-701632176" target="_blank">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://github.com/maritzabu" target="_blank">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </nav>
-                <div class="card-body">
-                    <!-- Content sections -->
-                    <div id="likesContent" class="content-section">
-                      Here are your Likes content...
+                </section>
+    
+                
+    
+                <section class="mb-4">
+                    <h2>What We Offer</h2>
+                    <ul>
+                        <li>Personalized watchlists to track your anime journey</li>
+                        <li>Rating and review system to share your thoughts</li>
+                        <li>Community features to connect with fellow anime fans</li>
+                        <li>Comprehensive anime database with detailed information</li>
+                        <li>User-friendly interface for seamless navigation</li>
+                    </ul>
+                </section>
+    
+    
+                <section class="mb-4" id="contact">
+                    <h2>Contact Us</h2>
+                    <p>Have questions or suggestions? We'd love to hear from you!</p>
+                    
+                    <div class="contact-form-container">
+                        <form id="contactForm">
+                            <input type="hidden" name="_subject" value="New Contact Form Submission">
+                            
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
                     </div>
-                    <div id="watchlistContent" class="content-section d-none">
-                        <button class="btn btn-success" id="newButton">NEW</button>
-                        <br>
-                        <br>
-                        <p>Here is your Watchlist content...</p>
-                        <div id="animeCardContainer" class="container mt-4"></div>
-
-                        <!-- Modal Form for Adding Anime -->
-                        <div id="animeFormModal" class="d-none">
-                          <div class="modal-overlay">
-                              <div class="modal-content">
-                                  <h2>Add Anime to Watchlist</h2>
-                                  <form id="animeForm">
-                                    <!--Title-->
-                                    <div class="mb-3 position-relative">
-                                        <label for="animeTitle" class="form-label">Title</label>
-                                        <input type="text" class="form-control" id="animeTitle" placeholder="Start typing to search..." autocomplete="off">
-                                        <ul id="suggestions" class="list-group position-absolute w-100 mt-1 d-none" style="z-index: 1000;"></ul>
-                                    </div>
-
-                                      <!--Description-->
-                                    <div class="mb-3">
-                                        <label for="animeDescription" class="form-label">Description</label>
-                                        <textarea class="form-control" id="animeDescription" rows="3" required></textarea>
-                                    </div>
-                                      <!-- Date Watched-->
-                                      <div class="mb-3">
-                                        <label for="animeDate" class="form-label">Date Watched</label>
-                                        <input type="date" class="form-control" id="animeDate" required>
-                                      </div>             
-                                      <!-- Star Rating -->
-                                      <div class="mb-3">
-                                        <label for="animeRating" class="form-label">Rating</label>
-                                        <div id="starRating" class="star-rating">
-                                            <i class="bi bi-star" data-index="0"></i>
-                                            <i class="bi bi-star" data-index="1"></i>
-                                            <i class="bi bi-star" data-index="2"></i>
-                                            <i class="bi bi-star" data-index="3"></i>
-                                            <i class="bi bi-star" data-index="4"></i>                                           
-                                          </div>                         
-                                      </div>
-                                    <!-- Like Box -->
-                                      <div class="mb-3">
-                                          <div id="likeBox" class="like-box">
-                                              <i class="fa fa-heart-o"></i> Like
-                                          </div>
-                                      </div>           
-                                      <button type="submit" class="btn btn-primary">Add Anime</button>
-                                      <button type="button" id="closeFormButton" class="btn btn-secondary">Cancel</button>
-                                  </form>
-                              </div>
-                          </div>
-                        </div>
-                    </div>
-                    <div id="reviewsContent" class="content-section d-none">
-                        Here are your Reviews content...
-                    </div>
-                </div>
+                </section>
+    
             </div>
         </div>
     </main>
@@ -235,8 +282,9 @@
 
     <script src="assets/js/auth.js"></script>
     <script type="module" src="assets/js/homepage.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script type="module" src="assets/js/contact.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-    <script src="assets/js/lists.js"></script>
 </body>
 </html>
