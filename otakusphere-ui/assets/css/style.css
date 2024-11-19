@@ -215,16 +215,28 @@ text-align: left;
     background: rgba(167, 139, 250, 0.4);
 }
 
+/* .ratio:hover {
+    transform: scale(1.02);
+} */
 .ratio {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
+    position: relative;
+    height: 400px; 
 }
 
-.ratio:hover {
-    transform: scale(1.02);
+.ratio img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    border-radius: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
+
 
 .ratio iframe,
 .ratio img {

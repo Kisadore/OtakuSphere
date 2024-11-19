@@ -270,16 +270,20 @@ class PickOfDay {
                         </div>
                         <div class="col-md-6">
                             <div class="ratio ratio-16x9 rounded overflow-hidden shadow">
-                                ${anime.trailer?.embed_url ? 
-                                    `<iframe src="${anime.trailer.embed_url}" allowfullscreen></iframe>` :
-                                    `<img src="${anime.images.jpg.large_image_url}" class="img-fluid" alt="${anime.title}">`
-                                }
+                            <img src="${anime.images.jpg.large_image_url}" class="img-fluid" alt="${anime.title}">
                             </div>
                         </div>
                     </div>
                 </div>
             `;
+                        // <div class="ratio ratio-16x9 rounded overflow-hidden shadow">
+                        //         ${anime.trailer?.embed_url ? 
+                        //             `<iframe src="${anime.trailer.embed_url}" allowfullscreen></iframe>` :
+                        //             `<img src="${anime.images.jpg.large_image_url}" class="img-fluid" alt="${anime.title}">`
+                        //         }
+                        // </div>
         }
+        
 
         container.innerHTML = content;
     }
