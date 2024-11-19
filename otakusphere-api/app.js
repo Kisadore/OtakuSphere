@@ -2,7 +2,7 @@
 
 import express from 'express';
 import {getAllUsers, getUser, createUser, updateUsername, updateUserEmail, updateUserPassword, getAllAnimes, getAnime, getReview, createReview, getUserWatchlist, addToWatchlist} from "./database.js";
-import brcypt from "bcrypt";    // async library to hash passwords
+import bcrypt from "bcrypt";    // async library to hash passwords
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -30,14 +30,23 @@ app.get("/register", (req, res) => {
 
 // post route for user to register new account: use bcrypt to hash and salt password
 app.post("/register", async (req, res) => {
-    // get data from user response
-    const {username, email, password} = req.body;
-    // hash and salt password with bcrpyt
-    const hashedPassword = await brcypt.hash(password, 10);
-    // create new user entry in db
-    const newUser = await createUser(username, email, hashedPassword);
-    // send successful status code and result
-    res.status(201).send(newUser);
+    try {
+        // get data from user response
+        const {username, email, password} = req.body;
+        if (!username || !email || !password){
+            res.status(406).json({error: "All fields required"});
+            return;
+        }
+        // hash and salt password with bcrpyt
+        const hashedPassword = await bcrypt.hash(password, 10);
+        // create new user entry in db
+        const newUser = await createUser(username, email, hashedPassword);
+        // send successful status code and result
+        res.status(201).json({message: "User successfully created", newUser});
+    }
+    catch(err){
+        res.status(406).json(err);
+    }
 });
 
 // get route for login page
@@ -47,22 +56,32 @@ app.get("/login", (req, res) => {
 
 // post route for users to login
 app.post("/login", async (req, res) => {
-    // get data user sent
-    const {username, password} = req.body;
-    // query db for the user
-    const user = await getUser(username);
-    if (user === undefined){
-        res.send("No User");
-        return;
+    try{
+        // get data user sent
+        const {username, password} = req.body;
+        // query db for the user
+        const user = await getUser(username);
+        if (user === undefined){
+            res.status(400).json({error: "Invalid username"})
+            return;
+        }
+        // verify password with bcrpyt
+        const isValid = await bcrypt.compare(password, user.password);
+        if (!isValid){
+            res.status(400).json({error: "Invalid Password"});
+            return;
+        }
+        res.status(200).json({message: "Login successful", user});
     }
-    // verify password with bcrpyt
-    const isValid = await brcypt.compare(password, user.password);
-    if (!isValid){
-        res.send("Incorrect Password");
-        return;
+    catch(err){
+        res.status(406).json(err);
     }
-    res.send(user);
 });
+
+
+
+
+
 
 // testing get route to get all animes in db
 app.get("/animes", async (request, response) => {
