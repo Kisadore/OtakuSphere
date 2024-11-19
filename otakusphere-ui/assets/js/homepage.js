@@ -205,7 +205,7 @@ class PickOfDay {
         try {
             const response = await fetch(`${API_ENDPOINTS.REVIEWS}/${animeId}/reviews?limit=1`);
             const data = await response.json();
-            console.log("animeId info", data)
+            // console.log("animeId info", data)
             return data.data[0] || this.getDefaultReview();
         } catch (error) {
             return this.getDefaultReview();
@@ -269,9 +269,7 @@ class PickOfDay {
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="ratio ratio-16x9 rounded overflow-hidden shadow">
-                            <img src="${anime.images.jpg.large_image_url}" class="img-fluid" alt="${anime.title}">
-                            </div>
+                        ${this.createTrailerOrImage(anime)}
                         </div>
                     </div>
                 </div>
@@ -282,10 +280,41 @@ class PickOfDay {
                         //             `<img src="${anime.images.jpg.large_image_url}" class="img-fluid" alt="${anime.title}">`
                         //         }
                         // </div>
+
+                        // <div class="col-md-6">
+                        //     <div class="ratio ratio-16x9 rounded overflow-hidden shadow">
+                        //     <img src="${anime.images.jpg.large_image_url}" class="img-fluid" alt="${anime.title}">
+                        //     </div>
+                        // </div>
         }
         
 
         container.innerHTML = content;
+    }
+    createTrailerOrImage(anime) {
+        if (anime.trailer?.embed_url) {
+            const embedUrl = anime.trailer.embed_url
+                .replace('youtube.com', 'youtube-nocookie.com')
+                + '?autoplay=0&rel=0&origin=' + window.location.origin;
+
+            return `
+                <div class="ratio ratio-16x9 rounded overflow-hidden shadow">
+                    <iframe 
+                        src="${embedUrl}"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        title="${anime.title} Trailer">
+                    </iframe>
+                </div>
+            `;
+        } else {
+            return `
+                <div class="ratio ratio-16x9 rounded overflow-hidden shadow">
+                    <img src="${anime.images.jpg.large_image_url}" class="img-fluid" alt="${anime.title}">
+                </div>
+            `;
+        }
     }
 }
 

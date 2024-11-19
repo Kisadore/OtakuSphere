@@ -215,9 +215,9 @@ text-align: left;
     background: rgba(167, 139, 250, 0.4);
 }
 
-/* .ratio:hover {
+.ratio:hover {
     transform: scale(1.02);
-} */
+}
 .ratio {
     border-radius: 20px;
     overflow: hidden;
