@@ -12,6 +12,7 @@ const CACHE_KEYS = {
 // Main initialization
 document.addEventListener('DOMContentLoaded', function() {
     initializeHomepage();
+    new AnimeSearch();
 });
 
 async function initializeHomepage() {
@@ -329,6 +330,103 @@ function getDummyReviews() {
             comments: 67
         }
     ];
+}
+class AnimeSearch {
+    constructor() {
+        this.searchInput = document.getElementById('navSearchInput');
+        this.searchResults = document.getElementById('searchResults');
+        this.debounceTimeout = null;
+        this.initializeEventListeners();
+    }
+
+    initializeEventListeners() {
+        // Listen for input changes
+        this.searchInput.addEventListener('input', () => {
+            clearTimeout(this.debounceTimeout);
+            this.debounceTimeout = setTimeout(() => {
+                this.handleSearch();
+            }, 300); // Debounce for 300ms
+        });
+
+        // Close results when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!this.searchInput.contains(e.target) && !this.searchResults.contains(e.target)) {
+                this.searchResults.style.display = 'none';
+            }
+        });
+
+        // Show results when focusing on input
+        this.searchInput.addEventListener('focus', () => {
+            if (this.searchResults.children.length > 0) {
+                this.searchResults.style.display = 'block';
+            }
+        });
+    }
+
+    async handleSearch() {
+        const searchTerm = this.searchInput.value.trim();
+        
+        if (searchTerm.length < 3) {
+            this.searchResults.style.display = 'none';
+            return;
+        }
+
+        try {
+            const results = await this.fetchAnimeResults(searchTerm);
+            this.displayResults(results);
+        } catch (error) {
+            console.error('Error fetching search results:', error);
+        }
+    }
+
+    async fetchAnimeResults(searchTerm) {
+        try {
+            const response = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(searchTerm)}&limit=5`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            return data.data; // Jikan API returns results in data array
+        } catch (error) {
+            console.error('Error:', error);
+            return [];
+        }
+    }
+
+    displayResults(results) {
+        this.searchResults.innerHTML = '';
+        
+        if (results.length === 0) {
+            this.searchResults.style.display = 'none';
+            return;
+        }
+
+        results.forEach(anime => {
+            const resultItem = this.createResultItem(anime);
+            this.searchResults.appendChild(resultItem);
+        });
+
+        this.searchResults.style.display = 'block';
+    }
+
+    createResultItem(anime) {
+        const div = document.createElement('div');
+        const title = anime.title_english || anime.title;
+        div.className = 'search-result-item';
+        div.innerHTML = `
+            <img src="${anime.images.jpg.small_image_url}" alt="${title}">
+            <div class="search-result-info">
+                <div class="search-result-title">${title}</div>
+                <div class="search-result-year">${anime.year || 'N/A'}</div>
+            </div>
+        `;
+
+        div.addEventListener('click', () => {
+            window.location.href = `anime-detail.html?id=${anime.mal_id}`;
+        });
+
+        return div;
+    }
 }
 
 // Global error handler

@@ -1,5 +1,10 @@
+main{
+    background: linear-gradient(to bottom, black, #1B1A55, #55477e);
+}
 .container h1{
     text-align: center;
+    color:white;
+    margin-top: 20px;
 }
 .terms-content {
     max-width: 800px;

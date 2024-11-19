@@ -94,6 +94,11 @@
     color: #ffc107;
 }
 
+.card-text:not(:has(i)) {
+    color: #000; 
+}
+
+
 /* Scroll to Top Button */
 .scroll-to-top {
     position: fixed;
