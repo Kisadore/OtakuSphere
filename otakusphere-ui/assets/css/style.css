@@ -120,11 +120,11 @@ text-align: left;
 	padding: 4rem 0;
 }
 .intro-section .container {
-	margin-bottom: 2rem; /* Adds space between the two container sections */
+	margin-bottom: 2rem;
 }
 
 .intro-section .container:first-child {
-	margin-bottom: 4rem; /* More space after the "Get Started" section */
+	margin-bottom: 4rem; 
 }
 
 @media (max-width: 768px) {
@@ -378,47 +378,6 @@ text-align: left;
 }
 
 
-
-
-.read-more-btn {
-    color: #007bff;
-    font-size: 0.875rem;
-}
-
-.search-results-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    max-height: 300px;
-    overflow-y: auto;
-    z-index: 1000;
-    display: none;
-}
-
-.search-result-item {
-    padding: 8px 12px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.search-result-item:hover {
-    background-color: #f8f9fa;
-}
-
-.search-result-item img {
-    width: 40px;
-    height: 56px;
-    object-fit: cover;
-    border-radius: 4px;
-}
-
 .search-result-info {
     flex-grow: 1;
 }
@@ -433,5 +392,126 @@ text-align: left;
     color: #6c757d;
 }
 
+/* Header Search Styling */
+#navSearchForm .search-results-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    /* background: linear-gradient(to bottom, #1B1A55, #55477e); */
+    /* background: white; */
+    background: rgba(27, 26, 85, 0.3);
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    max-height: 400px;
+    overflow-y: auto;
+    display: none;
+    padding: 8px;
+    border: 1px solid rgba(167, 139, 250, 0.2);
+}
 
+#navSearchForm .search-result-item {
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    transition: all 0.2s ease;
+    /* background: rgba(255, 255, 255, 0.05); */
+    background: rgb(238, 234, 234);
+}
 
+#navSearchForm .search-result-item:hover {
+    background: rgba(167, 139, 250, 0.2);
+    /* color: white; */
+    transform: translateX(5px);
+}
+
+#navSearchForm .search-result-item img {
+    width: 45px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+#navSearchForm .search-result-info {
+    flex-grow: 1;
+}
+
+#navSearchForm .search-result-title {
+
+    color: #212529;
+    /* color:white; */
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 0.95rem;
+}
+#navSearchForm .search-result-item:hover .search-result-title {
+    color: #fff;
+}
+
+#navSearchForm .search-result-year {
+    color: rgba(167, 139, 250, 1);
+    font-size: 0.8rem;
+}
+
+/* Custom Scrollbar for Search Results */
+#navSearchForm .search-results-dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
+#navSearchForm .search-results-dropdown::-webkit-scrollbar-track {
+    background: rgba(27, 26, 85, 0.2);
+    border-radius: 3px;
+}
+
+#navSearchForm .search-results-dropdown::-webkit-scrollbar-thumb {
+    background: rgba(167, 139, 250, 0.5);
+    border-radius: 3px;
+}
+
+#navSearchForm .search-results-dropdown::-webkit-scrollbar-thumb:hover {
+    background: rgba(167, 139, 250, 0.7);
+}
+
+/* Animation for search results */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#navSearchForm .search-results-dropdown.show {
+    display: block;
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Header Search Input Styling */
+#navSearchForm .form-control {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px 15px;
+    transition: all 0.3s ease;
+}
+
+#navSearchForm .form-control:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(167, 139, 250, 0.5);
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2);
+    color: #fff;
+}
+
+#navSearchForm .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}

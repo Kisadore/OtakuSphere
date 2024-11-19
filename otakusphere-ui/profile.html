@@ -2,64 +2,207 @@
 <html>
 <head>
 <title>Welcome to my site!</title>
-<link href="assets/css/boostrap.css" rel="stylesheet"/>
-<link href="assets/css/bootstrap-theme.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <link href="assets/css/style.css" rel="stylesheet"/>
 </head>	
 
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
-      <!-- We use the fluid option here to avoid overriding the fixed width of a normal container within the narrow content columns. -->
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-6" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="index.html">OtakuSphere</a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
-          <ul class="nav navbar-nav">
-            <li class="dropdown">
-                <a href="profile.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Username<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="index.html">Home</a></li>
-                  <li><a href="profile.html">Profile</a></li>
-                  <li><a href="shows.html">Shows</a></li>
-                  <li><a href="lists.html">Lists</a></li>
-                  <li><a href="feed.html">Feed</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="settings.html">Settings</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">Sign Out</a></li>
-                </ul>
-              </li>
-            <li><a href="shows.html">Shows</a></li>
-			<li><a href="lists.html">Lists</a></li>
-			<li><a href="feed.html">Feed</a></li>
-            <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Search">
+  <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <!-- <img src="images/logo.png" alt="OtakuSphere" height="30" class="d-inline-block align-top me-2"> -->
+                    OtakuSphere
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="discover.html">Discover</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="lists.html">Lists</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="feed.html">Feed</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex me-3" id="navSearchForm">
+                        <div class="form-group position-relative">
+                            <input type="text" class="form-control" id="navSearchInput" placeholder="Search...">
+                            <div id="searchResults" class="search-results-dropdown"></div>
+                        </div>
+                    </form>
+                    
+                    <div id="app" ></div>
                 </div>
-            </form>
-            <button type="button" class="btn btn-default navbar-btn">Sign in</button>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div>
-    </nav>	
-	
-<div class="container">
-	<div class="panel panel-primary">
-  	<div class="panel-heading">
-    	<h3 class="panel-title">Home</h3>
-  	</div>
-  	<div class="panel-body">
+            </div>
+        </nav>
+    </header>
 
-  	</div>
-	</div>
-</div>
-</body>
+    <main>
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <!-- We use the fluid option here to avoid overriding the fixed width of a normal container within the narrow content columns. -->
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-6" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">OtakuSphere</a>
+          </div>
+  
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                  <a href="profile.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Username<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="shows.html">Shows</a></li>
+                    <li><a href="lists.html">Lists</a></li>
+                    <li><a href="feed.html">Feed</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="settings.html">Settings</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Sign Out</a></li>
+                  </ul>
+                </li>
+              <li><a href="shows.html">Shows</a></li>
+        <li><a href="lists.html">Lists</a></li>
+        <li><a href="feed.html">Feed</a></li>
+              <form class="navbar-form navbar-left" role="search">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                  </div>
+              </form>
+              <button type="button" class="btn btn-default navbar-btn">Sign in</button>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div>
+      </nav>	
+    
+      <div class="container">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Home</h3>
+          </div>
+          <div class="panel-body">
+      
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-5 mt-auto">
+      <div class="container">
+          <!-- Back to Top Button -->
+          <div class="text-end mb-4">
+              <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn btn-outline-light">
+                  <i class="fas fa-arrow-up"></i> Back to Top
+              </button>
+          </div>
+
+          <div class="row g-4">
+              <!-- Brand Column -->
+              <div class="col-lg-4 col-md-6">
+                  <h5 class="mb-4">OtakuSphere</h5>
+                  <p class="mb-4">Your ultimate destination for anime tracking, reviews, and connecting with fellow anime enthusiasts.</p>
+                  <!-- App Features Summary -->
+                  <div class="features-summary">
+                      <ul class="list-unstyled">
+                          <li><i class="fas fa-check-circle me-2"></i>Track your anime watchlist</li>
+                          <li><i class="fas fa-check-circle me-2"></i>Rate and review shows</li>
+                          <li><i class="fas fa-check-circle me-2"></i>Connect with other fans</li>
+                      </ul>
+                  </div>
+              </div>
+
+              <!-- Quick Links -->
+              <div class="col-lg-4 col-md-6">
+                  <h5 class="mb-4">Quick Links</h5>
+                  <div class="row">
+                      <div class="col-6">
+                          <ul class="list-unstyled">
+                              <li class="mb-2"><a href="discover.html" class="text-light text-decoration-none"><i class="fas fa-search me-2"></i>Discover</a></li>
+                              <li class="mb-2"><a href="lists.html" class="text-light text-decoration-none"><i class="fas fa-list me-2"></i>Lists</a></li>
+                              <li class="mb-2"><a href="feed.html" class="text-light text-decoration-none"><i class="fas fa-rss me-2"></i>Feed</a></li>
+                          </ul>
+                      </div>
+                      <div class="col-6">
+                          <ul class="list-unstyled">
+                              <li class="mb-2"><a href="about.html" class="text-light text-decoration-none"><i class="fas fa-info-circle me-2"></i>About</a></li>
+                              <li class="mb-2"><a href="terms.html" class="text-light text-decoration-none"><i class="fas fa-file-contract me-2"></i>Terms</a></li>
+                              <li class="mb-2"><a href="privacy.html" class="text-light text-decoration-none"><i class="fas fa-shield-alt me-2"></i>Privacy</a></li>
+                              <li class="mb-2"><a href="about.html#contact" class="text-light text-decoration-none"><i class="fas fa-envelope me-2"></i>Contact Us</a></li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Connect Column -->
+              <div class="col-lg-4 col-md-12">
+                <h5 class="mb-4">Our Team</h5>
+                <div class="team-members">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="./public/kiahna_avatar.png" class="rounded-circle me-2" alt="Team Member">
+                        <div>
+                            <p class="mb-0">Kiahna Isadore</p>
+                            <a href="https://www.linkedin.com/in/kiahna-isadore/" class="text-light me-2"><i class="fab fa-linkedin" target="_blank"></i></a>
+                            <a href="https://github.com/Kisadore" class="text-light me-2"><i class="fab fa-github" target="_blank"></i></a>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="./public/dominic_avatar.png" class="rounded-circle me-2" alt="Team Member">
+                        <div>
+                            <p class="mb-0">Dominic Maki</p>
+                            <a href="www.linkedin.com/in/dominic-maki" class="text-light me-2"><i class="fab fa-linkedin" target="_blank"></i></a>
+                            <a href="https://github.com/dominicmaki" class="text-light me-2"><i class="fab fa-github" target="_blank"></i></a>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="./public/maritza_avatar.jpeg" class="rounded-circle me-2" alt="Team Member">
+                        <div>
+                            <p class="mb-0">Maritza Buckner</p>
+                            <a href="www.linkedin.com/in/maritza-buckner-701632176" class="text-light me-2"><i class="fab fa-linkedin" target="_blank"></i></a>
+                            <a href="https://github.com/maritzabu" class="text-light me-2"><i class="fab fa-github" target="_blank"></i></a>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <img src="./public/adrian_avatar.png" class="rounded-circle me-2" alt="Team Member">
+                        <div>
+                            <p class="mb-0">Adrian Miro</p>
+                            <a href="https://www.linkedin.com/in/adrian-miro/" class="text-light me-2"><i class="fab fa-linkedin" target="_blank"></i></a>
+                            <a href="https://github.com/asiansnoodle" class="text-light me-2"><i class="fab fa-github" target="_blank"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          <!-- Bottom Bar -->
+          <div class="row mt-5 pt-4 border-top border-secondary">
+              <div class="col-md-6 text-center text-md-start">
+                  <p class="mb-0">&copy; <span id="currentYear"></span> OtakuSphere. All rights reserved.</p>
+              </div>
+              <div class="col-md-6 text-center text-md-end">
+                  <a href="#" class="text-light me-3"><i class="fab fa-facebook"></i></a>
+                  <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                  <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
+                  <a href="#" class="text-light"><i class="fab fa-discord"></i></a>
+              </div>
+          </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/auth.js"></script>
+    <script type="module" src="assets/js/homepage.js"></script>
+  </body>
 </html>

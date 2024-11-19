@@ -366,11 +366,10 @@ class AnimeSearch {
     async handleSearch() {
         const searchTerm = this.searchInput.value.trim();
         
-        if (searchTerm.length < 3) {
+        if (searchTerm.length === 0) {
             this.searchResults.style.display = 'none';
             return;
         }
-
         try {
             const results = await this.fetchAnimeResults(searchTerm);
             this.displayResults(results);
