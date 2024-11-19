@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OtakuSphere - Your Anime Community</title>
-    <!-- Bootstrap -->
+    <title>Terms of Service - OtakuSphere</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/css/lists.css" rel="stylesheet"/>
-    <link href="assets/css/style.css" rel="stylesheet"/>
-
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/terms.css">
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body>
     <!-- Header -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -49,84 +46,50 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
-    <main class="flex-grow-1">
-        <div class="container d-flex justify-content-center">
-            <div class="card" style="max-width: 800px; width: 100%;">
-                <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                    <div class="container-fluid">
-                        <div class="collapse navbar-collapse justify-content-center">
-                            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                                <li class="nav-item"><a class="nav-link active" href="#" onclick="showContent('likes')">Likes</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#" onclick="showContent('watchlist')">Watchlist</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#" onclick="showContent('reviews')">Reviews</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-                <div class="card-body">
-                    <!-- Content sections -->
-                    <div id="likesContent" class="content-section">
-                      Here are your Likes content...
-                    </div>
-                    <div id="watchlistContent" class="content-section d-none">
-                        <button class="btn btn-success" id="newButton">NEW</button>
-                        <br>
-                        <br>
-                        <p>Here is your Watchlist content...</p>
-                        <div id="animeCardContainer" class="container mt-4"></div>
-
-                        <!-- Modal Form for Adding Anime -->
-                        <div id="animeFormModal" class="d-none">
-                          <div class="modal-overlay">
-                              <div class="modal-content">
-                                  <h2>Add Anime to Watchlist</h2>
-                                  <form id="animeForm">
-                                    <!--Title-->
-                                    <div class="mb-3 position-relative">
-                                        <label for="animeTitle" class="form-label">Title</label>
-                                        <input type="text" class="form-control" id="animeTitle" placeholder="Start typing to search..." autocomplete="off">
-                                        <ul id="suggestions" class="list-group position-absolute w-100 mt-1 d-none" style="z-index: 1000;"></ul>
-                                    </div>
-
-                                      <!--Description-->
-                                    <div class="mb-3">
-                                        <label for="animeDescription" class="form-label">Description</label>
-                                        <textarea class="form-control" id="animeDescription" rows="3" required></textarea>
-                                    </div>
-                                      <!-- Date Watched-->
-                                      <div class="mb-3">
-                                        <label for="animeDate" class="form-label">Date Watched</label>
-                                        <input type="date" class="form-control" id="animeDate" required>
-                                      </div>             
-                                      <!-- Star Rating -->
-                                      <div class="mb-3">
-                                        <label for="animeRating" class="form-label">Rating</label>
-                                        <div id="starRating" class="star-rating">
-                                            <i class="bi bi-star" data-index="0"></i>
-                                            <i class="bi bi-star" data-index="1"></i>
-                                            <i class="bi bi-star" data-index="2"></i>
-                                            <i class="bi bi-star" data-index="3"></i>
-                                            <i class="bi bi-star" data-index="4"></i>                                           
-                                          </div>                         
-                                      </div>
-                                    <!-- Like Box -->
-                                      <div class="mb-3">
-                                          <div id="likeBox" class="like-box">
-                                              <i class="fa fa-heart-o"></i> Like
-                                          </div>
-                                      </div>           
-                                      <button type="submit" class="btn btn-primary">Add Anime</button>
-                                      <button type="button" id="closeFormButton" class="btn btn-secondary">Cancel</button>
-                                  </form>
-                              </div>
-                          </div>
-                        </div>
-                    </div>
-                    <div id="reviewsContent" class="content-section d-none">
-                        Here are your Reviews content...
-                    </div>
-                </div>
+    <main>
+        <div class="container ">
+            <h1>Terms of Service</h1>
+            <div class="terms-content">
+                <section class="mb-4">
+                    <h2>1. Acceptance of Terms</h2>
+                    <p>By accessing and using OtakuSphere, you agree to be bound by these Terms of Service and all applicable laws and regulations.</p>
+                </section>
+    
+                <section class="mb-4">
+                    <h2>2. User Accounts</h2>
+                    <p>Users must:</p>
+                    <ul>
+                        <li>Provide accurate and complete registration information</li>
+                        <li>Maintain the security of their account credentials</li>
+                        <li>Be at least 13 years old to create an account</li>
+                        <li>Not create multiple accounts or transfer accounts to others</li>
+                    </ul>
+                </section>
+    
+                <section class="mb-4">
+                    <h2>3. User Content</h2>
+                    <p>When posting reviews, comments, or other content, users must:</p>
+                    <ul>
+                        <li>Not post inappropriate, offensive, or illegal content</li>
+                        <li>Not violate others' intellectual property rights</li>
+                        <li>Accept responsibility for all content posted under their account</li>
+                    </ul>
+                </section>
+    
+                <section class="mb-4">
+                    <h2>4. Fair Usage</h2>
+                    <p>Users agree to:</p>
+                    <ul>
+                        <li>Not use the service for any illegal purposes</li>
+                        <li>Not attempt to breach the system's security</li>
+                        <li>Not interfere with other users' enjoyment of the service</li>
+                    </ul>
+                </section>
+    
+                <section class="mb-4">
+                    <h2>5. Modifications to Service</h2>
+                    <p>OtakuSphere reserves the right to modify or discontinue the service at any time without notice.</p>
+                </section>
             </div>
         </div>
     </main>
@@ -237,6 +200,5 @@
     <script type="module" src="assets/js/homepage.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-    <script src="assets/js/lists.js"></script>
 </body>
 </html>

@@ -1,0 +1,228 @@
+main{
+    background: linear-gradient(to bottom, black, #1B1A55, #55477e);
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+main::before,
+main::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 300px;
+    background: linear-gradient(45deg, rgba(167, 139, 250, 0.1), rgba(85, 71, 126, 0.1));
+    transform: skewY(-5deg);
+}
+
+main::before {
+    top: 0;
+    animation: waveTop 6s ease-in-out infinite;
+}
+
+main::after {
+    bottom: 0;
+    animation: waveBottom 6s ease-in-out infinite;
+}
+
+@keyframes waveTop {
+    0%, 100% {
+        transform: skewY(-5deg) translateY(-10px);
+    }
+    50% {
+        transform: skewY(-5deg) translateY(10px);
+    }
+}
+
+@keyframes waveBottom {
+    0%, 100% {
+        transform: skewY(-5deg) translateY(10px);
+    }
+    50% {
+        transform: skewY(-5deg) translateY(-10px);
+    }
+}
+.container h1{
+    text-align: center;
+    color:white;
+    margin-top: 20px;
+    
+}
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.about-content h1 {
+    color: #212529;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.about-content h2 {
+    color: rgba(167, 139, 250, 1);
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.about-content section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.about-content ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.about-content ul li {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.about-content ul li:before {
+    content: "•";
+    color: rgba(167, 139, 250, 1);
+    font-weight: bold;
+    position: absolute;
+    left: -15px;
+}
+
+/* Contact Form Styles */
+.contact-form-container {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form-container label {
+    color: #212529;
+    font-weight: 500;
+}
+
+.contact-form-container .form-control {
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.contact-form-container .form-control:focus {
+    border-color: rgba(167, 139, 250, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(167, 139, 250, 0.25);
+}
+
+.contact-form-container textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-form-container .btn-primary {
+    background-color: rgba(167, 139, 250, 1);
+    border: none;
+    padding: 10px 25px;
+    transition: all 0.3s ease;
+}
+
+.contact-form-container .btn-primary:hover {
+    background-color: #212529;
+    color: rgba(167, 139, 250, 1);
+    transform: translateY(-2px);
+}
+
+/* Success message styling */
+.form-success {
+    color: #198754;
+    background-color: #d1e7dd;
+    border: 1px solid #badbcc;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+/* Team Section Styles */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.team-member {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(167, 139, 250, 0.3);
+}
+
+.team-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    border: 3px solid rgba(167, 139, 250, 0.3);
+}
+
+.team-info h3 {
+    color: #212529;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    color: #212529;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: rgba(167, 139, 250, 1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .team-avatar {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+    
+}
+
+#contact {
+    scroll-margin-top: 100px; 
+}
+
