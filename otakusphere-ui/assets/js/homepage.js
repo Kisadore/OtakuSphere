@@ -1,16 +1,15 @@
-// Constants
+import AnimeBackground from './animeBackground.js';
 const API_ENDPOINTS = {
     TRENDING: 'https://api.jikan.moe/v4/top/anime',
     REVIEWS: 'https://api.jikan.moe/v4/anime'
 };
 
-const CACHE_KEYS = {
-    DAILY_PICKS: 'dailyPicks',
-    DAILY_PICKS_DATE: 'dailyPicksDate'
-};
-
-// Main initialization
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize anime background
+    const background = new AnimeBackground();
+    const background2 = new AnimeBackground();
+    background.initialize('animeBackgroundContainer');
+    background2.initialize('animeBackgroundContainer2');
     initializeHomepage();
     new AnimeSearch();
 });
@@ -20,7 +19,7 @@ async function initializeHomepage() {
         await Promise.all([
             fetchTrendingAnime(),
             fetchRecentReviews(),
-            new PickOfDay().initialize()
+            new TopRankedAnime().initialize()
         ]);
     } catch (error) {
         console.error('Error initializing homepage:', error);
@@ -149,76 +148,30 @@ export function generateStarRating(rating) {
     return starsHTML;
 }
 
-// Pick of the Day Class
-class PickOfDay {
+class TopRankedAnime {
     constructor() {
-        this.currentPicks = [];
-        this.today = new Date().toDateString();
+        this.topAnime = [];
     }
 
     async initialize() {
         try {
-            await this.loadPicks();
-            await this.displayPicks();
+            await this.fetchTopAnime();
+            await this.displayTopAnime();
         } catch (error) {
-            console.error('Error initializing Pick of the Day:', error);
-            displayError('pickOfDayContent', 'Unable to load picks of the day');
+            console.error('Error initializing top ranked anime:', error);
+            displayError('pickOfDayContent', 'Unable to load top ranked anime');
         }
     }
 
-    async loadPicks() {
-        const cachedPicks = this.getCachedPicks();
-        if (cachedPicks) {
-            this.currentPicks = cachedPicks;
-        } else {
-            await this.generateNewPicks();
-        }
-    }
-
-    getCachedPicks() {
-        const cachedPicks = localStorage.getItem(CACHE_KEYS.DAILY_PICKS);
-        const cachedDate = localStorage.getItem(CACHE_KEYS.DAILY_PICKS_DATE);
-        
-        return (cachedDate === this.today && cachedPicks) 
-            ? JSON.parse(cachedPicks) 
-            : null;
-    }
-
-    async generateNewPicks() {
-        const response = await fetch(`${API_ENDPOINTS.TRENDING}?limit=5&order_by=popularity`);
+    async fetchTopAnime() {
+        const response = await fetch('https://api.jikan.moe/v4/top/anime?limit=10');
         const data = await response.json();
         
         if (!data.data || !Array.isArray(data.data)) {
             throw new Error('Invalid API response format');
         }
 
-        this.currentPicks = data.data;
-        this.cachePicks();
-    }
-
-    cachePicks() {
-        localStorage.setItem(CACHE_KEYS.DAILY_PICKS, JSON.stringify(this.currentPicks));
-        localStorage.setItem(CACHE_KEYS.DAILY_PICKS_DATE, this.today);
-    }
-
-    async getReviews(animeId) {
-        try {
-            const response = await fetch(`${API_ENDPOINTS.REVIEWS}/${animeId}/reviews?limit=1`);
-            const data = await response.json();
-            // console.log("animeId info", data)
-            return data.data[0] || this.getDefaultReview();
-        } catch (error) {
-            return this.getDefaultReview();
-        }
-    }
-
-    getDefaultReview() {
-        return {
-            review: "An amazing series that captivates viewers!",
-            user: {
-                username: "AnimeEnthusiast"
-            }
-        };
+        this.topAnime = data.data;
     }
 
     generateStars(score) {
@@ -241,56 +194,59 @@ class PickOfDay {
         return starsHTML;
     }
 
-    async displayPicks() {
+    async displayTopAnime() {
         const container = document.getElementById('pickOfDayContent');
         if (!container) return;
 
         let content = '';
         
-        for (let i = 0; i < this.currentPicks.length; i++) {
-            const anime = this.currentPicks[i];
-            const review = await this.getReviews(anime.mal_id);
+        for (let i = 0; i < this.topAnime.length; i++) {
+            const anime = this.topAnime[i];
+            const rank = i + 1;
             
             content += `
                 <div class="carousel-item ${i === 0 ? 'active' : ''}">
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="anime-info p-4">
-                                <h3 class="mb-3">${anime.title}</h3>
-                                <p class="lead mb-3">${this.generateStars(anime.score)} </p>
-                                <p class="mb-4">${anime.synopsis ? anime.synopsis.substring(0, 150) + '...' : 'No synopsis available.'}</p>
-                                <div class="featured-reviews mb-4">
-                                    <div class="review-card p-3 mb-2 bg-white rounded">
-                                        <p class="mb-1">"${review.review ? review.review.substring(0, 100) + '...' : 'No review available.'}"</p>
-                                        <small class="text-muted">- ${review.user?.username || 'Anonymous'}</small>
-                                    </div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="d-flex align-items-center gap-3 mb-3">
+                                        <h3 class="mb-0">${anime.title}</h3>
+                                        </div>
+                                        </div>
+                                        
+                                <div class="anime-stats mb-3">
+                                <span><i class="fas fa-users"></i>Ranked #${anime.rank}</span>
+                                    <p class="lead mb-2">
+                                        <p class="lead mb-3">${this.generateStars(anime.score)} </p>
+                                        
+                                    </p>
+                                    <p class="rec-icons">
+                                        <span><i class="fas fa-tv"></i> ${anime.type || 'N/A'}</span>
+                                        <span class="ms-3"><i class="fas fa-calendar"></i> ${anime.year || 'N/A'}</span>
+                                        <span class="ms-3"><i class="fas fa-clock"></i> ${anime.episodes || '?'} eps</span>
+                                    </p>
                                 </div>
-                                <a href="anime-detail.html?id=${anime.mal_id}" class="btn btn-primary">View Details</a>
+                                <p class="mb-4">${anime.synopsis ? anime.synopsis.substring(0, 150) + '...' : 'No synopsis available.'}</p>
+                                <div class="genres mb-4">
+                                    ${anime.genres.map(genre => 
+                                        `<span class="rec-genre-tag">${genre.name}</span>`
+                                    ).join('')}
+                                </div>
+                                <a href="anime-detail.html?id=${anime.mal_id}" class="btn btn-outline-light btn-lg">View Details</a>
                             </div>
                         </div>
                         <div class="col-md-6">
-                        ${this.createTrailerOrImage(anime)}
+                            ${this.createTrailerOrImage(anime)}
                         </div>
                     </div>
                 </div>
             `;
-                        // <div class="ratio ratio-16x9 rounded overflow-hidden shadow">
-                        //         ${anime.trailer?.embed_url ? 
-                        //             `<iframe src="${anime.trailer.embed_url}" allowfullscreen></iframe>` :
-                        //             `<img src="${anime.images.jpg.large_image_url}" class="img-fluid" alt="${anime.title}">`
-                        //         }
-                        // </div>
-
-                        // <div class="col-md-6">
-                        //     <div class="ratio ratio-16x9 rounded overflow-hidden shadow">
-                        //     <img src="${anime.images.jpg.large_image_url}" class="img-fluid" alt="${anime.title}">
-                        //     </div>
-                        // </div>
         }
         
-
         container.innerHTML = content;
     }
+
     createTrailerOrImage(anime) {
         if (anime.trailer?.embed_url) {
             const embedUrl = anime.trailer.embed_url
@@ -298,7 +254,7 @@ class PickOfDay {
                 + '?autoplay=0&rel=0&origin=' + window.location.origin;
 
             return `
-                <div class="ratio ratio-16x9 rounded overflow-hidden shadow">
+                <div class="ratio ratio-16x9 rounded overflow-hidden shadow position-relative">
                     <iframe 
                         src="${embedUrl}"
                         loading="lazy"
@@ -310,10 +266,11 @@ class PickOfDay {
             `;
         } else {
             return `
-                <div class="ratio ratio-16x9 rounded overflow-hidden shadow">
+                <div class="ratio ratio-16x9 rounded overflow-hidden shadow position-relative">
                     <img src="${anime.images.jpg.large_image_url}" class="img-fluid" alt="${anime.title}">
                 </div>
             `;
+ 
         }
     }
 }
@@ -464,6 +421,26 @@ class AnimeSearch {
 // Global error handler
 window.addEventListener('error', (event) => {
     console.error('Global error:', event.error);
+});
+
+// Scroll Indicator functionality
+document.querySelector('.scroll-indicator').addEventListener('click', function() {
+    const trendingSection = document.querySelector('.trending-section');
+    trendingSection.scrollIntoView({ behavior: 'smooth' });
+});
+
+// Hide scroll indicator when scrolling past intro section
+window.addEventListener('scroll', function() {
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    const introSection = document.querySelector('.intro-section');
+    
+    if (window.scrollY > introSection.offsetHeight / 2) {
+        scrollIndicator.style.opacity = '0';
+        scrollIndicator.style.pointerEvents = 'none';
+    } else {
+        scrollIndicator.style.opacity = '1';
+        scrollIndicator.style.pointerEvents = 'auto';
+    }
 });
 
 // export default generateStars;
