@@ -2,15 +2,6 @@ body {
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
-.container {
-padding: 10px;
-}
-
-/* Links */
-a {
-color: black;
-}
-
 .social-links a:hover {
 opacity: 0.8;
 transition: opacity 0.2s ease-in-out;
@@ -59,17 +50,6 @@ footer .social-links a {
     transition: all 0.3s ease;
 }
 
-footer .social-links a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-3px);
-}
-
-
-/* Navigation */
-.navbar-brand:hover {
-opacity: 0.9;
-}
-
 /* Buttons */
 .btn-primary {
 background-color: rgba(167, 139, 250, 1);
@@ -88,27 +68,7 @@ color: rgba(167, 139, 250, 1);
 border: none;
 }
 
-/* Table Styles */
-table {
-width: 75%;
-border: none;
-padding-left: 50px;
-padding-right: 50px;
-margin: 0 auto;
-}
-
-td, tr {
-text-align: center;
-}
-
-/* List Styles */
-ul, li {
-align-content: center;
-text-align: left;
-}
-
 /* Intro Section */
-
 .intro-section{
     min-height: 100vh;
     justify-content: center;
@@ -132,10 +92,7 @@ text-align: left;
 	color: rgba(167, 139, 250, 1) !important;
 }
 
-
-
 /* Animated title and subtitle */
-
 .animate-title {
     opacity: 0;
     transform: translateY(-20px);
@@ -164,8 +121,7 @@ text-align: left;
     }
 }
 
-/* pick of Day */
-
+/* pick of day */
 .pick-of-day {
     background: linear-gradient(45deg, #000000, #1B1A55);
     color: #fff;
@@ -176,9 +132,7 @@ text-align: left;
     display:flex;
     justify-content: center;
     align-items: center;
-
 }
-
 .background-container {
     position: absolute;
     top: 0;
@@ -197,11 +151,9 @@ text-align: left;
     z-index: 2;
 }
 
-
 .pick-of-day .carousel-item {
     padding: 2rem;
 }
-
 
 .anime-info {
     background: rgba(255, 255, 255, 0.1);
@@ -248,7 +200,6 @@ text-align: left;
 }
 
 .review-card p {
-    /* color: #fff; */
     color: #302c2c;
     opacity: 0.9;
     font-style: italic;
@@ -408,25 +359,10 @@ text-align: left;
         font-size: 0.9rem;
     }
 }
-
-
-
 /* reviews */
 .reviews-section {
     background-color: #f8f9fa;
-	/* background: linear-gradient(to bottom, black, #1B1A55, #55477e); */
     padding: 40px 0;
-	/* color:white; */
-}
-
-.card {
-    transition: transform 0.2s;
-    border: none;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.card:hover {
-    transform: translateY(-5px);
 }
 
 .review-avatar {
@@ -455,7 +391,6 @@ text-align: left;
     color: #4a4a4a;
 }
 
-
 .custom-purple {
     color: #a78bfa !important;
 }
@@ -465,7 +400,6 @@ text-align: left;
     border-color: #a78bfa;
     background-color: transparent;
 }
-
 
 .search-result-info {
     flex-grow: 1;
@@ -487,8 +421,6 @@ text-align: left;
     top: 100%;
     left: 0;
     right: 0;
-    /* background: linear-gradient(to bottom, #1B1A55, #55477e); */
-    /* background: white; */
     background: rgba(27, 26, 85, 0.3);
     border-radius: 0 0 12px 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
@@ -509,13 +441,11 @@ text-align: left;
     border-radius: 6px;
     margin-bottom: 5px;
     transition: all 0.2s ease;
-    /* background: rgba(255, 255, 255, 0.05); */
     background: rgb(238, 234, 234);
 }
 
 #navSearchForm .search-result-item:hover {
     background: rgba(167, 139, 250, 0.2);
-    /* color: white; */
     transform: translateX(5px);
 }
 
@@ -532,9 +462,7 @@ text-align: left;
 }
 
 #navSearchForm .search-result-title {
-
     color: #212529;
-    /* color:white; */
     font-weight: 600;
     margin-bottom: 4px;
     font-size: 0.95rem;
@@ -548,7 +476,6 @@ text-align: left;
     font-size: 0.8rem;
 }
 
-/* Custom Scrollbar for Search Results */
 #navSearchForm .search-results-dropdown::-webkit-scrollbar {
     width: 6px;
 }
@@ -567,7 +494,6 @@ text-align: left;
     background: rgba(167, 139, 250, 0.7);
 }
 
-/* Animation for search results */
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -584,7 +510,6 @@ text-align: left;
     animation: slideIn 0.3s ease-out;
 }
 
-/* Header Search Input Styling */
 #navSearchForm .form-control {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(167, 139, 250, 0.3);

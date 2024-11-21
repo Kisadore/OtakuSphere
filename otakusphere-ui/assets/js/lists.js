@@ -1,5 +1,5 @@
 // Get references to the DOM elements
-const newButton = document.getElementById('newButton');
+const addButton = document.getElementById('addButton');
 const animeFormModal = document.getElementById('animeFormModal');
 const closeFormButton = document.getElementById('closeFormButton');
 const animeForm = document.getElementById('animeForm');
@@ -137,8 +137,8 @@ function resetForm() {
     
     // Reset like box to unliked state
     const heartIcon = likeBox.querySelector('i');
-    heartIcon.classList.remove('bi-heart-fill'); // Remove filled heart class
-    heartIcon.classList.add('bi-heart');        // Add unfilled heart class
+    heartIcon.classList.remove('fa-heart'); // Remove filled heart class
+    heartIcon.classList.add('fa-heart-o');        // Add unfilled heart class
     
     // Reset rating to 0
     rating = 0;
@@ -164,8 +164,8 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Event listener for the "NEW" button to open the form
-newButton.addEventListener('click', () => {
+// Event listener for the "ADD" button to open the form
+addButton.addEventListener('click', () => {
     animeFormModal.classList.remove('d-none'); // Show the form
 });
 
@@ -235,6 +235,6 @@ window.onload = function () {
         showContent(selectedSection);
     } else {
         // Default to showing the "likes" section if nothing is stored
-        showContent('likes');
+        showContent('archive');
     }
 };
