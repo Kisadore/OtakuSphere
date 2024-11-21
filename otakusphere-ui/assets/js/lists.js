@@ -137,8 +137,8 @@ function resetForm() {
     
     // Reset like box to unliked state
     const heartIcon = likeBox.querySelector('i');
-    heartIcon.classList.remove('bi-heart-fill'); // Remove filled heart class
-    heartIcon.classList.add('bi-heart');        // Add unfilled heart class
+    heartIcon.classList.remove('fa-heart'); // Remove filled heart class
+    heartIcon.classList.add('fa-heart-o');        // Add unfilled heart class
     
     // Reset rating to 0
     rating = 0;
