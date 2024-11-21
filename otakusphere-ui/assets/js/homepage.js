@@ -323,6 +323,16 @@ function getDummyReviews() {
         }
     ];
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const searchForm = document.getElementById('navSearchForm');
+    const searchInput = document.getElementById('navSearchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    if (searchForm && searchInput && searchResults) {
+        new AnimeSearch(searchForm, searchInput, searchResults);
+    }
+});
 class AnimeSearch {
     constructor() {
         this.searchInput = document.getElementById('navSearchInput');
