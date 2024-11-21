@@ -48,6 +48,7 @@
 
     <main>
         <div class="container ">
+            <div id="animeBackgroundContainer2"></div>
             <h1>Terms of Service</h1>
             <div class="terms-content">
                 <section class="mb-4">
@@ -195,7 +196,14 @@
             </div>
         </div>
     </footer>
-
+    <script type="module">
+        import AnimeBackground from './assets/js/animeBackground.js';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const background = new AnimeBackground();
+            background.initialize('animeBackgroundContainer2');
+        });
+    </script>
     <script src="assets/js/auth.js"></script>
     <script type="module" src="assets/js/homepage.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

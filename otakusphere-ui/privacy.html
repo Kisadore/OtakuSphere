@@ -47,6 +47,7 @@
     </header>
     
     <main class="flex-grow-1">
+        <div id="animeBackgroundContainer2"></div>
         <div class="container ">
             <h1>Privacy Policy</h1>
             <div class="privacy-content">
@@ -202,7 +203,14 @@
             </div>
         </div>
     </footer>
-
+    <script type="module">
+        import AnimeBackground from './assets/js/animeBackground.js';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const background = new AnimeBackground();
+            background.initialize('animeBackgroundContainer2');
+        });
+    </script>
     <script src="assets/js/auth.js"></script>
     <script type="module" src="assets/js/homepage.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
