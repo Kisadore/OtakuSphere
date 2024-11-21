@@ -102,21 +102,6 @@ main {
     gap: 5px;
 }
 
-.star-rating span.full {
-    color: gold;
-    font-size: 1.5em;
-}
-
-.star-rating span.half {
-    color: gold;
-    font-size: 1.5em;
-}
-
-.star-rating span.empty {
-    color: lightgray;
-    font-size: 1.5em;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .anime-content {
