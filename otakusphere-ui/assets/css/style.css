@@ -1,13 +1,10 @@
 body {
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
-
-.social-links a:hover {
-opacity: 0.8;
-transition: opacity 0.2s ease-in-out;
+a {
+    color: black;
 }
 
-/* Footer Styles */
 footer {
     position: relative;
 }
@@ -70,7 +67,8 @@ border: none;
 
 /* Intro Section */
 .intro-section{
-    min-height: 100vh;
+    /* min-height: 100vh; */
+    min-height: 65vh;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -78,14 +76,22 @@ border: none;
 	justify-content: center;
 	padding: 4rem 0;
     /* background: linear-gradient(135deg, #000000, #1B1A55, #55477e); */
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
+    /* background: linear-gradient(to bottom, black, #1B1A55, #55477e); */
+    /* background-size: 400% 400%; */
+    /* animation: gradientBG 15s ease infinite; */
+    /* background: linear-gradient(45deg, #000000, #1B1A55); */
+    background-color: #11101a;
+    background-image: radial-gradient(rgba(167, 139, 250, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
 }
-/* @keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-} */
+
+.navbar{
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1),
+                0 8px 25px rgba(0, 0, 0, 0.3),
+                inset 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
 
 
 .feature-icon i.text-primary {
@@ -121,9 +127,65 @@ border: none;
     }
 }
 
+.cyber-title {
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.title-top {
+    font-size: 1.5rem;
+    color: rgba(167, 139, 250, 0.7);
+    font-family: "Hiragino Kaku Gothic Pro", "Meiryo", sans-serif;
+    text-shadow: 0 0 5px rgba(167, 139, 250, 0.7);
+    animation: floatText 3s ease-in-out infinite;
+}
+
+.title-bottom {
+    font-size: 4rem;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 
+        0 0 5px #fff,
+        0 0 40px rgba(167, 139, 250, 0.7);
+    letter-spacing: 2px;
+    animation: glowText 3s ease-in-out infinite alternate;
+}
+
+@keyframes floatText {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Add responsive adjustments */
+@media (max-width: 768px) {
+    .title-top {
+        font-size: 1.2rem;
+    }
+    .title-bottom {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title-top {
+        font-size: 1rem;
+    }
+    .title-bottom {
+        font-size: 2.5rem;
+    }
+}
+
+
 /* pick of day */
 .pick-of-day {
-    background: linear-gradient(45deg, #000000, #1B1A55);
     color: #fff;
     padding: 4rem 0;
     position: relative;
@@ -140,6 +202,10 @@ border: none;
     width: 100%;
     height: 100%;
     z-index: 1;
+    background-color: #11101a;
+    background-image: radial-gradient(rgba(167, 139, 250, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+
 }
 
 .pick-of-day .container {
@@ -156,7 +222,7 @@ border: none;
 }
 
 .anime-info {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(93, 91, 91, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -530,7 +596,6 @@ border: none;
     color: rgba(255, 255, 255, 0.5);
 }
 
-/* Refined styles for the rest of the elements */
 .genres .badge {
     background-color: rgba(100, 115, 128, 0.2);
     color: #feffff;
@@ -540,7 +605,6 @@ border: none;
     font-size: 0.85rem;
 }
 .rec-icons{
-    /* color: rgb(127, 90, 158); */
     color: #959597;
 }
 .rec-genre-tag{
@@ -548,41 +612,42 @@ border: none;
     font-size: 12px;
     padding: 2px 8px;
     margin: 2px;
-    /* background: rgb(155, 149, 149); */
     background: #a78bfa;
     border-radius: 12px;  
     color:#ffffff; 
 }
 
-
-
-/* Scroll Indicator */
 .scroll-indicator {
     position: absolute;
-    /* margin-top: 20px; */
     bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
     cursor: pointer;
-    animation: bounce 2s infinite;
     color: rgba(255, 255, 255, 0.8);
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
     z-index: 10;
+}
+
+.scroll-indicator i {
+    animation: floatArrow 2s ease-in-out infinite;
 }
 
 .scroll-indicator:hover {
     color: rgba(167, 139, 250, 1);
+    transform: translateX(-50%) scale(1.1);
 }
 
-/* @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0) translateX(-50%);
+@keyframes floatArrow {
+    0%, 100% {
+        transform: translateY(0);
     }
-    40% {
-        transform: translateY(-30px) translateX(-50%);
+    50% {
+        transform: translateY(10px);
     }
-    60% {
-        transform: translateY(-15px) translateX(-50%);
-    }
-} */
+}
+
+.pick-of-day .scroll-indicator {
+    bottom: 30px; /* Adjusted position */
+}
+
 

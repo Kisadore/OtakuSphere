@@ -8,8 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize anime background
     const background = new AnimeBackground();
     const background2 = new AnimeBackground();
+    // const background3 = new AnimeBackground();
     background.initialize('animeBackgroundContainer');
     background2.initialize('animeBackgroundContainer2');
+    // background3.initialize('animeBackgroundContainer3');
     initializeHomepage();
     new AnimeSearch();
 });
@@ -424,23 +426,26 @@ window.addEventListener('error', (event) => {
 });
 
 // Scroll Indicator functionality
-document.querySelector('.scroll-indicator').addEventListener('click', function() {
-    const trendingSection = document.querySelector('.trending-section');
-    trendingSection.scrollIntoView({ behavior: 'smooth' });
-});
-
-// Hide scroll indicator when scrolling past intro section
-window.addEventListener('scroll', function() {
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    const introSection = document.querySelector('.intro-section');
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollIndicator = document.querySelector('.pick-of-day .scroll-indicator');
     
-    if (window.scrollY > introSection.offsetHeight / 2) {
-        scrollIndicator.style.opacity = '0';
-        scrollIndicator.style.pointerEvents = 'none';
-    } else {
-        scrollIndicator.style.opacity = '1';
-        scrollIndicator.style.pointerEvents = 'auto';
+    if (scrollIndicator) {
+        scrollIndicator.addEventListener('click', function(e) {
+            e.preventDefault();
+            const reviewsSection = document.querySelector('.reviews-section');
+            if (reviewsSection) {
+                const headerOffset = 80; // Adjust this value based on your header height
+                const elementPosition = reviewsSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
     }
 });
+
 
 // export default generateStars;
