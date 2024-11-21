@@ -1,5 +1,5 @@
 // Get references to the DOM elements
-const newButton = document.getElementById('newButton');
+const addButton = document.getElementById('addButton');
 const animeFormModal = document.getElementById('animeFormModal');
 const closeFormButton = document.getElementById('closeFormButton');
 const animeForm = document.getElementById('animeForm');
@@ -164,8 +164,8 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Event listener for the "NEW" button to open the form
-newButton.addEventListener('click', () => {
+// Event listener for the "ADD" button to open the form
+addButton.addEventListener('click', () => {
     animeFormModal.classList.remove('d-none'); // Show the form
 });
 
@@ -235,6 +235,6 @@ window.onload = function () {
         showContent(selectedSection);
     } else {
         // Default to showing the "likes" section if nothing is stored
-        showContent('likes');
+        showContent('archive');
     }
 };

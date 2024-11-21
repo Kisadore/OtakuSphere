@@ -2,15 +2,6 @@ body {
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
-.container {
-padding: 10px;
-}
-
-/* Links */
-a {
-color: black;
-}
-
 .social-links a:hover {
 opacity: 0.8;
 transition: opacity 0.2s ease-in-out;
@@ -59,17 +50,6 @@ footer .social-links a {
     transition: all 0.3s ease;
 }
 
-footer .social-links a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-3px);
-}
-
-
-/* Navigation */
-.navbar-brand:hover {
-opacity: 0.9;
-}
-
 /* Buttons */
 .btn-primary {
 background-color: rgba(167, 139, 250, 1);
@@ -88,33 +68,11 @@ color: rgba(167, 139, 250, 1);
 border: none;
 }
 
-/* Table Styles */
-table {
-width: 75%;
-border: none;
-padding-left: 50px;
-padding-right: 50px;
-margin: 0 auto;
-}
-
-td, tr {
-text-align: center;
-}
-
-/* List Styles */
-ul, li {
-align-content: center;
-text-align: left;
-}
-
 /* Intro Section */
 .intro-section {
 	background: linear-gradient(to bottom, black, #1B1A55, #55477e);
 	min-height: 60vh;
 	display: flex;
-	/* align-items: center; */
-	/* background-position: center; */
-	/* background-size: cover; */
 	flex-direction: column;
 	justify-content: center;
 	padding: 4rem 0;
@@ -138,7 +96,7 @@ text-align: left;
 }
 
 
-/* Pick of Day Section Styles */
+/* pick of day */
 .pick-of-day {
     background: linear-gradient(to bottom, black, #1B1A55, #55477e);
     color: #fff;
@@ -186,14 +144,12 @@ text-align: left;
     color: #ffc107;
 }
 
-
 .review-card:hover {
     transform: translateX(5px);
     background: rgba(255, 255, 255, 0.1);
 }
 
 .review-card p {
-    /* color: #fff; */
     color: #302c2c;
     opacity: 0.9;
     font-style: italic;
@@ -237,29 +193,10 @@ text-align: left;
     left: 0;
 }
 
-
 .ratio iframe,
 .ratio img {
     border-radius: 20px;
 }
-
-/* .btn-primary {
-    background: linear-gradient(45deg, #a78bfa 0%, #8b5cf6 100%);
-    border: none;
-    padding: 1rem 2rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    color: #fff;
-}
-
-.btn-primary:hover {
-    background: linear-gradient(45deg, #8b5cf6 0%, #7c3aed 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
-} */
 
 .anime-card {
     cursor: pointer;
@@ -273,14 +210,7 @@ text-align: left;
     border-radius: 12px;
 }
 
-/* Star Rating Styles */
-/* .star-rating {
-    color: #a78bfa;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-} */
 
-/* Section Title */
 .pick-of-day h2 {
     color: #fff;
     font-size: 2.5rem;
@@ -304,7 +234,6 @@ text-align: left;
     border-radius: 2px;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
     .pick-of-day {
         padding: 2rem 0;
@@ -332,24 +261,9 @@ text-align: left;
     }
 }
 
-
-
-/* Review Section Styles */
 .reviews-section {
     background-color: #f8f9fa;
-	/* background: linear-gradient(to bottom, black, #1B1A55, #55477e); */
     padding: 40px 0;
-	/* color:white; */
-}
-
-.card {
-    transition: transform 0.2s;
-    border: none;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.card:hover {
-    transform: translateY(-5px);
 }
 
 .review-avatar {
@@ -378,7 +292,6 @@ text-align: left;
     color: #4a4a4a;
 }
 
-
 .custom-purple {
     color: #a78bfa !important;
 }
@@ -388,7 +301,6 @@ text-align: left;
     border-color: #a78bfa;
     background-color: transparent;
 }
-
 
 .search-result-info {
     flex-grow: 1;
@@ -404,14 +316,11 @@ text-align: left;
     color: #6c757d;
 }
 
-/* Header Search Styling */
 #navSearchForm .search-results-dropdown {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    /* background: linear-gradient(to bottom, #1B1A55, #55477e); */
-    /* background: white; */
     background: rgba(27, 26, 85, 0.3);
     border-radius: 0 0 12px 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
@@ -432,13 +341,11 @@ text-align: left;
     border-radius: 6px;
     margin-bottom: 5px;
     transition: all 0.2s ease;
-    /* background: rgba(255, 255, 255, 0.05); */
     background: rgb(238, 234, 234);
 }
 
 #navSearchForm .search-result-item:hover {
     background: rgba(167, 139, 250, 0.2);
-    /* color: white; */
     transform: translateX(5px);
 }
 
@@ -455,9 +362,7 @@ text-align: left;
 }
 
 #navSearchForm .search-result-title {
-
     color: #212529;
-    /* color:white; */
     font-weight: 600;
     margin-bottom: 4px;
     font-size: 0.95rem;
@@ -471,7 +376,6 @@ text-align: left;
     font-size: 0.8rem;
 }
 
-/* Custom Scrollbar for Search Results */
 #navSearchForm .search-results-dropdown::-webkit-scrollbar {
     width: 6px;
 }
@@ -490,7 +394,6 @@ text-align: left;
     background: rgba(167, 139, 250, 0.7);
 }
 
-/* Animation for search results */
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -507,7 +410,6 @@ text-align: left;
     animation: slideIn 0.3s ease-out;
 }
 
-/* Header Search Input Styling */
 #navSearchForm .form-control {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(167, 139, 250, 0.3);
