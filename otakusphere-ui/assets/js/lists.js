@@ -11,6 +11,45 @@ let currentSection = 'archive'; // Default section
 
 // ----------------------------- Helper Functions -----------------------------
 
+function updateModalContent(section) {
+    const modalTitle = document.querySelector('#animeFormModal h2');
+    const addButton = document.querySelector('#animeFormModal button[type="submit"]');
+    const dateInput = document.getElementById('animeDate'); // The "watched date" input
+    const starRating = document.getElementById('starRating'); // Star rating container
+    const likeBox = document.getElementById('likeBox'); // Like button container
+    const dateLabel = document.querySelector('label[for="animeDate"]'); // Label for Date Watched
+    const ratingLabel = document.querySelector('label[for="animeRating"]'); // Label for Rating
+
+    if (section === 'archive') {
+        modalTitle.textContent = 'Add Anime to Archive';
+        addButton.textContent = 'Add to Archive';
+        
+        // Show the "watched date" input field for the archive
+        dateInput.classList.remove('d-none');
+        dateLabel.classList.remove('d-none'); // Show the "Date Watched" label
+        
+        // Show the star rating and like button for the archive
+        starRating.classList.remove('d-none');
+        likeBox.classList.remove('d-none');
+        ratingLabel.classList.remove('d-none'); // Show the "Rating" label
+    } else if (section === 'watchlist') {
+        modalTitle.textContent = 'Add Anime to Watchlist';
+        addButton.textContent = 'Add to Watchlist';
+        
+        // Hide the "watched date" input field for the watchlist
+        dateInput.classList.add('d-none');
+        dateLabel.classList.add('d-none'); // Hide the "Date Watched" label
+        
+        // Hide the star rating and like button for the watchlist
+        starRating.classList.add('d-none');
+        likeBox.classList.add('d-none');
+        ratingLabel.classList.add('d-none'); // Hide the "Rating" label
+    }
+}
+
+
+
+
 // Function to fetch suggestions from Jikan API
 function fetchAnimeSuggestions(query) {
     fetch(`https://api.jikan.moe/v4/anime?q=${query}&limit=5`)
@@ -153,9 +192,14 @@ document.querySelectorAll('.btn-success').forEach(button => {
     button.addEventListener('click', (e) => {
         const section = e.target.textContent.includes('WATCHLIST') ? 'watchlist' : 'archive';
         currentSection = section;
+        
+        // Update the modal content based on the section
+        updateModalContent(section);
+        
         animeFormModal.classList.remove('d-none');
     });
 });
+
 
 // Event listener for the "Cancel" button to close the form
 closeFormButton.addEventListener('click', () => {
