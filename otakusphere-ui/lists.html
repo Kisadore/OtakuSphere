@@ -67,7 +67,7 @@
                 <div class="card-body">
                     <!-- Content sections -->
                     <div id="archiveContent" class="content-section">
-                        <button class="btn btn-success" id="addButton">ADD</button>
+                        <button class="btn btn-success" id="addButton">ADD TO ARCHIVE</button>
                         <br>
                         <br>
                         <p>Here is your Archive content...</p>
@@ -121,7 +121,36 @@
                         </div>
                     </div>
                     <div id="watchlistContent" class="content-section d-none">
-                        Here are your Watchlist content...
+                        <button class="btn btn-success" id="addButton">ADD TO WATCHLIST</button>
+                        <br>
+                        <br>
+                        <p>Here is your Watchlist content...</p>
+                        <div id="animeCardContainer" class="container mt-4"></div>
+
+                        <!-- Modal Form for Adding Anime -->
+                        <div id="animeFormModal" class="d-none">
+                          <div class="modal-overlay">
+                              <div class="modal-content">
+                                  <h2>Add Anime to Watchlist</h2>
+                                  <form id="animeForm">
+                                    <!--Title-->
+                                    <div class="mb-3 position-relative">
+                                        <label for="animeTitle" class="form-label">Title</label>
+                                        <input type="text" class="form-control" id="animeTitle" placeholder="Start typing to search..." autocomplete="off">
+                                        <ul id="suggestions" class="list-group position-absolute w-100 mt-1 d-none" style="z-index: 1000;"></ul>
+                                    </div>
+
+                                      <!--Description-->
+                                    <div class="mb-3">
+                                        <label for="animeDescription" class="form-label">Description</label>
+                                        <textarea class="form-control" id="animeDescription" rows="3" required></textarea>
+                                    </div>          
+                                    <button type="submit" class="btn btn-primary">Add Anime</button>
+                                    <button type="button" id="closeFormButton" class="btn btn-secondary">Cancel</button>
+                                  </form>
+                              </div>
+                          </div>
+                        </div>
                     </div>
                     <div id="reviewsContent" class="content-section d-none">
                         Here are your Reviews content...
