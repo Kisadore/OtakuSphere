@@ -1,14 +1,13 @@
 // Get references to the DOM elements
-const addButton = document.getElementById('addButton');
 const animeFormModal = document.getElementById('animeFormModal');
 const closeFormButton = document.getElementById('closeFormButton');
 const animeForm = document.getElementById('animeForm');
 const starIcons = document.querySelectorAll('#starRating i');
 const likeBox = document.getElementById('likeBox');
-const dateWatched = document.getElementById('animeDate');
-let rating = 0;
 const animeTitleInput = document.getElementById('animeTitle');
 const suggestionsList = document.getElementById('suggestions');
+let rating = 0;
+let currentSection = 'archive'; // Default section
 
 // ----------------------------- Helper Functions -----------------------------
 
@@ -31,7 +30,7 @@ function fetchAnimeSuggestions(query) {
 
 // Function to display suggestions in the dropdown
 function displaySuggestions(animeList) {
-    clearSuggestions(); // Clear any previous suggestions
+    clearSuggestions();
     animeList.forEach(anime => {
         const listItem = document.createElement('li');
         listItem.className = 'list-group-item list-group-item-action';
@@ -40,11 +39,11 @@ function displaySuggestions(animeList) {
             ${anime.title} <small class="text-muted">(${anime.type || 'N/A'}, Score: ${anime.score || 'N/A'})</small>
         `;
         listItem.addEventListener('click', () => {
-            selectAnime(anime); // Handle selection
+            selectAnime(anime);
         });
         suggestionsList.appendChild(listItem);
     });
-    suggestionsList.classList.remove('d-none'); // Show the suggestions dropdown
+    suggestionsList.classList.remove('d-none');
 }
 
 // Function to clear suggestions
@@ -55,17 +54,16 @@ function clearSuggestions() {
 
 // Function to handle anime selection
 function selectAnime(anime) {
-    // Populate the form with selected anime details
     animeTitleInput.value = anime.title;
     document.getElementById('animeDescription').value = anime.synopsis || 'No description available.';
-    clearSuggestions(); // Hide the suggestions
+    clearSuggestions();
 }
 
-// Function to create and display an anime card
+// Function to create and display an anime card in the correct section
 function createAnimeCard(anime) {
-    const cardContainer = document.getElementById('animeCardContainer'); // Ensure this container exists in your HTML
+    const containerId = currentSection === 'archive' ? 'archiveContainer' : 'watchlistContainer';
+    const cardContainer = document.getElementById(containerId);
 
-    // Create the card HTML
     const cardHTML = `
         <div class="card mb-3" style="max-width: 540px;">
             <div class="row g-0">
@@ -82,35 +80,32 @@ function createAnimeCard(anime) {
             </div>
         </div>
     `;
-
-    // Append the card to the container
     cardContainer.innerHTML += cardHTML;
 }
 
+// Function to update the stars
 function updateStars() {
     starIcons.forEach((star, index) => {
         if (index < rating) {
-            star.classList.add('filled');  // Add gold color
+            star.classList.add('filled');
         } else {
-            star.classList.remove('filled'); // Remove gold color
+            star.classList.remove('filled');
         }
     });
 }
 
 // Function to handle form submission
 function handleFormSubmission(event) {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault();
 
-    // Get form data
     const title = document.getElementById('animeTitle').value;
 
-    // Fetch anime data from Jikan API
     fetch(`https://api.jikan.moe/v4/anime?q=${title}&limit=1`)
         .then(response => response.json())
         .then(data => {
             if (data.data && data.data.length > 0) {
-                const anime = data.data[0]; // Take the first match
-                createAnimeCard(anime);    // Display the anime card
+                const anime = data.data[0];
+                createAnimeCard(anime);
             } else {
                 alert('No anime found with that title. Please try again.');
             }
@@ -120,37 +115,26 @@ function handleFormSubmission(event) {
             alert('Failed to fetch anime details. Please try again later.');
         });
 
-    // Clear form after submission
     animeForm.reset();
-    resetForm(); // Reset the stars and like box
-
-    // Close the form
+    resetForm();
     animeFormModal.classList.add('d-none');
 }
 
-// Reset form fields (stars and like box)
+// Function to reset the form
 function resetForm() {
-    // Reset stars to unfilled state
-    starIcons.forEach(star => {
-        star.classList.remove('filled'); // Remove gold color
-    });
-    
-    // Reset like box to unliked state
+    starIcons.forEach(star => star.classList.remove('filled'));
     const heartIcon = likeBox.querySelector('i');
-    heartIcon.classList.remove('fa-heart'); // Remove filled heart class
-    heartIcon.classList.add('fa-heart-o');        // Add unfilled heart class
-    
-    // Reset rating to 0
+    heartIcon.classList.remove('fa-heart');
+    heartIcon.classList.add('fa-heart-o');
     rating = 0;
 }
-
 
 // ----------------------------- Event Listeners -----------------------------
 
 // Event listener for input field
 animeTitleInput.addEventListener('input', () => {
     const query = animeTitleInput.value.trim();
-    if (query.length > 2) { // Fetch suggestions if query is at least 3 characters
+    if (query.length > 2) {
         fetchAnimeSuggestions(query);
     } else {
         clearSuggestions();
@@ -165,32 +149,31 @@ document.addEventListener('click', (e) => {
 });
 
 // Event listener for the "ADD" button to open the form
-addButton.addEventListener('click', () => {
-    animeFormModal.classList.remove('d-none'); // Show the form
+document.querySelectorAll('.btn-success').forEach(button => {
+    button.addEventListener('click', (e) => {
+        const section = e.target.textContent.includes('WATCHLIST') ? 'watchlist' : 'archive';
+        currentSection = section;
+        animeFormModal.classList.remove('d-none');
+    });
 });
 
 // Event listener for the "Cancel" button to close the form
 closeFormButton.addEventListener('click', () => {
-    animeFormModal.classList.add('d-none'); // Hide the form
+    animeFormModal.classList.add('d-none');
 });
 
-
-// Like Box functionality (heart icon)
+// Like Box functionality
 likeBox.addEventListener('click', () => {
     const heartIcon = likeBox.querySelector('i');
-    if (heartIcon.classList.contains('fa-heart-o')) {
-        heartIcon.classList.remove('fa-heart-o');
-        heartIcon.classList.add('fa-heart'); // Filled heart when liked
-    } else {
-        heartIcon.classList.remove('fa-heart');
-        heartIcon.classList.add('fa-heart-o'); // Empty heart when unliked
-    }
+    heartIcon.classList.toggle('fa-heart-o');
+    heartIcon.classList.toggle('fa-heart');
 });
 
+// Star rating functionality
 starIcons.forEach((star, index) => {
     star.addEventListener('click', () => {
-        rating = index + 1; // Update rating based on clicked star
-        updateStars();      // Update the star display
+        rating = index + 1;
+        updateStars();
     });
 });
 
@@ -199,42 +182,15 @@ animeForm.addEventListener('submit', handleFormSubmission);
 
 // ----------------------------- Initialization -----------------------------
 
-// Function to show the selected content and hide others
 function showContent(section) {
-    // Remove 'active' from all nav links
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-    });
-
-    // Add 'active' to the clicked nav link
-    const activeLink = document.querySelector(`[onclick="showContent('${section}')"]`);
-    if (activeLink) {
-        activeLink.classList.add('active');
-    }
-
-    // Hide all content sections
+    document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+    document.querySelector(`[onclick="showContent('${section}')"]`).classList.add('active');
     document.querySelectorAll('.content-section').forEach(el => el.classList.add('d-none'));
-
-    // Show the selected content section
-    const selectedSection = document.getElementById(section + 'Content');
-    if (selectedSection) {
-        selectedSection.classList.remove('d-none');
-    }
-
-    // Store the selected section in localStorage
+    document.getElementById(section + 'Content').classList.remove('d-none');
     localStorage.setItem('selectedSection', section);
 }
 
-
-// Check if there's a selected section in localStorage and show it
 window.onload = function () {
-    const selectedSection = localStorage.getItem('selectedSection');
-
-    if (selectedSection) {
-        // Show the previously selected section
-        showContent(selectedSection);
-    } else {
-        // Default to showing the "likes" section if nothing is stored
-        showContent('archive');
-    }
+    const selectedSection = localStorage.getItem('selectedSection') || 'archive';
+    showContent(selectedSection);
 };

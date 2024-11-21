@@ -50,115 +50,98 @@
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow-1">
-        <div class="container d-flex justify-content-center">
-            <div class="card" style="max-width: 800px; width: 100%;">
-                <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                    <div class="container-fluid">
-                        <div class="collapse navbar-collapse justify-content-center">
-                            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                                <li class="nav-item"><a class="nav-link active" href="#" onclick="showContent('archive')">Archive</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#" onclick="showContent('watchlist')">Watchlist</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#" onclick="showContent('reviews')">Reviews</a></li>
-                            </ul>
-                        </div>
+<main class="flex-grow-1">
+    <div class="container d-flex justify-content-center">
+        <div class="card" style="max-width: 800px; width: 100%;">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse justify-content-center">
+                        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#" onclick="showContent('archive')">Archive</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" onclick="showContent('watchlist')">Watchlist</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" onclick="showContent('reviews')">Reviews</a>
+                            </li>
+                        </ul>
                     </div>
-                </nav>
-                <div class="card-body">
-                    <!-- Content sections -->
-                    <div id="archiveContent" class="content-section">
-                        <button class="btn btn-success" id="addButton">ADD TO ARCHIVE</button>
-                        <br>
-                        <br>
-                        <p>Here is your Archive content...</p>
-                        <div id="animeCardContainer" class="container mt-4"></div>
+                </div>
+            </nav>
+            <div class="card-body">
+                <!-- ARCHIVE CONTENT -->
+                <div id="archiveContent" class="content-section">
+                    <button class="btn btn-success add-button" data-section="archive">ADD TO ARCHIVE</button>
+                    <br><br>
+                    <p>Here is your Archive content...</p>
+                    <div id="archiveContainer" class="anime-card-container container mt-4"></div>
+                </div>
 
-                        <!-- Modal Form for Adding Anime -->
-                        <div id="animeFormModal" class="d-none">
-                          <div class="modal-overlay">
-                              <div class="modal-content">
-                                  <h2>Add Anime to Watchlist</h2>
-                                  <form id="animeForm">
-                                    <!--Title-->
-                                    <div class="mb-3 position-relative">
-                                        <label for="animeTitle" class="form-label">Title</label>
-                                        <input type="text" class="form-control" id="animeTitle" placeholder="Start typing to search..." autocomplete="off">
-                                        <ul id="suggestions" class="list-group position-absolute w-100 mt-1 d-none" style="z-index: 1000;"></ul>
-                                    </div>
+                <!-- WATCHLIST CONTENT -->
+                <div id="watchlistContent" class="content-section d-none">
+                    <button class="btn btn-success add-button" data-section="watchlist">ADD TO WATCHLIST</button>
+                    <br><br>
+                    <p>Here is your Watchlist content...</p>
+                    <div id="watchlistContainer" class="anime-card-container container mt-4"></div>
+                </div>
 
-                                      <!--Description-->
-                                    <div class="mb-3">
-                                        <label for="animeDescription" class="form-label">Description</label>
-                                        <textarea class="form-control" id="animeDescription" rows="3" required></textarea>
+                <!-- REVIEWS CONTENT -->
+                <div id="reviewsContent" class="content-section d-none">
+                    Here are your Reviews content...
+                </div>
+
+                <!-- MODAL FORM (Shared Across Sections) -->
+                <div id="animeFormModal" class="d-none">
+                    <div class="modal-overlay">
+                        <div class="modal-content">
+                            <h2 id="modalTitle">Add Anime</h2>
+                            <form id="animeForm">
+                                <!-- Title -->
+                                <div class="mb-3 position-relative">
+                                    <label for="animeTitle" class="form-label">Title</label>
+                                    <input type="text" class="form-control" id="animeTitle" placeholder="Start typing to search..." autocomplete="off">
+                                    <ul id="suggestions" class="list-group position-absolute w-100 mt-1 d-none" style="z-index: 1000;"></ul>
+                                </div>
+                                <!-- Description -->
+                                <div class="mb-3">
+                                    <label for="animeDescription" class="form-label">Description</label>
+                                    <textarea class="form-control" id="animeDescription" rows="3" required></textarea>
+                                </div>
+                                <!-- Date Watched -->
+                                <div class="mb-3" id="dateWatchedContainer">
+                                    <label for="animeDate" class="form-label">Date Watched</label>
+                                    <input type="date" class="form-control" id="animeDate"  name ="animeDate" required>
+                                </div>
+                                <!-- Star Rating -->
+                                <div class="mb-3">
+                                    <label for="animeRating" class="form-label">Rating</label>
+                                    <div id="starRating" class="star-rating">
+                                        <i class="bi bi-star" data-index="0"></i>
+                                        <i class="bi bi-star" data-index="1"></i>
+                                        <i class="bi bi-star" data-index="2"></i>
+                                        <i class="bi bi-star" data-index="3"></i>
+                                        <i class="bi bi-star" data-index="4"></i>
                                     </div>
-                                      <!-- Date Watched-->
-                                      <div class="mb-3">
-                                        <label for="animeDate" class="form-label">Date Watched</label>
-                                        <input type="date" class="form-control" id="animeDate" required>
-                                      </div>             
-                                      <!-- Star Rating -->
-                                      <div class="mb-3">
-                                        <label for="animeRating" class="form-label">Rating</label>
-                                        <div id="starRating" class="star-rating">
-                                            <i class="bi bi-star" data-index="0"></i>
-                                            <i class="bi bi-star" data-index="1"></i>
-                                            <i class="bi bi-star" data-index="2"></i>
-                                            <i class="bi bi-star" data-index="3"></i>
-                                            <i class="bi bi-star" data-index="4"></i>                                           
-                                          </div>                         
-                                      </div>
-                                    <!-- Like Box -->
-                                      <div class="mb-3">
-                                          <div id="likeBox" class="like-box">
-                                              <i class="fa fa-heart-o"></i> Like
-                                          </div>
-                                      </div>           
-                                      <button type="submit" class="btn btn-primary">Add Anime</button>
-                                      <button type="button" id="closeFormButton" class="btn btn-secondary">Cancel</button>
-                                  </form>
-                              </div>
-                          </div>
+                                </div>
+                                <!-- Like Box -->
+                                <div class="mb-3">
+                                    <div id="likeBox" class="like-box">
+                                        <i class="fa fa-heart-o"></i> Like
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Add Anime</button>
+                                <button type="button" id="closeFormButton" class="btn btn-secondary">Cancel</button>
+                            </form>
                         </div>
-                    </div>
-                    <div id="watchlistContent" class="content-section d-none">
-                        <button class="btn btn-success" id="addButton">ADD TO WATCHLIST</button>
-                        <br>
-                        <br>
-                        <p>Here is your Watchlist content...</p>
-                        <div id="animeCardContainer" class="container mt-4"></div>
-
-                        <!-- Modal Form for Adding Anime -->
-                        <div id="animeFormModal" class="d-none">
-                          <div class="modal-overlay">
-                              <div class="modal-content">
-                                  <h2>Add Anime to Watchlist</h2>
-                                  <form id="animeForm">
-                                    <!--Title-->
-                                    <div class="mb-3 position-relative">
-                                        <label for="animeTitle" class="form-label">Title</label>
-                                        <input type="text" class="form-control" id="animeTitle" placeholder="Start typing to search..." autocomplete="off">
-                                        <ul id="suggestions" class="list-group position-absolute w-100 mt-1 d-none" style="z-index: 1000;"></ul>
-                                    </div>
-
-                                      <!--Description-->
-                                    <div class="mb-3">
-                                        <label for="animeDescription" class="form-label">Description</label>
-                                        <textarea class="form-control" id="animeDescription" rows="3" required></textarea>
-                                    </div>          
-                                    <button type="submit" class="btn btn-primary">Add Anime</button>
-                                    <button type="button" id="closeFormButton" class="btn btn-secondary">Cancel</button>
-                                  </form>
-                              </div>
-                          </div>
-                        </div>
-                    </div>
-                    <div id="reviewsContent" class="content-section d-none">
-                        Here are your Reviews content...
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+</main>
+
 
     <!-- Footer -->
     <footer class="bg-dark text-light py-5 mt-auto">
