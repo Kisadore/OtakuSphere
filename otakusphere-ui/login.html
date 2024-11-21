@@ -47,7 +47,9 @@
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow-1">
+    <!-- <div id="animeBackgroundContainer3"></div> -->
+    <main class="auth-page">
+        <div id="animeBackgroundContainer2"></div>
         <div class="headerSpace" id="tempHeader"></div>
         <div class="loginBody">
             <div class="loginBox">
@@ -265,6 +267,15 @@
 
         // Update copyright year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+
+    <script type="module">
+        import AnimeBackground from './assets/js/animeBackground.js';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const background = new AnimeBackground();
+            background.initialize('animeBackgroundContainer2');
+        });
     </script>
     <script src="assets/js/auth.js"></script>
     <script type="module" src="assets/js/homepage.js"></script>

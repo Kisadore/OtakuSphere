@@ -49,10 +49,15 @@
     <!-- Main Content -->
     <main class="flex-grow-1">
         <!-- Into Section -->
-        <section class="intro-section py-5 text-light text-center" style="background: linear-gradient(to bottom, black, #1B1A55, #55477e) center/cover;">
+        <section class="intro-section py-5 text-light text-center" >
+            <div id="animeBackgroundContainer2"></div>
             <!-- <h1 class="display-4 mb-3">Track, Share, and Discover Anime</h1> -->
-            <h1 class="display-4 mb-3">OtakuSphere</h1>
-            <p class="lead mb-4">Join the anime community and start tracking your favorite shows today</p>
+            <!-- <h1 class="display-3 fw-bold mb-3 animate-title">OtakuSphere</h1> -->
+            <h1 class="cyber-title">
+                <span class="title-top">オタク</span>
+                <span class="title-bottom">OtakuSphere</span>
+            </h1>
+            <p class="lead fw-normal mb-5 animate-subtitle">Join the anime community and start tracking your favorite shows today</p>
 
             <div class="container">
                 <!-- <h2 class="text-center mb-5">How OtakuSphere Works</h2> -->
@@ -95,6 +100,7 @@
             </div>
         </section>
 
+
         <!-- Trending Section -->
         <section class="trending-section py-5">
             <div class="container">
@@ -108,8 +114,10 @@
         </section>
 
         <section class="pick-of-day py-5 bg-light">
+            <!-- <div id="animeBackgroundContainer"></div> -->
+            <div id="animeBackgroundContainer" class="background-container"></div>
             <div class="container">
-                <h2 class="text-center mb-4">Animes of the Day</h2>
+                <h2 class="text-center mb-4">All-Time Favorites</h2>
                 <div id="pickOfDayCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner" id="pickOfDayContent">
                     </div>
@@ -123,6 +131,9 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
+            </div>
+            <div class="scroll-indicator">
+                <i class="fas fa-chevron-down fa-2x"></i>
             </div>
         </section>
 

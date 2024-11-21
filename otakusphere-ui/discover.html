@@ -47,6 +47,23 @@
         </nav>
     </header>
 
+    <!-- <section class="intro-section py-4 text-light text-center">
+        <div id="animeBackgroundContainer2"></div>
+        <h1 class="cyber-title mb-4">
+            <span class="title-bottom">Discover Anime</span>
+        </h1>
+        <p class="lead fw-normal mb-5 animate-subtitle">Explore and find your next favorite anime</p>
+    </section> -->
+    <script type="module">
+        import AnimeBackground from './assets/js/animeBackground.js';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const background = new AnimeBackground();
+            background.initialize('animeBackgroundContainer2');
+        });
+    </script>
+
+
     <!-- Main Content -->
     <main class="flex-grow-1 container mt-4" id="anime-discover">
         <div class="row mb-4">

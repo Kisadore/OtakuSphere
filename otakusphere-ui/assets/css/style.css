@@ -1,13 +1,10 @@
 body {
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
-
-.social-links a:hover {
-opacity: 0.8;
-transition: opacity 0.2s ease-in-out;
+a {
+    color: black;
 }
 
-/* Footer Styles */
 footer {
     position: relative;
 }
@@ -69,38 +66,150 @@ border: none;
 }
 
 /* Intro Section */
-.intro-section {
-	background: linear-gradient(to bottom, black, #1B1A55, #55477e);
-	min-height: 60vh;
-	display: flex;
-	flex-direction: column;
+.intro-section{
+    /* min-height: 100vh; */
+    min-height: 65vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 	justify-content: center;
 	padding: 4rem 0;
-}
-.intro-section .container {
-	margin-bottom: 2rem;
-}
-
-.intro-section .container:first-child {
-	margin-bottom: 4rem; 
+    background-color: #11101a;
+    background-image: radial-gradient(rgba(167, 139, 250, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
 }
 
-@media (max-width: 768px) {
-	.intro-section {
-		min-height: 40vh;
-	}
+.navbar{
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1),
+                0 8px 25px rgba(0, 0, 0, 0.3),
+                inset 0 0 10px rgba(255, 255, 255, 0.05);
 }
+
+
 
 .feature-icon i.text-primary {
 	color: rgba(167, 139, 250, 1) !important;
 }
 
+/* Animated title and subtitle */
+.animate-title {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 0.8s ease forwards;
+    color: #ffffff;
+    /* text-shadow: 0 0 10px rgba(167, 139, 250, 0.5); */
+}
+
+.animate-subtitle {
+    opacity: 0;
+    transform: translateY(-15px);
+    animation: fadeInUp 0.8s ease 0.3s forwards;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.animate-buttons {
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeInUp 0.8s ease 0.6s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cyber-title {
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.title-top {
+    font-size: 1.5rem;
+    color: rgba(167, 139, 250, 0.7);
+    font-family: "Hiragino Kaku Gothic Pro", "Meiryo", sans-serif;
+    text-shadow: 0 0 5px rgba(167, 139, 250, 0.7);
+    animation: floatText 3s ease-in-out infinite;
+}
+
+.title-bottom {
+    font-size: 4rem;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 
+        0 0 5px #fff,
+        0 0 40px rgba(167, 139, 250, 0.7);
+    letter-spacing: 2px;
+    animation: glowText 3s ease-in-out infinite alternate;
+}
+
+@keyframes floatText {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Add responsive adjustments */
+@media (max-width: 768px) {
+    .title-top {
+        font-size: 1.2rem;
+    }
+    .title-bottom {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title-top {
+        font-size: 1rem;
+    }
+    .title-bottom {
+        font-size: 2.5rem;
+    }
+}
+
 
 /* pick of day */
 .pick-of-day {
-    background: linear-gradient(to bottom, black, #1B1A55, #55477e);
     color: #fff;
     padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: #11101a;
+    background-image: radial-gradient(rgba(167, 139, 250, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+
+}
+
+.pick-of-day .container {
+    z-index: 2;
+}
+
+.pick-of-day .carousel {
+    position: relative;
+    z-index: 2;
 }
 
 .pick-of-day .carousel-item {
@@ -108,13 +217,15 @@ border: none;
 }
 
 .anime-info {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(93, 91, 91, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     color: #fff;
     padding: 2rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 2;
 }
 
 .anime-info h3 {
@@ -155,20 +266,69 @@ border: none;
     font-style: italic;
 }
 
-.carousel-control-prev,
-.carousel-control-next {
+.pick-of-day .carousel-control-prev,
+.pick-of-day .carousel-control-next {
     width: 50px;
     height: 50px;
     background: rgba(167, 139, 250, 0.2);
     border-radius: 50%;
     top: 50%;
     transform: translateY(-50%);
-    margin: 0 2rem;
+    position: absolute;
 }
 
-.carousel-control-prev:hover,
-.carousel-control-next:hover {
-    background: rgba(167, 139, 250, 0.4);
+.pick-of-day .carousel-control-prev {
+    left: -80px; 
+}
+
+.pick-of-day .carousel-control-next {
+    right: -80px; 
+}
+
+.pick-of-day .carousel-container {
+    position: relative;
+    max-width: 90%; 
+    margin: 0 auto;
+}
+
+.pick-of-day .carousel-item .row {
+    margin: 0;
+}
+
+@media (max-width: 1400px) {
+    .pick-of-day .carousel-control-prev {
+        left: -60px;
+    }
+    
+    .pick-of-day .carousel-control-next {
+        right: -60px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .pick-of-day .carousel-control-prev {
+        left: -40px;
+    }
+    
+    .pick-of-day .carousel-control-next {
+        right: -40px;
+    }
+}
+
+@media (max-width: 992px) {
+    .pick-of-day .carousel-control-prev,
+    .pick-of-day .carousel-control-next {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .pick-of-day .carousel-control-prev {
+        left: -30px;
+    }
+    
+    .pick-of-day .carousel-control-next {
+        right: -30px;
+    }
 }
 
 .ratio:hover {
@@ -210,7 +370,6 @@ border: none;
     border-radius: 12px;
 }
 
-
 .pick-of-day h2 {
     color: #fff;
     font-size: 2.5rem;
@@ -228,7 +387,7 @@ border: none;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
+    width: 200px;
     height: 3px;
     background: linear-gradient(90deg, #a78bfa 0%, #8b5cf6 100%);
     border-radius: 2px;
@@ -253,6 +412,7 @@ border: none;
         width: 40px;
         height: 40px;
         margin: 0 1rem;
+        z-index: 3;
     }
 
     .btn-primary {
@@ -260,7 +420,7 @@ border: none;
         font-size: 0.9rem;
     }
 }
-
+/* reviews */
 .reviews-section {
     background-color: #f8f9fa;
     padding: 40px 0;
@@ -316,6 +476,7 @@ border: none;
     color: #6c757d;
 }
 
+/* Header Search*/
 #navSearchForm .search-results-dropdown {
     position: absolute;
     top: 100%;
@@ -429,3 +590,59 @@ border: none;
 #navSearchForm .form-control::placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
+
+.genres .badge {
+    background-color: rgba(100, 115, 128, 0.2);
+    color: #feffff;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+.rec-icons{
+    color: #959597;
+}
+.rec-genre-tag{
+    display: inline-block;
+    font-size: 12px;
+    padding: 2px 8px;
+    margin: 2px;
+    background: #a78bfa;
+    border-radius: 12px;  
+    color:#ffffff; 
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.scroll-indicator i {
+    animation: floatArrow 2s ease-in-out infinite;
+}
+
+.scroll-indicator:hover {
+    color: rgba(167, 139, 250, 1);
+    transform: translateX(-50%) scale(1.1);
+}
+
+@keyframes floatArrow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+.pick-of-day .scroll-indicator {
+    bottom: 30px; /* Adjusted position */
+}
+
+
