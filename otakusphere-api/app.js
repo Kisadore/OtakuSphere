@@ -1,7 +1,7 @@
 // Express code to create HTTP Server
 
 import express from 'express';
-import {getAllUsers, getUser, createUser, updateUsername, updateUserEmail, updateUserPassword, getAllAnimes, getAnime, getReview, createReview, getUserWatchlist, addToWatchlist} from "./database.js";
+import {getAllUsers, getUser, createUser, updateUsername, updateUserEmail, updateUserPassword, getAllAnimes, getAnime, getReview, createReview, getUserWatchlist, addToWatchlist, addAnime} from "./database.js";
 import bcrypt from "bcrypt";    // async library to hash passwords
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -71,10 +71,28 @@ app.post("/login", async (req, res) => {
             res.status(400).json({error: "Invalid Password"});
             return;
         }
-        res.status(200).json({message: "Login successful", user});
+        res.status(200).json({message: "Login successful", user: {user_id: user.user_id, username: user.username, email: user.email}});
     }
     catch(err){
         res.status(406).json({error: "Login unsuccessful"});
+    }
+});
+
+app.post("/addAnime", async (req, res) => {
+    try {
+        const {title, description} = req.body;
+        const result = await addAnime(title, description);
+        if (result.status === "Success"){
+            res.status(201).json({message: "Anime successfully added", data: result.data[0]});
+            return;
+        }
+        else {
+            res.status(400).json({error: "Anime could not be added"});
+            return;
+        }
+    }
+    catch(err){
+        res.status(400).json({error: "Anime unsuccessfully added"});
     }
 });
 
