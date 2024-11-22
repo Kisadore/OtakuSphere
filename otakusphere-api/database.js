@@ -155,5 +155,3 @@ export async function addAnime(animeTitle, animeDescription){
         return {status: "Error", message: "Anime exits already"}
     }
 }
-
-console.log(await addAnime("t5", "t"));
