@@ -91,11 +91,11 @@ export async function getAllAnimes(){
 }
 
 // function to get one anime
-export async function getAnime(anime_id){
+export async function getAnime(title){
     const [anime] = await db.query(`
         SELECT * 
         FROM Anime
-        WHERE anime_id = ?`, [anime_id]);
+        WHERE title = ?`, [title]);
 
     return anime;
 }
@@ -149,9 +149,27 @@ export async function addAnime(animeTitle, animeDescription){
         const [result] = await db.query(`
             INSERT INTO Anime (title, anime_description)
             VALUES (?, ?)`, [animeTitle, animeDescription]);
-        return {status: "Success", data: await getAnime(result.insertId)};
+        return {status: "Success", data: await getAnime(animeTitle)};
     }
     else {
         return {status: "Error", message: "Anime exits already"}
+    }
+}
+
+// function that checks if anime exists in db. returns true if anime exists else false
+export async function doesAnimeExist(animeTitle){
+    const [checkAnime] = await db.query(`
+        SELECT title
+        FROM Anime
+        WHERE title = ?`, [animeTitle]);
+    
+    if (checkAnime.length === 0){
+        // const [result] = await db.query(`
+        //     INSERT INTO Anime (title, anime_description)
+        //     VALUES (?, ?)`, [animeTitle, animeDescription]);
+        return false    //{status: "Success", data: await getAnime(result.insertId)};
+    }
+    else {
+        return true // {status: "Error", message: "Anime exits already"}
     }
 }
