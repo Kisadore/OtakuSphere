@@ -63,12 +63,66 @@
                     <!-- Image on the left -->
                     <div class="anime-image-container">
                         <img id="anime-image" alt="Anime Image" src="">
+                        <div id="anime-favorites">
+                            <span class="heart-icon">❤️</span>
+                            <span id="favorites-count">0</span>
+                        </div>
                     </div>
     
                     <!-- Description in the center -->
                     <div class="anime-description">
                         <h1 id="anime-title">Loading...</h1>
+                        <p id="anime-year"></p>
                         <p id="anime-synopsis">Loading description...</p>
+                        
+                        <div id="details">
+                            <!-- Buttons for each section -->
+                            <div id="details-buttons">
+                                <button class="detail-btn" id="genres-btn">GENRES</button>
+                                <button class="detail-btn" id="studios-btn">STUDIOS</button>
+                                <button class="detail-btn" id="producers-btn">PRODUCERS</button>
+                                <button class="detail-btn" id="themes-btn">THEMES</button>
+                                <button class="detail-btn" id="soundtrack-btn">SOUNDTRACK</button>
+                            </div>
+                        
+                            <!-- Sections for content -->
+                            <div class="section" id="genres">
+                                <ul id="genres-list">
+                                    <p>genres</p>
+                                    <!-- genres will be added dynamically here -->
+                                </ul>
+                            </div>
+                        
+                            <div class="section" id="studios">
+                                <ul id="studios-list">
+                                    <p>studios</p>
+                                    <!-- studios will be added dynamically here -->
+                                </ul>
+                            </div>
+                        
+                            <div class="section" id="producers">
+                                <ul id="producers-list">
+                                    <p>producers</p>
+                                    <!-- producers will be added dynamically here-->
+                                </ul>
+                            </div>
+                        
+                            <div class="section" id="themes">
+                                <ul id="themes-list">
+                                    <p>themes</p>
+                                    <!-- Genres will be added dynamically here -->
+                                </ul>
+                            </div>
+                        
+                            <div class="section" id="soundtrack">
+                                <ul id="soundtrack-list">
+                                    <p>sounds</p>
+                                    <!-- Release details will be added dynamically here -->
+                                </ul>
+                            </div>
+                        </div>
+                        
+
                     </div>
     
                     <!-- Rating on the right -->
