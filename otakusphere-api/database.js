@@ -137,3 +137,21 @@ export async function addToWatchlist(user_id, anime_id){
     
     return result;
 }
+
+// adds anime to the db if the anime is not found in it already
+export async function addAnime(animeTitle, animeDescription){
+    const [checkAnime] = await db.query(`
+        SELECT title
+        FROM Anime
+        WHERE title = ?`, [animeTitle]);
+    
+    if (checkAnime.length === 0){
+        const [result] = await db.query(`
+            INSERT INTO Anime (title, anime_description)
+            VALUES (?, ?)`, [animeTitle, animeDescription]);
+        return {status: "Success", data: await getAnime(result.insertId)};
+    }
+    else {
+        return {status: "Error", message: "Anime exits already"}
+    }
+}

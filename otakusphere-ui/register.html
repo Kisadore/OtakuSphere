@@ -48,6 +48,7 @@
     </header>
 
     <main class="flex-grow-1">
+        <div id="animeBackgroundContainer2"></div>
         <div class="headerSpace" id="tempHeader"></div>
         <div class="loginBody">
             <div class="loginBox">
@@ -298,7 +299,7 @@
                 }
 
                 try {
-                    const response = await fetch('/register', {
+                    const response = await fetch('http://localhost:8080/register', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -317,6 +318,14 @@
                     alert('An error occurred during registration');
                 }
             });
+        });
+    </script>
+    <script type="module">
+        import AnimeBackground from './assets/js/animeBackground.js';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const background = new AnimeBackground();
+            background.initialize('animeBackgroundContainer2');
         });
     </script>
 
