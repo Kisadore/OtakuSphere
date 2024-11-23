@@ -28,9 +28,12 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
+            console.log(data);
             if (data.data) {
                 const anime = data.data;
-                const airingYear = anime.aired?.from ? new Date(anime.aired.from).getFullYear() : 'Unknown';
+                const airingYear = anime.aired?.from 
+                    ? new Date(anime.aired.from).getUTCFullYear() 
+                    : 'Unknown';
                 const genres = anime.genres.map(genre => genre.name).join(', ');
                 const studios = anime.studios.map(studio => studio.name).join(', ');
                 const producers = anime.producers.map(producer => producer.name).join(', ');
@@ -39,14 +42,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 animeTitle.textContent = anime.title;
                 animeSynopsis.textContent = anime.synopsis;
                 animeImage.src = anime.images.jpg.large_image_url;
-                animeRating.textContent = `Average Rating: ${anime.score || "No rating available"}`;
-                animeStars.innerHTML = `${anime.score ? generateStarRating(anime.score / 2) : 'No Ratings'}`;
-                animeYear.textContent = `Aired: ${airingYear}`;
-                animeGenres.innerHTML = genres.split(', ').map(genre => `<li>${genre}</li>`).join('');
-                studiosList.innerHTML = studios.split(', ').map(studio => `<li>${studio}</li>`).join('');
-                producersList.innerHTML = producers.split(', ').map(producer => `<li>${producer}</li>`).join('');
-                themesList.innerHTML = themes.split(', ').map(theme => `<li>${theme}</li>`).join('');
-                favoritesCount.textContent = `${anime.favorites || 0}`;
+                animeRating.textContent = `${anime.score || "No ratings"}/10`;
+                animeStars.innerHTML = `${anime.score ? generateStarRating(anime.score / 2) : generateStarRating(0)}`;
+                animeYear.textContent = `${airingYear}`;
+                animeGenres.innerHTML = genres 
+                    ? genres.split(', ').map(genre => `<li>${genre}</li>`).join('')
+                    : '<li>No genres available</li>';
+                studiosList.innerHTML = studios 
+                    ? studios.split(', ').map(studio => `<li>${studio}</li>`).join('')
+                    : '<li>No studios available</li>';
+                producersList.innerHTML = producers 
+                    ? producers.split(', ').map(producer => `<li>${producer}</li>`).join('')
+                    : '<li>No producers available</li>';
+                themesList.innerHTML = themes 
+                    ? themes.split(', ').map(theme => `<li>${theme}</li>`).join('')
+                    : '<li>No themes available</li>';
+                favoritesCount.textContent = `${formatNumberWithK(anime.favorites || 0)}`;
 
                 // Populate soundtrack list (openings and endings)
                 if (anime.theme && (anime.theme.openings || anime.theme.endings)) {
@@ -57,12 +68,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     let output = '';
                 
                     if (openings.length > 0) {
-                        output += '<h6>Openings</h6>';
+                        output += '<h5>Openings</h5>';
                         output += '<li>' + openings.map(track => `<li>${track}</li>`).join('') + '</li>';
                     }
                 
                     if (endings.length > 0) {
-                        output += '<h6>Endings</h6>';
+                        output += '<h5>Endings</h5>';
                         output += '<li>' + endings.map(track => `<li>${track}</li>`).join('') + '</li>';
                     }
                 
@@ -115,6 +126,13 @@ document.addEventListener('DOMContentLoaded', function() {
         producersList.innerHTML = '';
         themesList.innerHTML = '';
         soundtrackList.innerHTML = '';
+    }
+
+    function formatNumberWithK(number) {
+        if (number >= 1000) {
+            return (number / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+        }
+        return number.toString();
     }
 
     const buttons = document.querySelectorAll('.detail-btn');

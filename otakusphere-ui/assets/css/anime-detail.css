@@ -35,8 +35,7 @@ main {
 /* Title Styling */
 #anime-title {
     font-family: 'Iceland', sans-serif;
-    font-size: 2.7em;
-    margin-bottom: 20px; /* Add spacing below the title */
+    font-size: 2.6em;
 }
 
 #anime-favorites {
@@ -87,16 +86,18 @@ main {
 
 /* Description Section */
 .anime-description {
+    font-family: 'Iceland', sans-serif;
     flex: 2;
     text-align: left;
     color: #ddd;
-    font-size: 1.0em;
+    font-size: 1.2em;
     padding: 10px;
+    gap: 20px;
 }
 
 #details {
     padding-top: 20px;
-    margin-top: 20px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;  /* Arrange buttons and content vertically */
 }
@@ -104,30 +105,32 @@ main {
 #details-buttons {
     display: flex;
     justify-content: space-between;  /* Distribute buttons evenly */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.753);
 }
 
 .detail-btn {
     padding: 0px 20px;
-    background-color: #333;
-    color: white;
+    background-color: transparent;
+    color: #007bff;
     border: none;
     font-size: 1.1em;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    border-radius: 5px;
+    border-radius: 0px;
 }
 
 .detail-btn:hover {
-    background-color: #555;  /* Darker background on hover */
+    border-bottom: 3px solid #007bff;
 }
 
 .section {
     display: none;  /* Initially hide all sections */
     padding: 15px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
+    border: 1px solid transparent;
+    background-color: transparent;
     border-radius: 5px;
     margin-top: 10px;
+    min-height: 300px;
 }
 
 #genres-list,
@@ -149,8 +152,9 @@ main {
 }
 
 #details-buttons .active {
-    background-color: #007bff; /* Active button color */
+    background-color: transparent; /* Active button color */
     color: white;
+    border-bottom: 2px solid white;
 }
 
 .section.active {
@@ -162,6 +166,7 @@ main {
     padding: 20px;
     flex: 1;
     text-align: center;
+    gap: 10px;
 }
 
 /* Star Rating */
@@ -169,6 +174,13 @@ main {
     display: flex;
     justify-content: center;
     gap: 5px;
+    padding-bottom: 10px;
+}
+
+.number-rating {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
 }
 
 /* Responsive Design */
