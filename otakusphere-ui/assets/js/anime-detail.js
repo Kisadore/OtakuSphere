@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const producersList = document.getElementById('producers-list');
     const themesList = document.getElementById('themes-list');
     const soundtrackList = document.getElementById('soundtrack-list'); // New element for soundtracks
+    const watchlistCount = document.getElementById('watchlist-count');
 
     const apiUrl = `https://api.jikan.moe/v4/anime/${animeId}/full`;
 
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ? themes.split(', ').map(theme => `<li>${theme}</li>`).join('')
                     : '<li>No themes available</li>';
                 favoritesCount.textContent = `${formatNumberWithK(anime.favorites || 0)}`;
+                watchlistCount.textContent = `${formatNumberWithK(anime.members || 0)}`;
 
                 // Populate soundtrack list (openings and endings)
                 if (anime.theme && (anime.theme.openings || anime.theme.endings)) {
@@ -126,14 +128,19 @@ document.addEventListener('DOMContentLoaded', function() {
         producersList.innerHTML = '';
         themesList.innerHTML = '';
         soundtrackList.innerHTML = '';
+        watchlistCount.textContent = '0';
     }
 
     function formatNumberWithK(number) {
-        if (number >= 1000) {
+        if (number >= 1000000) {
+            // Format to millions with one decimal place
+            return (number / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+        } else if (number >= 1000) {
+            // Format to thousands with one decimal place
             return (number / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
         }
         return number.toString();
-    }
+    }    
 
     const buttons = document.querySelectorAll('.detail-btn');
     const sections = document.querySelectorAll('.section');
