@@ -1,17 +1,17 @@
 
 /* Letterbox Effect */
 .letterbox-container {
+    z-index: 1;
     position: relative;
     width: 100%;
-    height: 100%; /* Avoid using 100% height here */
-    background-image: url('../images/backgrond_galaxy.png'); /* Path to the image */
-    background-size: cover; /* Ensure the image covers the container */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
+    height: 100%;
+    background-color: #11101a;
+    background-image: radial-gradient(rgba(167, 139, 250, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 15px 2px rgba(89, 0, 255, 0.5);
+    box-shadow: 0 0 10px 1px rgba(89, 0, 255, 0.5);
 }
 
 
@@ -22,6 +22,8 @@ main {
 
 /* Anime Detail Container */
 #anime-detail {
+    z-index: 9;
+    position: relative;
     margin: 0; /* Remove any default margins */
     padding: 0; /* Remove any default padding */
     background: linear-gradient(to bottom, black, #1B1A55, #36235a);
@@ -29,7 +31,7 @@ main {
     max-width: 80%;
     height: 100%;
     text-align: center;
-    box-shadow: 0 0 15px 2px rgba(89, 0, 255, 0.5); 
+    box-shadow: 0 0 10px 1px rgba(89, 0, 255, 0.5); 
 }
 
 /* Title Styling */
@@ -67,6 +69,8 @@ main {
 
 /* Trailer Section */
 .trailer-box {
+    position: relative;
+    z-index: 10;
     width: 100%; /* Full width of the page */
     max-width: 100%; /* Allow the width to grow up to 100% of the parent container */
     height: 500px; /* Fixed height to match YouTube iframe height */
@@ -96,6 +100,8 @@ main {
 }
 
 #anime-image {
+    z-index: 10;
+    position: relative;
     max-width: 100%;
     height: auto;
     border: 20px solid transparent; /* This fixes the border definition */
@@ -190,26 +196,44 @@ main {
     flex-direction: column; /* Stacks elements vertically */
     align-items: center; /* Centers elements horizontally */
     justify-content: center; /* Centers elements vertically */
-    gap: 20px; /* Adjust gap between stacked elements */
+    gap: 10px; /* Adjust gap between stacked elements */
     text-align: center;
+}
+
+.r-title {
+    width: 75%;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    justify-content: left;
+    padding-bottom: 10px;
+    padding-top: 20px;
+}
+
+.rating-wrapper {
+    width: 75%;
+    display: flex;
+    flex-direction: row; /* Align stars and number rating horizontally */
+    align-items: center; /* Vertically align them in the center */
+    justify-content: space-between;
 }
 
 /* Star Rating */
 .star-rating {
-    display: flex;
-    justify-content: center;
+    display: inline-flex;
     gap: 5px;
-    padding-bottom: 10px;
 }
 
 /* Numerical Rating */
 .number-rating {
-    font-size: 12px;
-    font-weight: bold;
+    display: inline-flex;
+    font-family: sans-serif;
+    font-size: 24px;
 }
 
 /* Container for stacked buttons */
 .button-container {
+    z-index: 10;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center; /* Center buttons horizontally */

@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 animeTitle.textContent = anime.title;
                 animeSynopsis.textContent = anime.synopsis;
                 animeImage.src = anime.images.jpg.large_image_url;
-                animeRating.textContent = `${anime.score || "No ratings"}/10`;
+                animeRating.textContent = `${(Math.round((anime.score / 2) * 10) / 10) || "No ratings"}`;
                 animeStars.innerHTML = `${anime.score ? generateStarRating(anime.score / 2) : generateStarRating(0)}`;
                 animeYear.textContent = `${airingYear}`;
                 animeGenres.innerHTML = genres 

@@ -48,9 +48,18 @@
         </nav>
     </header>
 
+    <script type="module">
+        import AnimeBackground from './assets/js/animeBackground.js';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const background = new AnimeBackground();
+            background.initialize('animeBackgroundContainer2');
+        });
+    </script>
+
     <!-- Main Content -->
     <main class="flex-grow-1">
-        <div class="letterbox-container">
+        <div id="animeBackgroundContainer2" class="letterbox-container">
             <div id="anime-detail" class="container">
                 
                 <!-- Trailer Section -->
@@ -136,10 +145,15 @@
                         <div id="signIn-prompt" class="signIn-prompt">
                             <!-- Button will be dynamically added here -->
                         </div>
-                        <div id="anime-stars" class="star-rating">
-                            <!-- Stars will be dynamically added by JS -->
+                        <div class="r-title">RATINGS</div>
+                        <div class="rating-wrapper">
+                            <div id="anime-stars" class="star-rating">
+                                <!-- Stars will be dynamically added by JS -->
+                            </div>
+                            <div id="anime-rating" class="number-rating">
+                                <!-- Numerical rating content -->
+                            </div>
                         </div>
-                        <div id="anime-rating" class="number-rating">Loading rating...</div>
                     </div>
                 </div>
             </div>
