@@ -24,7 +24,7 @@ main {
 #anime-detail {
     margin: 0; /* Remove any default margins */
     padding: 0; /* Remove any default padding */
-    background: linear-gradient(to bottom, black, #1B1A55, #36235a, #55477e);
+    background: linear-gradient(to bottom, black, #1B1A55, #36235a);
     color: white;
     max-width: 80%;
     height: 100%;
@@ -106,6 +106,7 @@ main {
 
 /* Description Section */
 .anime-description {
+    width: 50%;
     font-family: 'Iceland', sans-serif;
     flex: 2;
     text-align: left;
@@ -183,10 +184,14 @@ main {
 
 /* Rating Section */
 .anime-rating-container {
-    padding: 20px;
-    flex: 1;
+    padding-top: 20px;
+    width: 20%;
+    display: flex;
+    flex-direction: column; /* Stacks elements vertically */
+    align-items: center; /* Centers elements horizontally */
+    justify-content: center; /* Centers elements vertically */
+    gap: 20px; /* Adjust gap between stacked elements */
     text-align: center;
-    gap: 10px;
 }
 
 /* Star Rating */
@@ -197,11 +202,75 @@ main {
     padding-bottom: 10px;
 }
 
+/* Numerical Rating */
 .number-rating {
-    display: flex;
-    justify-content: center;
-    padding-top: 10px;
+    font-size: 12px;
+    font-weight: bold;
 }
+
+/* Container for stacked buttons */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center buttons horizontally */
+    width: auto;
+    border-radius: 10px; /* Rounds corners */
+    overflow: hidden;
+}
+
+/* Buttons */
+.signIn-btn{
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid #212529;
+    border-bottom: 1px solid #a3a3a3;
+    color: #a3a3a3;
+    background-color: #212529;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Makes buttons equal in width */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+}
+
+.share-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid #212529;
+    color: #a3a3a3;
+    background-color: #212529;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Makes buttons equal in width */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+}
+
+.signIn-btn:hover, .share-btn:hover {
+    color: white;
+}
+
+/* Text box inside the Share button */
+.share-textbox {
+    width: 85%;
+    font-size: 12px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+/* Copy icon styling */
+.copy-icon {
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {

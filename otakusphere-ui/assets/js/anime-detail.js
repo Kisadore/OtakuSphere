@@ -1,6 +1,43 @@
 import { generateStarRating } from './homepage.js';
 
 document.addEventListener('DOMContentLoaded', function() {
+    const signInPrompt = document.getElementById('signIn-prompt');
+
+    // Create a container for the buttons
+    const buttonContainer = document.createElement('div');
+    buttonContainer.className = 'button-container';
+
+    // Create "Sign In" button
+    const signInButton = document.createElement('button');
+    signInButton.className = 'signIn-btn';
+    signInButton.textContent = 'Sign In to Log, Rate, or Review';
+
+    signInButton.addEventListener('click', function () {
+        window.location.href = 'login.html';
+    });
+
+    // Create "Share" button
+    const shareButton = document.createElement('button');
+    shareButton.className = 'share-btn';
+    shareButton.textContent = 'Share';
+
+    let isTextBoxVisible = false;
+    let revertTimeout; // Variable to store the timeout reference
+
+    shareButton.addEventListener('click', function () {
+        clearTimeout(revertTimeout); // Clear any existing timeout
+        if (!isTextBoxVisible) {
+            showShareTextBox(shareButton); // Show the text box
+        }
+    });
+
+    // Append buttons to the container
+    buttonContainer.appendChild(signInButton);
+    buttonContainer.appendChild(shareButton);
+
+    // Append the container to the "signIn-prompt" element
+    signInPrompt.appendChild(buttonContainer);      
+
     const urlParams = new URLSearchParams(window.location.search);
     const animeId = urlParams.get('id');
 
@@ -100,6 +137,52 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error fetching anime info:', error);
             handleAnimeNotFound();
         });
+
+    // Helper function: Show the share text box and copy functionality
+    function showShareTextBox(shareButton) {
+        const textBox = document.createElement('input');
+        textBox.type = 'text';
+        textBox.className = 'share-textbox';
+        textBox.value = window.location.href;
+        textBox.readOnly = true; // Prevent editing the URL
+
+        // Add copy button/icon next to the text box
+        const copyIcon = document.createElement('span');
+        copyIcon.className = 'copy-icon';
+        copyIcon.innerHTML = '📋'; // Simple clipboard icon
+        copyIcon.title = 'Copy link';
+
+        copyIcon.addEventListener('click', function (event) {
+            event.stopPropagation(); // Prevent triggering the "Share" button click event
+            navigator.clipboard.writeText(textBox.value);
+            alert('Link copied to clipboard!');
+            restartRevertTimer(shareButton); // Restart the revert timer
+        });
+
+        // Replace button content with the text box and copy icon
+        shareButton.textContent = ''; // Clear the button text
+        shareButton.appendChild(textBox);
+        shareButton.appendChild(copyIcon);
+
+        isTextBoxVisible = true;
+
+        // Set timeout to revert back to "Share" button
+        restartRevertTimer(shareButton);
+    }
+
+    // Helper function: Reset the "Share" button
+    function resetShareButton(shareButton) {
+        shareButton.textContent = 'Share';
+        isTextBoxVisible = false;
+    }
+
+    // Helper function: Restart the revert timer
+    function restartRevertTimer(shareButton) {
+        clearTimeout(revertTimeout); // Clear any existing timeout
+        revertTimeout = setTimeout(() => {
+            resetShareButton(shareButton);
+        }, 5000); // 5 seconds
+    }
 
     function displayYouTubeTrailer(youtubeId) {
         const iframe = document.createElement('iframe');
