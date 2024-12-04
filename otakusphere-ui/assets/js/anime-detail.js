@@ -60,6 +60,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const themesList = document.getElementById('themes-list');
     const soundtrackList = document.getElementById('soundtrack-list'); // New element for soundtracks
     const watchlistCount = document.getElementById('watchlist-count');
+    const epCount = document.getElementById('ep-count');
+    const animeType = document.getElementById('anime-type');
 
     const apiUrl = `https://api.jikan.moe/v4/anime/${animeId}/full`;
 
@@ -83,6 +85,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 animeRating.textContent = `${(Math.round((anime.score / 2) * 10) / 10) || "No ratings"}`;
                 animeStars.innerHTML = `${anime.score ? generateStarRating(anime.score / 2) : generateStarRating(0)}`;
                 animeYear.textContent = `${airingYear}`;
+                epCount.textContent = `${anime.episodes}`;
+                animeType.textContent = `${anime.type}`;
+
                 animeGenres.innerHTML = genres 
                     ? genres.split(', ').map(genre => `<li>${genre}</li>`).join('')
                     : '<li>No genres available</li>';
@@ -212,6 +217,8 @@ document.addEventListener('DOMContentLoaded', function() {
         themesList.innerHTML = '';
         soundtrackList.innerHTML = '';
         watchlistCount.textContent = '0';
+        epCount='';
+        animeType='';
     }
 
     function formatNumberWithK(number) {

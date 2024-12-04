@@ -87,7 +87,20 @@
                     <!-- Description in the center -->
                     <div class="anime-description">
                         <h1 id="anime-title">Loading...</h1>
-                        <h4 id="anime-year"></h4>
+                        <div class="quick-info">
+                            <span>
+                                <i class="fa fa-tv"></i>
+                                <span id="anime-type"></span>
+                            </span>
+                            <span class="calendar-year">
+                                <i class="fa fa-calendar"></i>
+                                <span id="anime-year"></span>
+                            </span>
+                            <span>
+                                <i class="fa fa-clock"></i>
+                                <span id="ep-count"></span>
+                            </span>
+                        </div>
                         <p id="anime-synopsis">Loading description...</p>
                         
                         <div id="details">
@@ -136,8 +149,10 @@
                                 </ul>
                             </div>
                         </div>
-                        
-
+                        <div>
+                            <h3 class="reviews-title">Popular Reviews</h3>
+                            <div id="reviews"></div>
+                        </div>
                     </div>
     
                     <!-- Rating on the right -->
@@ -263,6 +278,7 @@
         </div>
     </footer>
 
+    <script type="module" src="assets/js/reviews.js"></script>
     <script src="assets/js/auth.js"></script>
     <script type="module" src="assets/js/homepage.js"></script>
     <script type="module" src="assets/js/anime-detail.js"></script>
