@@ -1,10 +1,11 @@
 // Express code to create HTTP Server
 
 import express from 'express';
-import {getAllUsers, getUser, createUser, updateUsername, updateUserEmail, updateUserPassword, getAllAnimes, getAnime, getReview, createReview, getUserWatchlist, addToWatchlist, addAnime} from "./database.js";
+import {getAllUsers, getUser, createUser, updateUsername, updateUserEmail, updateUserPassword, getAllAnimes, getAnime, getReview, createReview, getUserWatchlist, addToWatchlist, addAnime, doesAnimeExist} from "./database.js";
 import bcrypt from "bcrypt";    // async library to hash passwords
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { title } from 'process';
 
 // Get the current file URL and directory path - this method works for ES6
 const __filename = fileURLToPath(import.meta.url);
@@ -93,6 +94,51 @@ app.post("/addAnime", async (req, res) => {
     }
     catch(err){
         res.status(400).json({error: "Anime unsuccessfully added"});
+    }
+});
+
+app.get("/checkExistAnime", async (req, res) => {
+    try {
+        const {title} = req.body;
+        const result = await doesAnimeExist(title);
+        res.status(200).json({result: result});
+    }
+    catch(err){
+        res.status(400).json({error: "Error checking anime"});
+    }
+});
+
+app.post("/addToWatchlist", async (req, res) => {
+    try {
+        const {user_id, title, description} = req.body;
+        const animeExist = await doesAnimeExist(title);
+        if (animeExist === true){
+            const [animeId] = await getAnime(title)
+            const result = await addToWatchlist(user_id, animeId.anime_id);
+            res.status(201).json({status: "Successfully added to watchlist", result});
+        }
+        else if (animeExist === false) {
+            const newAnimeId = await addAnime(title, description);
+            const result = await addToWatchlist(user_id, newAnimeId.data[0].anime_id)
+            res.status(201).json({status: "Successfully added to watchlist", result})
+        }
+        else {
+            res.status(400).json({error: "Unsuccessful adding anime to watchlist"});
+        }
+    }
+    catch(err) {
+        res.status(400).json({error: "Unsuccessful adding anime to watchlist"});
+    }
+});
+
+app.post("/getUserWatchlist", async (req, res) => {
+    try {
+        const {user_id} = req.body;
+        const watchlist = await getUserWatchlist(user_id);
+        res.status(200).json(watchlist)
+    }
+    catch(err) {
+        res.status(400).json({error: "Unsuccessful"})
     }
 });
 
