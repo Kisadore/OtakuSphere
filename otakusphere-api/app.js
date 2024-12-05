@@ -131,16 +131,16 @@ app.post("/addToWatchlist", async (req, res) => {
     }
 });
 
-// app.get("/getUserWatchlist", async (req, res) => {
-//     try {
-//         const {user_id} = req.body;
-//         const watchlist = await getUserWatchlist(user_id);
-//         console.log(watchlist)
-//     }
-//     catch(err) {
-
-//     }
-// });
+app.post("/getUserWatchlist", async (req, res) => {
+    try {
+        const {user_id} = req.body;
+        const watchlist = await getUserWatchlist(user_id);
+        res.status(200).json(watchlist)
+    }
+    catch(err) {
+        res.status(400).json({error: "Unsuccessful"})
+    }
+});
 
 // code for async error handling:
 app.use((err, req, res, next) => {
