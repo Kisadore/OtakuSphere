@@ -642,7 +642,17 @@ border: none;
 }
 
 .pick-of-day .scroll-indicator {
-    bottom: 30px; /* Adjusted position */
+    bottom: 30px; 
 }
 
+.view-more-link {
+    color: #a288e3;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+}
 
+.view-more-link:hover {
+    color: #8867e8;
+    text-decoration: underline;
+}

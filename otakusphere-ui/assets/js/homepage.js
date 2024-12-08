@@ -1,8 +1,5 @@
 import AnimeBackground from './animeBackground.js';
-const API_ENDPOINTS = {
-    TRENDING: 'https://api.jikan.moe/v4/top/anime',
-    REVIEWS: 'https://api.jikan.moe/v4/anime'
-};
+
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize anime background
@@ -31,14 +28,28 @@ async function initializeHomepage() {
 // Trending Anime Section
 async function fetchTrendingAnime() {
     try {
-        const response = await fetch(API_ENDPOINTS.TRENDING);
+        const response = await fetch('https://api.jikan.moe/v4/anime?order_by=score&sort=desc');
         const data = await response.json();
-        displayTrendingAnime(data.data.slice(0, 4));
+        
+        const randomAnime = getRandomUniqueAnime(data.data, 4);
+        
+        const titleElement = document.querySelector('#trendingSection h2');
+        if (titleElement) {
+            titleElement.textContent = 'Recommended Anime';
+        }
+        
+        displayTrendingAnime(randomAnime);
     } catch (error) {
-        console.error('Error fetching trending anime:', error);
-        displayError('trendingAnime', 'Unable to load trending anime');
+        console.error('Error fetching recommendations:', error);
+        displayError('trendingAnime', 'Unable to load recommendations');
     }
 }
+
+function getRandomUniqueAnime(animeList, count) {
+    const shuffled = [...animeList].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+}
+
 
 function displayTrendingAnime(animes) {
     const container = document.getElementById('trendingAnime');
@@ -214,14 +225,12 @@ class TopRankedAnime {
                                 <div class="d-flex align-items-center mb-3">
                                     <div class="d-flex align-items-center gap-3 mb-3">
                                         <h3 class="mb-0">${anime.title}</h3>
-                                        </div>
-                                        </div>
-                                        
+                                    </div>
+                                </div>
                                 <div class="anime-stats mb-3">
-                                <span><i class="fas fa-users"></i>Ranked #${anime.rank}</span>
+                                    <span><i class="fas fa-users"></i>Ranked #${anime.rank}</span>
                                     <p class="lead mb-2">
                                         <p class="lead mb-3">${this.generateStars(anime.score)} </p>
-                                        
                                     </p>
                                     <p class="rec-icons">
                                         <span><i class="fas fa-tv"></i> ${anime.type || 'N/A'}</span>
@@ -229,13 +238,15 @@ class TopRankedAnime {
                                         <span class="ms-3"><i class="fas fa-clock"></i> ${anime.episodes || '?'} eps</span>
                                     </p>
                                 </div>
-                                <p class="mb-4">${anime.synopsis ? anime.synopsis.substring(0, 150) + '...' : 'No synopsis available.'}</p>
+                                <p class="mb-4">
+                                    ${anime.synopsis ? anime.synopsis.substring(0, 150) + '...' : 'No synopsis available.'}
+                                    <a href="anime-detail.html?id=${anime.mal_id}" class="view-more-link ms-1">view more</a>
+                                </p>
                                 <div class="genres mb-4">
-                                    ${anime.genres.map(genre => 
+                                    ${anime.genres.map(genre =>
                                         `<span class="rec-genre-tag">${genre.name}</span>`
                                     ).join('')}
                                 </div>
-                                <a href="anime-detail.html?id=${anime.mal_id}" class="btn btn-outline-light btn-lg">View Details</a>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -342,22 +353,22 @@ class AnimeSearch {
     }
 
     initializeEventListeners() {
-        // Listen for input changes
+
         this.searchInput.addEventListener('input', () => {
             clearTimeout(this.debounceTimeout);
             this.debounceTimeout = setTimeout(() => {
                 this.handleSearch();
-            }, 300); // Debounce for 300ms
+            }, 300); 
         });
 
-        // Close results when clicking outside
+
         document.addEventListener('click', (e) => {
             if (!this.searchInput.contains(e.target) && !this.searchResults.contains(e.target)) {
                 this.searchResults.style.display = 'none';
             }
         });
 
-        // Show results when focusing on input
+
         this.searchInput.addEventListener('focus', () => {
             if (this.searchResults.children.length > 0) {
                 this.searchResults.style.display = 'block';
@@ -387,7 +398,7 @@ class AnimeSearch {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            return data.data; // Jikan API returns results in data array
+            return data.data; 
         } catch (error) {
             console.error('Error:', error);
             return [];
