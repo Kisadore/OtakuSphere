@@ -1,6 +1,5 @@
 import { generateStarRating } from './homepage.js';
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const sortSelect = document.getElementById('sortSelect');
@@ -9,6 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const typeFilters = document.getElementById('typeFilters');
     const animeList = document.getElementById('animeList');
     const loadingElement = document.getElementById('loading');
+    const searchHistoryContainer = document.getElementById('searchHistoryContainer');
+    const searchHistoryDiv = document.getElementById('searchHistory');
+    const MAX_HISTORY_ITEMS = 10;
 
     let currentPage = 1;
     const itemsPerPage = 24;
@@ -16,7 +18,89 @@ document.addEventListener('DOMContentLoaded', () => {
     let hasMoreData = true;
     let activeType = 'all';
 
-    async function fetchAnime(query = '', sort = 'popularity', page = 1, append = true) {
+    // load search history from localStorage
+    function loadSearchHistory() {
+        const history = JSON.parse(localStorage.getItem('animeSearchHistory')) || [];
+        displaySearchHistory(history);
+    }
+
+    // save search history to localStorage
+    function saveSearchHistory(searchTerm) {
+        if (!searchTerm.trim()) return;
+        
+        let history = JSON.parse(localStorage.getItem('animeSearchHistory')) || [];
+        history = history.filter(item => item !== searchTerm);
+        history.unshift(searchTerm);
+        history = history.slice(0, MAX_HISTORY_ITEMS);
+        
+        localStorage.setItem('animeSearchHistory', JSON.stringify(history));
+        displaySearchHistory(history);
+    }
+
+    // search history
+    function displaySearchHistory(history) {
+        // Clear both the header and search items
+        searchHistoryContainer.querySelector('h5')?.remove(); // Remove existing header if any
+        searchHistoryDiv.innerHTML = '';
+        
+        const headerContainer = document.createElement('h5');
+        headerContainer.innerHTML = 'Recent Searches';
+        
+        if (history.length > 0) {
+            const clearAllBtn = document.createElement('button');
+            clearAllBtn.className = 'btn btn-danger clear-all';
+            clearAllBtn.textContent = 'Clear all';
+            headerContainer.appendChild(clearAllBtn);
+            
+            clearAllBtn.addEventListener('click', () => {
+                localStorage.removeItem('animeSearchHistory');
+                displaySearchHistory([]);
+            });
+        }
+        
+        
+        searchHistoryContainer.insertBefore(headerContainer, searchHistoryDiv);
+        
+        history.forEach(term => {
+            const historyItemContainer = document.createElement('div');
+            historyItemContainer.className = 'history-item-container';
+            
+            const historyItem = document.createElement('button');
+            historyItem.className = 'btn btn-sm btn-outline-secondary';
+            historyItem.textContent = term;
+            historyItem.addEventListener('click', () => {
+                searchInput.value = term;
+                performSearch();
+            });
+    
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'btn btn-sm btn-outline-danger';
+            deleteBtn.innerHTML = '×';
+            deleteBtn.title = 'Remove';
+            deleteBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                deleteFromHistory(term);
+            });
+    
+            historyItemContainer.appendChild(historyItem);
+            historyItemContainer.appendChild(deleteBtn);
+            searchHistoryDiv.appendChild(historyItemContainer);
+        });
+        
+        searchHistoryContainer.style.display = history.length ? 'block' : 'none';
+    }
+    
+    
+
+    // Function to delete single item from history
+    function deleteFromHistory(term) {
+        let history = JSON.parse(localStorage.getItem('animeSearchHistory')) || [];
+        history = history.filter(item => item !== term);
+        localStorage.setItem('animeSearchHistory', JSON.stringify(history));
+        displaySearchHistory(history);
+    }
+
+    async function fetchAnime(query = '', sort = 'popularity', page = 1, append = false) {
         if (!hasMoreData || isLoading) return;
 
         try {
@@ -54,6 +138,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function performSearch() {
+        currentPage = 1;
+        hasMoreData = true;
+        if (searchInput.value.trim()) {
+            saveSearchHistory(searchInput.value.trim());
+        }
+        fetchAnime(searchInput.value, sortSelect.value, currentPage, false);
+    }
+
+    // Event Listeners
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            performSearch();
+        }
+    });
+
+    // Filter change listeners
+    sortSelect.addEventListener('change', performSearch);
+    statusSelect.addEventListener('change', performSearch);
+    genreSelect.addEventListener('change', performSearch);
+
+    // Type filter buttons
+    typeFilters.addEventListener('click', (e) => {
+        if (e.target.matches('button')) {
+            typeFilters.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+            activeType = e.target.dataset.type;
+            performSearch();
+        }
+    });
+
+
     function displayAnime(animes) {
         animes.forEach(anime => {
             const animeCard = document.createElement('div');
@@ -83,27 +200,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    typeFilters.addEventListener('click', (e) => {
-        if (e.target.matches('button')) {
-            typeFilters.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
-            e.target.classList.add('active');
-            activeType = e.target.dataset.type;
-            resetAndFetch();
-        }
-    });
-
-
-    function resetAndFetch() {
-        currentPage = 1;
-        hasMoreData = true;
-        fetchAnime(searchInput.value, sortSelect.value, currentPage, false);
-    }
-
-    // for infinite scroll
+    // Infinite scroll 
     const sentinel = document.createElement('div');
     sentinel.id = 'sentinel';
-    sentinel.style.height = '20px';
-    sentinel.style.marginTop = '20px';
     document.body.appendChild(sentinel);
 
     const observer = new IntersectionObserver((entries) => {
@@ -116,21 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
         rootMargin: '100px',
         threshold: 0.1
     });
-
-    observer.observe(sentinel);
-
-    // listeners for filters
-    let searchTimeout;
-    searchInput.addEventListener('input', () => {
-        clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(resetAndFetch, 300);
-    });
-
-    sortSelect.addEventListener('change', resetAndFetch);
-    statusSelect.addEventListener('change', resetAndFetch);
-    genreSelect.addEventListener('change', resetAndFetch);
-
-    fetchAnime();
 
     //scroll to top 
     const scrollToTopBtn = document.getElementById('scrollToTop');
@@ -151,4 +235,9 @@ document.addEventListener('DOMContentLoaded', () => {
             behavior: 'smooth'
         });
     });
+
+    observer.observe(sentinel);
+
+    loadSearchHistory();
+    fetchAnime(); 
 });

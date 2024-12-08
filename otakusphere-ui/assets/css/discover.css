@@ -144,3 +144,107 @@
         height: 35px;
     }
 }
+
+#searchHistoryContainer {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+#searchHistory .btn {
+    margin: 0 5px 5px 0;
+    font-size: 0.9rem;
+}
+
+#searchHistory .btn:hover {
+    background-color: #6c757d;
+    color: white;
+}
+
+#searchHistoryContainer {
+    background-color: #ffffff;
+    padding: 20px 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+    border: 1px solid #eaeaea;
+}
+
+#searchHistoryContainer h5 {
+    color: #333;
+    margin-bottom: 18px;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#searchHistory {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.history-item-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Search term button */
+.history-item-container .btn-outline-secondary {
+    background-color: #f8f9fa;
+    border: 1px solid #eaeaea;
+    color: #555;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    font-weight: 400;
+}
+
+.history-item-container .btn-outline-secondary:hover {
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+    color: #333;
+    transform: translateY(-1px);
+}
+
+/*  (×) button */
+.history-item-container .btn-outline-danger {
+    padding: 0px 4px;
+    font-size: 0.85rem;
+    margin-left: 4px;
+    color: #888;
+    border: none;
+    background: transparent;
+    transition: all 0.2s ease;
+    opacity: 0.6;
+}
+
+.history-item-container .btn-outline-danger:hover {
+    background-color: transparent;
+    color: #666;
+    opacity: 1;
+}
+
+/* Clear All */
+.btn-danger.clear-all {
+    background-color: transparent;
+    border: none;
+    color: #888;
+    font-size: 0.8rem;
+    font-weight: 400;
+    padding: 0;
+    transition: all 0.2s ease;
+    opacity: 0.7;
+}
+
+.btn-danger.clear-all:hover {
+    color: #666;
+    background-color: transparent;
+    opacity: 1;
+}

@@ -47,13 +47,6 @@
         </nav>
     </header>
 
-    <!-- <section class="intro-section py-4 text-light text-center">
-        <div id="animeBackgroundContainer2"></div>
-        <h1 class="cyber-title mb-4">
-            <span class="title-bottom">Discover Anime</span>
-        </h1>
-        <p class="lead fw-normal mb-5 animate-subtitle">Explore and find your next favorite anime</p>
-    </section> -->
     <script type="module">
         import AnimeBackground from './assets/js/animeBackground.js';
         
@@ -109,7 +102,12 @@
                 <button type="button" class="filters-btn" data-type="movie">Movie</button>
             </div>
         </div>
-    
+        <div id="searchHistoryContainer" class="mb-4">
+            <!-- <h5>Recent Searches</h5> -->
+            <div id="searchHistory" class="d-flex flex-wrap gap-2">
+                
+            </div>
+        </div>
         <div id="animeList" class="anime-grid"></div>
         <div id="loading" class="text-center my-4">Loading...</div>
     
