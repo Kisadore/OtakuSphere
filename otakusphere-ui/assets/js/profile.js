@@ -52,15 +52,23 @@ function showAvatarModal() {
                     </div>
                     <div id="generatedAvatars" class="avatar-grid" style="display: none;">
                         <div class="generator-controls">
-                            <button onclick="regenerateAvatar()">Generate New</button>
+                            <button class="btn btn-generate" onclick="regenerateAvatar()">
+                                <i class="fas fa-sync-alt"></i> Generate New Avatar
+                            </button>
                         </div>
                         <div id="generatedPreview"></div>
                     </div>
                 </div>
             </div>
-            <div class="avatar-modal-actions">
-                <button onclick="closeAvatarModal()" class="btn btn-secondary">Cancel</button>
-                <button onclick="saveAvatar()" class="btn btn-primary">Save</button>
+            <div class="modal-buttons">
+                <button onclick="closeAvatarModal()" class="modal-btn modal-btn-cancel">
+                    <i class="fas fa-times"></i>
+                    Cancel
+                </button>
+                <button onclick="saveAvatar()" class="modal-btn modal-btn-save">
+                    <i class="fas fa-check"></i>
+                    Save
+                </button>
             </div>
         </div>
     `;

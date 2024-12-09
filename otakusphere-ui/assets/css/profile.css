@@ -206,3 +206,47 @@
 .avatar-option.selected .avatar-preview {
     border-color: #6c5ce7;
 }
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.modal-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modal-btn-cancel {
+    background-color: #e0e0e0;
+    color: #4a4a4a;
+    border: none;
+}
+
+.modal-btn-cancel:hover {
+    background-color: #d0d0d0;
+    transform: translateY(-2px);
+}
+
+.modal-btn-save {
+    background-color: #6c5ce7;
+    color: white;
+    border: none;
+}
+
+.modal-btn-save:hover {
+    background-color: #5b4cc4;
+    transform: translateY(-2px);
+}
+
+.modal-btn i {
+    font-size: 1.1rem;
+}
