@@ -27,6 +27,19 @@ async function initializeHomepage() {
 
 // Trending Anime Section
 async function fetchTrendingAnime() {
+    const container = document.getElementById('trendingAnime');
+    if (container) {
+        container.innerHTML = `
+            <div class="loading-container">
+                <div class="text-center">
+                    <div class="spinner-border text-purple" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Loading recommendations...</p>
+                </div>
+            </div>
+        `;
+    }
     try {
         const response = await fetch('https://api.jikan.moe/v4/anime?order_by=score&sort=desc');
         const data = await response.json();
