@@ -4,11 +4,12 @@ function updateAuthUI() {
     const authSection = document.querySelector('#app');
     
     if (user) {
+        const avatarUrl = user.avatar || `https://api.dicebear.com/6.x/adventurer/svg?seed=${user.username}`;
         // logged in
         authSection.innerHTML = `
             <div class="dropdown">
                 <button class="btn btn-link text-light dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://api.dicebear.com/6.x/adventurer/svg?seed=${user.username}" class="rounded-circle me-2" width="32" height="32" alt="Profile Avatar">
+                    <img src="${avatarUrl}" class="rounded-circle me-2" width="32" height="32" alt="Profile Avatar">
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                     <li><a class="dropdown-item" href="profile.html">Profile</a></li>

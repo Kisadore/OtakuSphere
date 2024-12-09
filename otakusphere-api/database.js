@@ -72,6 +72,23 @@ export async function updateUserEmail(newEmail, id){
     return result;
 }
 
+// updateUserAvatar
+export async function updateUserAvatar(avatarUrl, userId) {
+    try {
+        const [result] = await db.query(`
+            UPDATE User
+            SET avatar_url = ?
+            WHERE user_id = ?`, 
+            [avatarUrl, userId]
+        );
+        return result;
+    } catch(err) {
+        console.error("Error updating user avatar:", err);
+        throw err;
+    }
+}
+
+
 // function to update user password with given ID
 export async function updateUserPassword(newPassword, id){
     const [result] = await db.query(`

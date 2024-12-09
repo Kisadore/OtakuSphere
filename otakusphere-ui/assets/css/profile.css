@@ -68,3 +68,141 @@
     color: #2d3436;
     margin-bottom: 1rem;
 } */
+
+
+
+.avatar-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.avatar-modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 90%;
+}
+
+.avatar-options {
+    margin: 1rem 0;
+}
+
+.avatar-tab-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.avatar-tab-buttons button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.avatar-tab-buttons button.active {
+    border-bottom-color: #6c5ce7;
+    color: #6c5ce7;
+}
+
+.avatar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 1rem;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.avatar-grid img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.avatar-grid img:hover {
+    transform: scale(1.1);
+}
+
+.avatar-grid img.selected {
+    border-color: #6c5ce7;
+}
+
+.generator-controls {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+#generatedPreview {
+    text-align: center;
+}
+
+#generatedPreview img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.avatar-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.avatar-name {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+    color: #333;
+}
+
+.avatar-subtitle {
+    font-size: 0.75rem;
+    color: #666;
+    text-align: center;
+}
+
+.avatar-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.avatar-preview {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.avatar-option:hover .avatar-preview {
+    border-color: #6c5ce7;
+    transform: scale(1.05);
+}
+
+.avatar-option.selected .avatar-preview {
+    border-color: #6c5ce7;
+}
