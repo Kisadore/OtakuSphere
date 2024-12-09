@@ -235,12 +235,11 @@
             // Handle form submission
             loginForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                
                 const username = document.getElementById('usernameLogin').value;
                 const password = passwordInput.value;
 
                 try {
-                    const response = await fetch('/login', {
+                    const response = await fetch(`http://localhost:8080/login`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -248,21 +247,24 @@
                         body: JSON.stringify({ username, password })
                     });
 
+                    const data = await response.json();
+
                     if (response.ok) {
-                        const data = await response.json();
-                        // Store the token in localStorage
-                        localStorage.setItem('token', data.token);
+                        // Store the user data in localStorage
+                        localStorage.setItem('user', JSON.stringify(data.user));
                         updateAuthUI();
                         // Redirect to dashboard or home page
                         window.location.href = 'index.html';
                     } else {
-                        alert('Invalid username or password');
+                        // Show the error message from the server
+                        alert(data.error || 'Invalid username or password');
                     }
                 } catch (error) {
                     console.error('Login error:', error);
                     alert('An error occurred during login');
                 }
             });
+
         });
 
         // Update copyright year
